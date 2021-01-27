@@ -7,6 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideBarComponent implements OnInit {
 
+  routes = [
+    {
+      label: 'Dashboard',
+      link: 'dashboard',
+      icon: ''
+    }
+  ];
+
   constructor() { }
 
   ngOnInit(): void {

@@ -12,6 +12,11 @@ export class SideBarComponent implements OnInit {
       label: 'Dashboard',
       link: 'dashboard',
       icon: ''
+    },
+    {
+      label: 'Soutenances',
+      link: 'soutenances',
+      icon: ''
     }
   ];
 

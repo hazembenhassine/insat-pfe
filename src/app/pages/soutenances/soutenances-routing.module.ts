@@ -6,9 +6,14 @@ import { SoutenancesEtudiantComponent } from './soutenances-etudiant/soutenances
 import { SoutenancesComponent } from './soutenances.component';
 
 const routes: Routes = [
-  { path: '', component: SoutenancesComponent },
-   { path:'details',component: DetailsSoutenanceComponent}
-  
+  {
+    path: '',
+    component: SoutenancesComponent
+  },
+  {
+    path: 'details',
+    component: DetailsSoutenanceComponent
+  }
 ];
 
 @NgModule({

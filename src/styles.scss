@@ -1,4 +1,35 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700');
 
+<<<<<<< HEAD
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+=======
+.dashboard-box{
+  box-shadow:0 0 1px rgba(0,0,0,.125),0 1px 3px rgba(0,0,0,.2);
+  border-radius:.25rem;
+  background:#fff;
+  margin-bottom:1rem;
+  padding:.75rem 1rem;
+  position:relative;
+  width:100%;
+  height: 240px;
+}
+
+.dashboard-box .title-row {
+  height: 50px;
+}
+
+.dashboard-box .content-row {
+  height: 190px;
+}
+
+.dashboard-box .content-row > * {
+  height: 100%;
+}
+
+.dashboard-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+>>>>>>> 33e887843a929fd75f5416b6fc4bc0c76c2b46b7

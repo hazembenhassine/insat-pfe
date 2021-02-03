@@ -23,10 +23,9 @@
              with font-awesome or any other icon font library -->
         <li *ngFor="let route of routes" class="nav-item">
           <a [routerLink]="route?.link" routerLinkActive="active" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
+            <i  [ngClass]="['nav-icon','fas',route?.icon]"></i>
             <p>
               {{ route?.label }}
-              <span class="right badge badge-danger">New</span>
             </p>
           </a>
         </li>

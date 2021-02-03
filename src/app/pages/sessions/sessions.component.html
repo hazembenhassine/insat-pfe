@@ -1,0 +1,91 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1><b>Sessions </b></h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Liste des sessions deja programmées</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th style="width: 10px"></th>
+                  <th>date de debut </th>
+                  <th>date de fin </th>
+                  <th>president</th>
+                  <th>capacité</th>
+                  <th >Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>#1</td>
+                  <td>28/06/2021|date</td>
+                  <td>28/07/2021|date</td>
+                  <td>dr.Ali Abdenadher</td>
+                  <td>200</td>
+                  <td>
+                    <i class="fas fa-info-circle" (click)="showDetails()"></i>
+                        <br>
+                        <i class="far fa fa-edit"></i>
+                        <br>
+                        <i class="fas fa-trash" (click)="delete()"></i>
+                  </td>
+                  
+                </tr>
+                <tr>
+                    <td>#2</td>
+                    <td>28/09/2021|date</td>
+                    <td>28/10/2021|date</td>
+                    <td>dr.Riadh Robbana</td>
+                    <td>250</td>
+                    <td>
+                        <i class="fas fa-info-circle" (click)="showDetails()"></i>
+                        <br>
+                        <i class="far fa fa-edit"> </i>
+                        <br>
+                        <i class="fas fa-trash" (click)="delete()"> </i>
+                    </td>
+                  </tr>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+        </div>
+    </div>
+    </div>
+    </section>
+    
+
+    <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-10"></div>
+            <div class="col-2" id="add">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                      <p><b>ajouter une session</b></p>
+                    </div>
+                    <div class="icon">
+                      <i class="fas fa-folder-plus"></i>
+                    </div>
+                    <a class="small-box-footer"  (click)="createSession()">ajouter<i class="fas fa-arrow-circle-right"></i></a>
+                  </div>
+            </div>
+           </div>
+        </div>
+    </section>
+
+    

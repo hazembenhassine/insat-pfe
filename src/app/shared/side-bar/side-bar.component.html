@@ -21,6 +21,16 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
+<<<<<<< HEAD
+        <li *ngFor="let route of routes" class="nav-item">
+          <a [routerLink]="route?.link" routerLinkActive="active" class="nav-link">
+            <i  [ngClass]="['nav-icon','fas',route?.icon]"></i>
+            <p>
+              {{ route?.label }}
+            </p>
+          </a>
+        </li>
+=======
         <ng-container *ngFor="let route of routes">
           <li class="nav-item">
             <a [routerLink]="route?.link" routerLinkActive="active" class="nav-link">
@@ -41,6 +51,7 @@
             </a>
           </li>
         </ng-container>
+>>>>>>> 33e887843a929fd75f5416b6fc4bc0c76c2b46b7
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

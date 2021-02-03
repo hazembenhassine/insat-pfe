@@ -7,13 +7,31 @@
         </div>
     </div>
 </section>
+
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-2" id="add">
+            <div class="small-box bg-success">
+                <div class="inner">
+                  <p><b>programmer une soutenance</b></p>
+                </div>
+                <div class="icon">
+                  <i class="fas fa-graduation-cap"></i>
+                </div>
+                <a  class="small-box-footer">ajouter <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+        </div>
+       </div>
+    </div>
+</section>
 <section class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-user-graduate"></i><b>   Liste des soutenances programmées : </b></h3>
+                        <h3 class="card-title"><i class="fas fa-user-graduate"></i><b>Liste des soutenances programmées : </b></h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
@@ -26,6 +44,7 @@
                                     <th>Role</th>
                                     <th>Description du sujet</th>
                                     <th>Actions</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,7 +55,11 @@
                                     <td><span class="tag tag-success">Encadrant</span></td>
                                     <td><div>
                                         Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</div></td>
-                                    <td><button class="btn btn-outline-success" (click)="detailsSoutenance()"><i class="fa fa-info-circle"></i>Consulter details</button></td>
+                                    <td>
+                                        <i style="color:#28a745" class="fa fa-info-circle " (click)="detailsSoutenance()"></i>
+                                        <br>
+                                        <i  class="fa fas fa-edit" (click)="edit()"></i>
+                                    </td>
                                     </tr>
                                 <tr>
                                     <td>219</td>
@@ -44,7 +67,11 @@
                                     <td>11-7-2021</td>
                                     <td><span class="tag tag-warning">Jury</span></td>
                                     <td><div>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner Bacon ipsum dolor sit amet salami venison chicken flank fatback doner Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</div></td>
-                                    <td><button class="btn btn-outline-success" (click)="detailsSoutenance()"><i class="fa fa-info-circle"></i>Consulter details</button></td>
+                                    <td>
+                                        <i style="color:#28a745" class="fa fa-info-circle " (click)="detailsSoutenance()"></i>
+                                        <br>
+                                        <i  class="fa fas fa-edit" (click)="edit()"></i>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

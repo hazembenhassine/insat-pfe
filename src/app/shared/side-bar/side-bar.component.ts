@@ -11,12 +11,32 @@ export class SideBarComponent implements OnInit {
     {
       label: 'Dashboard',
       link: 'dashboard',
-      icon: '',
+      icon: 'fa-home'
     },
     {
       label: 'Soutenances',
       link: 'soutenances',
+      icon: 'fa-user-graduate'
+    },
+    {
+      label: 'Soutenances etudiant',
+      link: 'soutenances/etudiant',
       icon: ''
+    },
+    {
+      label: 'Soutenances prof',
+      link: 'soutenances/prof',
+      icon: ''
+    },
+    {
+      label: 'Soutenances admin',
+      link: 'soutenances/admin',
+      icon: ''
+    },
+    {
+      label: 'Sessions',
+      link: 'sessions',
+      icon: 'fa-history'
     }
   ];
 

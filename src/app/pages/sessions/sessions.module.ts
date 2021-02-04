@@ -6,22 +6,25 @@ import { SessionsRoutingModule } from './sessions-routing.module';
 import { SessionsComponent } from './sessions.component';
 import { DetailsSessionComponent } from './details-session/details-session.component';
 import { CreateSessionComponent } from './create-session/create-session.component';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatNativeDateModule } from '@angular/material/core';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
+import { EditSessionComponent } from './edit-session/edit-session.component';
+
 
 
 
 @NgModule({
-  declarations: [SessionsComponent, DetailsSessionComponent, CreateSessionComponent],
+  declarations: [SessionsComponent, DetailsSessionComponent, CreateSessionComponent, EditSessionComponent],
   imports: [
     CommonModule,
     SessionsRoutingModule,
     ReactiveFormsModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatInputModule
+    BsDatepickerModule.forRoot(),
+    MatInputModule,
+    MatSelectModule,
+    MatDialogModule    
   ]
 })
 export class SessionsModule { }

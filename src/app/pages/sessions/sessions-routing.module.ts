@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreateSessionComponent } from './create-session/create-session.component';
 import { DetailsSessionComponent } from './details-session/details-session.component';
+import { EditSessionComponent } from './edit-session/edit-session.component';
 
 import { SessionsComponent } from './sessions.component';
 
 const routes: Routes = [
   { path: '', component: SessionsComponent,pathMatch:'full' },
-  {path:'details',component:DetailsSessionComponent},
+  {path:':id/details',component:DetailsSessionComponent},
+  {path:':id/edit',component:EditSessionComponent},
   {path:'new',component:CreateSessionComponent}
 ];
 

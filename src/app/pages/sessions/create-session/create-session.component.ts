@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl,FormGroup } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-create-session',
@@ -8,18 +11,22 @@ import { FormControl,FormGroup } from '@angular/forms';
 })
 export class CreateSessionComponent implements OnInit {
 
-  /* sessionForm = new FormGroup({
-    startDate = new FormControl(''),
-    endDate = new FormControl(''),
-    capacity = new FormControl(''),
-    president = new FormControl('')
-  }); */
-  startDate = new Date(2021, 1, 1);
+  profs=[{
+    'id':1,'name':'tarek','lastname':'jarrar'
+  }];
 
 
-  constructor() { }
+  constructor(private router:Router,public dialogRef: MatDialogRef<CreateSessionComponent>) { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit(){
+    this.dialogRef.close();
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 

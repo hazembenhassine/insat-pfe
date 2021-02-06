@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700');
 
-.dashboard-box{
+html, body { height: 100%; }
+body { margin: 0;}
+
+.dashboard-box {
   box-shadow:0 0 1px rgba(0,0,0,.125),0 1px 3px rgba(0,0,0,.2);
   border-radius: 3px;
   background: #fff;
@@ -13,6 +16,12 @@
 
 .dashboard-box .title-row {
   height: 50px;
+
+  h2 {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
 }
 
 .dashboard-box .content-row {
@@ -29,5 +38,33 @@
   object-fit: contain;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.dashboard-card {
+  box-shadow:0 0 1px rgba(0,0,0,.125),0 1px 3px rgba(0,0,0,.2);
+  border-radius: 3px;
+  background: #fff;
+  margin-bottom: 1rem;
+  position: relative;
+  width: 100%;
+  height: calc(100% - 1rem);
+}
+
+.dashboard-card .card-header {
+  background-color: transparent;
+  border-bottom: 1px solid rgba(0,0,0,.125);
+  padding: .75rem 1.25rem;
+  position: relative;
+  border-top-left-radius: .25rem;
+  border-top-right-radius: .25rem;
+
+  h2 {
+    float: left;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+}
+
+.dashboard-card .card-content {
+  padding: 10px 15px;
+}

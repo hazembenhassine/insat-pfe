@@ -9,7 +9,7 @@ import { SoutenancesComponent } from './soutenances.component';
 
 const routes: Routes = [
   { path: '', component: SoutenancesComponent , pathMatch: 'full'},
-  { path:'details',component: DetailsSoutenanceComponent},
+  { path:':id/details',component: DetailsSoutenanceComponent},
   { path:'etudiant',component: SoutenancesEtudiantComponent},
   { path:'prof',component: SoutenancesProfComponent}, 
   { path:'admin',component: SoutenancesAdminComponent}

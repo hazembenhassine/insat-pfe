@@ -1,6 +1,6 @@
 
 export interface Session {
-    id?:number;
+    id?:String;
     startDate?:String;
     endDate?:String;
     capacity?:number;

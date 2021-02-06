@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { CreateSessionComponent } from './create-session/create-session.component';
 import { EditSessionComponent } from './edit-session/edit-session.component';
-import { Session } from './sessions.model';
+import { Session } from 'src/app/shared/models/session.model';
+import { SessionsService } from './sessions.service';
 
 
 @Component({
@@ -13,32 +14,16 @@ import { Session } from './sessions.model';
 })
 export class SessionsComponent implements OnInit {
 
-  public sessions:Session[]=[
-    {
-      'id':1,
-       'startDate':"27/06/2021",
-       'endDate':"27/09/2021",
-       'capacity':250,
-       'president':"dr.Ali Abdenadher"
-    },
-    {
-      'id':2,
-      'startDate':"15/09/2021",
-       'endDate':"15/10/2021",
-       'capacity':300,
-       'president':"dr.Riadh Robbana"
-    }
-  ];
-
-  constructor(private router:Router, public dialog: MatDialog) { }
+  sessions:Session[];
+  constructor(private router:Router, public dialog: MatDialog,private sessionsService:SessionsService) { }
 
   ngOnInit(): void {
+    this.sessions=this.getAllSessions();
   }
+  
 
   createSession() {
-  /*    this.router.navigate(['sessions/new']);
-  */
-    const dialogRef = this.dialog.open(CreateSessionComponent, {
+      const dialogRef = this.dialog.open(CreateSessionComponent, {
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
@@ -62,5 +47,9 @@ edit(id:string){
     console.log('The dialog was closed');
   });
 }
+
+getAllSessions(): Session[] {
+  return this.sessionsService.getSessions();}
+
 
 }

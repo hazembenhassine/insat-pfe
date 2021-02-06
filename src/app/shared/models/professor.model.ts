@@ -5,8 +5,7 @@ export class Professor {
               public lastName: string,
               public email: string,
               public department: string,
-              public rank: string) {
-
-  }
+              public rank: string) {}
 
 }
+

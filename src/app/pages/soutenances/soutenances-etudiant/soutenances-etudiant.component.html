@@ -15,30 +15,30 @@
       <div class="row">
 
         <div class="col-md-8">
-     
-          <div class="card">
+          <div class="card" *ngIf="!clicked">
             <div class="card-header">
               <h3 class="card-title">Sessions de soutenances programmées : </h3>
             </div>
             <div class="card-body p-0">
-              <table class="table table-sm">
+              <table class="table table-sm" >
                 <thead>
                   <tr>
                     <th style="width: 10px">#</th>
                     <th>Date de debut :</th>
                     <th>Date de fin :</th>
+                    <th>Capacité : </th>
                     <th >responsable :</th>
                     <th ></th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody *ngFor="let session of sessions">
                   <tr>
-                    <td>1.</td>
-                    <td>12 juin 2021 </td>
-                    <td>28 juin 2021 </td>
-                    <td>Aymen Sellaouti</td>
+                    <td>#{{session.id}}</td>
+                    <td>{{session.startDate}}</td>
+                    <td>{{session.endDate}}</td>
+                    <td>{{session.capacity}}</td>
                     <td>
-                      <button class="btn btn-outline-success btn-block btn-sm"><i class="fa fa-book"></i>Demander</button>
+                      <button class="btn btn-outline-success btn-block btn-sm" (click)="demanderSession(session.id)"><i class="fa fa-book"></i>Demander</button>
                     </td>
                   </tr>
                 </tbody>
@@ -52,29 +52,31 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+
+
+        <div class="col-md-4" *ngIf="clicked">
           <div class="card card-success">
             <div class="card-header">
               <h3 class="card-title">Details de votre soutenance</h3>
             </div>
             <div class="card-body">
-             <p>Votre soutenance aura lieu durant la session du <b>12 juin 2021</b> au <b>28 juin 2021</b> </p> 
+             <p>Votre soutenance aura lieu durant la session du <b>{{myConference.session.startDate}}</b> au <b>28 juin 2021</b> </p> 
              <div class="info-box bg-success">
                 <span class="info-box-icon"><i class="far fa-calendar-alt"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text">Date Soutenance</span>
-                  <span class="info-box-number">15 juin 2021</span>
+                  <span class="info-box-number">{{myConference.date}}</span>
                 </div>
               </div>
               <div class="info-box" style="width: 70%">
                 <span class="info-box-icon bg-warning"><i class="far fa-flag"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text">Salle de Conférance </span>
-                  <span class="info-box-number">L407</span>
+                  <span class="info-box-number">{{myConference.room}}</span>
                 </div>
               </div>
               <div class="text-right">
-                <button class="btn btn-primary" (click)="detailsSoutenance()"><i class="fas fa-info"></i> Details</button>
+                <button class="btn btn-primary" (click)="showDetailsSoutenance(myConference.id)"><i class="fas fa-info"></i> Details</button>
               </div>
             </div>
           </div>

@@ -1,0 +1,73 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1><b>Sessions </b></h1>
+      </div>
+    </div>
+  </div>
+</section>
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step>
+    <ng-template matStepLabel>Choisir Projet</ng-template>
+    <div class="row">
+      <h4>Liste des soutenances affectés à programmer :</h4>
+      <div class="col-12 table-responsive">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Etudiant</th>
+            <th>Filliére</th>
+            <th style="width: 400px;">sujet du soutenance</th>
+            <th>Encadrant</th>
+            <th>Entreprise</th>
+            <th style="width: 20px;">Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let project of projects">
+            <td>{{project.student.name}} {{project.student.lastName}}</td>
+            <td>{{project.student.field}}</td>
+            <td>{{project.title}}</td>
+            <td>{{project.supervisor.name}} {{project.supervisor.lastName}}</td>
+            <td>{{project.enterprise.name}}</td>
+            <td>
+              <button mat-button matStepperNext>Affecter</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </mat-step>
+  <!-- #docregion label -->
+  <mat-step [stepControl]="roomFormGroup" label="Choisir Salle">
+    <!-- #enddocregion label -->
+    <form [formGroup]="roomFormGroup">
+      <mat-form-field appearance="legacy">
+        <mat-label>Salle</mat-label>
+        <mat-select formControlName="room">
+          <mat-option *ngFor="let room of allRooms" [value]="room">{{room}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious type="button">Back</button>
+        <button mat-button matStepperNext type="button" [disabled]="roomFormGroup.valid">Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="roomFormGroup" label="Choisir Horaire">
+    <!-- #enddocregion label -->
+    <app-scheduler [reservedDates]="[]"></app-scheduler>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

@@ -11,8 +11,7 @@ import { FooterComponent } from './footer/footer.component';
   declarations: [NavbarComponent, SideBarComponent, FooterComponent],
   imports: [
     CommonModule,
-    RouterModule,
-    
+    RouterModule
   ],
   exports: [NavbarComponent, SideBarComponent, FooterComponent]
 })

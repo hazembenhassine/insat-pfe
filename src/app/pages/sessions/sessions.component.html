@@ -30,35 +30,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>#1</td>
-                  <td>28/06/2021|date</td>
-                  <td>28/07/2021|date</td>
-                  <td>dr.Ali Abdenadher</td>
-                  <td>200</td>
+                <tr *ngFor="let session of sessions">
+                  <td>#{{session.id}}</td>
+                  <td>{{session.startDate}}</td>
+                  <td>{{session.endDate}}</td>
+                  <td>{{session.president}}</td>
+                  <td>{{session.capacity}}</td>
                   <td>
-                    <i class="fas fa-info-circle" (click)="showDetails()"></i>
+                    <i class="fas fa-info-circle" (click)="showDetails(session.id)"></i>
                         <br>
-                        <i class="far fa fa-edit"></i>
+                        <i class="far fa fa-edit" (click)="edit(session.id)"></i>
                         <br>
-                        <i class="fas fa-trash" (click)="delete()"></i>
+                        <i class="fas fa-trash" (click)="delete(session.id)"></i>
                   </td>
-                  
+
                 </tr>
-                <tr>
-                    <td>#2</td>
-                    <td>28/09/2021|date</td>
-                    <td>28/10/2021|date</td>
-                    <td>dr.Riadh Robbana</td>
-                    <td>250</td>
-                    <td>
-                        <i class="fas fa-info-circle" (click)="showDetails()"></i>
-                        <br>
-                        <i class="far fa fa-edit"> </i>
-                        <br>
-                        <i class="fas fa-trash" (click)="delete()"> </i>
-                    </td>
-                  </tr>
               </table>
             </div>
             <!-- /.card-body -->

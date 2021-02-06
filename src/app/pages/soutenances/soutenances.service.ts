@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { ConferenceRole } from 'src/app/shared/models/conference-role.model';
-import { Conference } from 'src/app/shared/models/conference.model';
-import { Enterprise } from 'src/app/shared/models/entreprise.model';
-import { Professor } from 'src/app/shared/models/professor.model';
-import { Project } from 'src/app/shared/models/project.model';
-import { Session } from 'src/app/shared/models/session.model';
-import { Student } from 'src/app/shared/models/student.model';
+import { ConferenceRole } from '../../core/models/conference-role.model';
+import { Conference } from '../../core/models/conference.model';
+import { Enterprise } from '../../core/models/entreprise.model';
+import { Professor } from '../../core/models/professor.model';
+import { Project } from '../../core/models/project.model';
+import { Session } from '../../core/models/sessions.model';
+import { Student } from '../../core/models/student.model';
 
 @Injectable({
   providedIn: 'root'

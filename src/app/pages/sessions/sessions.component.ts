@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { CreateSessionComponent } from './create-session/create-session.component';
 import { EditSessionComponent } from './edit-session/edit-session.component';
-import { Session } from 'src/app/shared/models/session.model';
-import { SessionsService } from './sessions.service';
+import { Session } from '../../core/models/sessions.model';
+import { SessionsService } from 'src/app/core/services/sessions.service';
 
 
 @Component({
@@ -50,6 +50,4 @@ edit(id:string){
 
 getAllSessions(): Session[] {
   return this.sessionsService.getSessions();}
-
-
 }

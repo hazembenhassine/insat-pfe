@@ -2,8 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Session } from 'src/app/shared/models/session.model';
-import { SessionsService } from '../sessions.service';
+import { SessionsService } from 'src/app/core/services/sessions.service';
+import { Session } from '../../../core/models/sessions.model';
 
 @Component({
   selector: 'app-edit-session',

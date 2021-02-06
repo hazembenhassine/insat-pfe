@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl,FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { SessionsService } from '../sessions.service';
+import { SessionsService } from 'src/app/core/services/sessions.service';
 
 
 @Component({

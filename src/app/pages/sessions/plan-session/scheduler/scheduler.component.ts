@@ -1,4 +1,4 @@
-import {Component, OnInit, Inject, LOCALE_ID, HostListener, Input} from '@angular/core';
+import {Component, OnInit, Inject, LOCALE_ID, HostListener, Input, Output, EventEmitter} from '@angular/core';
 import {Subject} from 'rxjs';
 
 import {
@@ -19,6 +19,7 @@ import {
   CalendarDateFormatter,
   DateAdapter
 } from 'angular-calendar';
+import {Session} from "../../../../core/models/sessions.model";
 
 @Component({
   selector: 'app-scheduler',
@@ -30,28 +31,32 @@ import {
   styleUrls: ['./scheduler.component.scss']
 })
 export class SchedulerComponent implements OnInit {
+  @Input() reservedDates: [string];
+  @Input() stepper;
+  @Input() session: Session;
+  @Output() onSelectTimeslot = new EventEmitter<string>();
+
   title: string = 'Angular Calendar Scheduler Demo';
   CalendarView = CalendarView;
   view: CalendarView = CalendarView.Week;
   viewDate: Date = new Date();
   viewDays: number = DAYS_IN_WEEK;
   refresh: Subject<any> = new Subject();
-  locale: string = 'en';
+  locale: string = 'fr';
   hourSegments: number = 1;
   weekStartsOn: number = 1;
   startsWithToday: boolean = true;
   excludeDays: number[] = [0]; // [0];
   dayStartHour: number = 8;
   dayEndHour: number = 16;
-  minDate: Date = new Date();
-  maxDate: Date = endOfDay(addMonths(new Date(), 1));
+  minDate: Date;
+  maxDate: Date;
   dayModifier: Function;
   hourModifier: Function;
   segmentModifier: Function;
   prevBtnDisabled: boolean = false;
   nextBtnDisabled: boolean = false;
   events = "Hours here"
-  @Input() reservedDates: [string];
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -65,6 +70,8 @@ export class SchedulerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.minDate = new Date(String(this.session.startDate))
+    this.maxDate = new Date(String(this.session.endDate))
     this.segmentModifier = ((segment: SchedulerViewHourSegment): void => {
       segment.isDisabled = !this.isDateValid(segment.date);
       segment.backgroundColor = !this.isDateValid(segment.date) ? "#cccccc" : ""
@@ -87,13 +94,11 @@ export class SchedulerComponent implements OnInit {
   }
 
   changeDate(date: Date): void {
-    console.log('changeDate', date);
     this.viewDate = date;
     this.dateOrViewChanged();
   }
 
   changeView(view: CalendarView): void {
-    console.log('changeView', view);
     this.view = view;
     this.dateOrViewChanged();
   }
@@ -115,12 +120,13 @@ export class SchedulerComponent implements OnInit {
   }
 
   private isDateValid(date: Date): boolean {
+
     return !this.reservedDates.includes(date.toISOString()) && date >= this.minDate && date <= this.maxDate;
   }
 
   segmentClicked(action: string, segment: SchedulerViewHourSegment): void {
-    console.log("Name of the segment ", segment);
-
+    this.onSelectTimeslot.emit(segment.date.toISOString())
+    this.stepper.next()
   }
 
 

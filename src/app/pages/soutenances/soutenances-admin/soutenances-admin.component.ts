@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Conference } from 'src/app/shared/models/conference.model';
-import { Session } from 'src/app/shared/models/session.model';
-import { SessionsService } from '../../sessions/sessions.service';
+import { Conference } from 'src/app/core/models/conference.model';
+import { Session } from 'src/app/core/models/sessions.model';
+import { SessionsService } from 'src/app/core/services/sessions.service';
 import { SoutenancesService } from '../soutenances.service';
 
 @Component({

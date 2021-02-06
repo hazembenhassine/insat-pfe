@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Conference } from 'src/app/shared/models/conference.model';
-import { Session } from 'src/app/shared/models/session.model';
+import { SessionsService } from 'src/app/core/services/sessions.service';
+import { Conference } from '../../../core/models/conference.model';
+import { Session } from '../../../core/models/sessions.model';
 import { SoutenancesService } from '../../soutenances/soutenances.service';
-import { SessionsService } from '../sessions.service';
 
 @Component({
   selector: 'app-details-session',

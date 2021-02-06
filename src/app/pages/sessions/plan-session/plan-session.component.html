@@ -7,7 +7,7 @@
     </div>
   </div>
 </section>
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
+<mat-horizontal-stepper [linear]="false" #stepper>
   <mat-step>
     <ng-template matStepLabel>Choisir Projet</ng-template>
     <div class="row">
@@ -32,7 +32,7 @@
             <td>{{project.supervisor.name}} {{project.supervisor.lastName}}</td>
             <td>{{project.enterprise.name}}</td>
             <td>
-              <button mat-button matStepperNext>Affecter</button>
+              <button mat-button matStepperNext (click)="onProjectSelect(project)">Affecter</button>
             </td>
           </tr>
           </tbody>
@@ -53,21 +53,43 @@
       </mat-form-field>
       <div>
         <button mat-button matStepperPrevious type="button">Back</button>
-        <button mat-button matStepperNext type="button" [disabled]="roomFormGroup.valid">Next</button>
+        <button mat-button matStepperNext type="button" [disabled]="roomFormGroup.invalid">Next</button>
       </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="roomFormGroup" label="Choisir Horaire">
     <!-- #enddocregion label -->
-    <app-scheduler [reservedDates]="[]"></app-scheduler>
+    <app-scheduler (onSelectTimeslot)="setTimeslot($event)" [reservedDates]="reservedDates" [stepper]="stepper"
+                   [session]="session"></app-scheduler>
   </mat-step>
 
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
+    <ng-template matStepLabel>Choisir Jury</ng-template>
+    <div>President du jury: {{president.name}} {{president.lastName}}</div>
+    <form [formGroup]="juryFormGroup">
+
+      <div class="row pt-3">
+        <ng-container formArrayName="jurys">
+          <div *ngFor="let _ of jurys.controls; index as i" class="col-3">
+            <mat-form-field appearance="legacy">
+              <mat-label>Jury {{i + 1}}</mat-label>
+              <mat-select [formControlName]="i"
+                          [compareWith]="compareById">
+                <mat-option *ngFor="let jury of availableProfessors(i)"
+                            [value]="jury">{{jury.lastName}} {{jury.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </ng-container>
+
+      </div>
+
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button [disabled]="jurys.invalid" (click)="planSession()">Confirm</button>
+      </div>
+    </form>
   </mat-step>
+
 </mat-horizontal-stepper>

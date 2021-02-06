@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Session} from './sessions.model';
+import {Session} from '../models/sessions.model';
 import {HttpClient} from '@angular/common/http';
-import {Student} from "../../shared/models/student.model";
-import {Enterprise} from "../../shared/models/entreprise.model";
-import {Project} from "../../shared/models/project.model";
-import {Professor} from "../../shared/models/professor.model";
+import {Student} from "../models/student.model";
+import {Enterprise} from "../models/entreprise.model";
+import {Project} from "../models/project.model";
+import {Professor} from "../models/professor.model";
 
 @Injectable({
   providedIn: 'root'

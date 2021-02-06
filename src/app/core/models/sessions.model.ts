@@ -6,4 +6,4 @@ export interface Session {
     capacity?:number;
     president?:String;
   }
-  
+

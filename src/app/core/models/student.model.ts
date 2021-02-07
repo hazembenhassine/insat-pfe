@@ -1,18 +1,15 @@
-export class Student {
-
-  constructor(public id: string,
-              public name: string,
-              public lastName: string,
-              public email: string,
-              public field: string,
-              public level: string) {
-
-  }
-
-
+export interface Student {
+  id: string
+  nce: string
+  name: string
+  lastName: string
+  cin: string
+  email: string
+  field: string
+  level: string
 }
 
-export  enum Field {
+export enum Field {
   "GL",
   "RT",
   "IMI",

@@ -80,8 +80,17 @@ export class AddStudentsComponent {
         const email = curruntRecord[3].trim();
         const field = curruntRecord[4].trim();
         const level = curruntRecord[5].trim();
-        const csvRecord: Student = new Student(nce, firstName, lastName, email, field, level);
-        students.push(csvRecord);
+        const cin = curruntRecord[6].trim();
+        let student: Student = <Student>{
+          name: firstName,
+          lastName: lastName,
+          email: email,
+          nce: nce,
+          cin: cin,
+          field: field,
+          level: level
+        }
+        students.push(student);
       }
     }
     return students;
@@ -108,6 +117,7 @@ export class AddStudentsComponent {
   addStudents() {
 
   }
+
   addStudent() {
 
   }

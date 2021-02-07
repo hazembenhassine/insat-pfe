@@ -7,6 +7,5 @@ export class usersService {
   }
 
   addStudent(student: Student) {
-
   }
 }

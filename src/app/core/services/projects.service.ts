@@ -108,9 +108,9 @@ export class ProjectsService {
     return this.http.get(`${environment.BASE_URL}/projects/to-accept`).toPromise();
   }
 
-  getSessionRequests(sessionId): Promise<any> {
-    return this.http.get(`${environment.BASE_URL}/projects/session/$sessionId`).toPromise();
-  }
+  /* getSessionRequests(sessionId): Promise<any> {
+
+  } */
 
   addProject(project: Project): Promise<any> {
     return this.http.post(`${environment.BASE_URL}/projects`, project).toPromise()

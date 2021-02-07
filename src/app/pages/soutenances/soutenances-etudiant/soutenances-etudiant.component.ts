@@ -21,16 +21,17 @@ export class SoutenancesEtudiantComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSessions();
-    this.myConference=this.getConferenceByStudent(this.myId)
-  }
+/*     this.myConference=this.getConferenceByStudent(this.myId)
+ */  
+}
 
   showDetailsSoutenance(id:String){
     this.router.navigate(['soutenances',id,'details']);
   }
 
-  getConferenceByStudent(studentId:String){
+/*   getConferenceByStudent(studentId:String){
     return this.soutenancesSession.getConferenceByStudent(studentId);
-  }
+  } */
 
 
   demanderSession(sessionId:String){

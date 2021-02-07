@@ -22,22 +22,29 @@ export class SoutenancesAdminComponent implements OnInit {
   ngOnInit(): void {
     this.clicked=false;
     this.getSessions();
-
   }
 
 
 
-  getAllConferences(){
+/*   getAllConferences(){
     return this.soutenancesService.getAllConferences();
-  }
+  } */
 
   getConferencesBySession(sessionId:String){
-    return this.soutenancesService.getConferencesBySession(sessionId);
+    return this.soutenancesService.getConferencesBySession(sessionId).then(
+      res => {
+       this.conferences=res;
+      }).catch(
+      error => {
+        console.log(error)
+      }
+    ).finally(() => {
+    });
   }
 
   onSessionClicked(id:String){
     this.clicked=true;
-    this.conferences=this.getConferencesBySession(id);
+    this.getConferencesBySession(id);
    }
 
  previous(){

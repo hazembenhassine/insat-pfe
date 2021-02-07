@@ -8,21 +8,37 @@ import { ProjectsService } from 'src/app/core/services/projects.service';
   styleUrls: ['./supervision-requests.component.scss']
 })
 export class SupervisionRequestsComponent implements OnInit {
-  myId;
   projects:Project[];
 
   constructor(private projectsService:ProjectsService) {}
 
   ngOnInit(): void {
-    this.projects=this.getSupervisionRequests();
+    this.getSupervisionRequests();
   }
 
   acceptSupervisionRequest(projectId){
-    this.projectsService.acceptSupervisionRequest(projectId);
+    this.projectsService.acceptSupervisionRequest(projectId).then(
+      res => {
+       console.log(res)
+      }).catch(
+      error => {
+        console.log(error)
+      }
+    ).finally(() => {
+    });
   }
 
   getSupervisionRequests(){
-    return this.projectsService.getSupervisionRequests(this.myId);
+    return this.projectsService.getSupervisionRequests().then(
+      res => {
+        this.projects=res;
+      }).catch(
+      error => {
+        console.log(error)
+      }
+    ).finally(() => {
+     
+    });
   }
 
   showDetails(id){

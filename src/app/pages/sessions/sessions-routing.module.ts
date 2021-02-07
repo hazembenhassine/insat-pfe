@@ -36,7 +36,8 @@ const routes: Routes = [
   {
     path: ':id/plan',
     component: PlanSessionComponent,
-    canActivate: [AdminGuard]
+    canActivate: [AdminGuard],
+    resolve: {professors: ProfessorResolver}
   }
 ];
 

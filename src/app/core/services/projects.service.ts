@@ -119,6 +119,10 @@ export class ProjectsService {
     return this.http.get(`${environment.BASE_URL}/projects`).toPromise()
   }
 
+  getAllProjects():Promise<any>{
+    return this.http.get(`${environment.BASE_URL}/projects/all`).toPromise();
+  }
+
 
   getProjectBySessionId(sessionId): Promise<any> {
     return this.http.get(`${environment.BASE_URL}/projects/session/${sessionId}`).toPromise()

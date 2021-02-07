@@ -34,7 +34,7 @@
                   <td>#{{session.id}}</td>
                   <td>{{session.startDate}}</td>
                   <td>{{session.endDate}}</td>
-                  <td>{{session.president}}</td>
+                  <td>{{session.president.name}} {{session.president.lastName}}</td>
                   <td>{{session.capacity}}</td>
                   <td>
                     <i class="fas fa-info-circle" (click)="showDetails(session.id)"></i>

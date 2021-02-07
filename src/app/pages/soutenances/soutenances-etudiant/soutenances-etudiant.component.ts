@@ -14,7 +14,7 @@ import { SoutenancesService } from '../../../core/services/soutenances.service';
 export class SoutenancesEtudiantComponent implements OnInit {
   sessions:Session[];
   myId: String;
-  myConference:Conference;
+  myConference:Conference={};
   clicked=false;
 
   constructor(private router: Router,private sessionsService:SessionsService,private soutenancesSession:SoutenancesService) {}

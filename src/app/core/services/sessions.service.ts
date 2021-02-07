@@ -102,4 +102,8 @@ export class SessionsService {
     return this.http.get(this.sessionURL + '/' + sessionId);
   }
 
+  editSession(sessionId,session):Observable<Session>{
+    return this.http.put(this.sessionURL+'/'+sessionId,{session});
+  }
+
 }

@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./soutenances.component.scss']
 })
 export class SoutenancesComponent implements OnInit {
-
+   
   constructor() { }
 
   ngOnInit(): void {

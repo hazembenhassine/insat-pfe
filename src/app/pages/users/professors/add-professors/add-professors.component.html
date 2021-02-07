@@ -1,0 +1,146 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1><b>Ajouter Professeurs</b></h1>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="content">
+  <div class="container-fluid" style="position: relative">
+    <div class="loading-overlay" *ngIf="loading">
+      <mat-progress-spinner mode="indeterminate" style="position: relative"> </mat-progress-spinner>
+    </div>
+    <mat-tab-group>
+      <div class="row">
+        <mat-tab label="Ajouter avec fichier">
+          <div class="col-12">
+            <div class=" d-flex justify-content-center">
+              <div class="col-3  p-2  " id="add">
+                <div class="small-box bg-success">
+                  <div class="inner">
+                    <p><b>Charger un fichier CSV</b></p>
+                    <br>
+
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-folder-plus"></i>
+                  </div>
+                  <a class="small-box-footer" (click)="csvReader.click()">Upload<i
+                    class="fas fa-arrow-circle-right"></i></a>
+                  <input hidden type="file" #csvReader name="Upload CSV" id="txtFileUpload"
+                         (change)="uploadListener($event)"
+                         accept=".csv"/>
+                </div>
+              </div>
+              <div *ngIf="professors.length > 0" class="col-3 p-2 " id="upload">
+                <div class="small-box  bg-gradient-success">
+                  <div class="inner">
+                    <p><b>Ajouter Les Professeurs</b></p>
+                    <br>
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-user-plus"></i>
+                  </div>
+                  <a class="small-box-footer" (click)="addProfessors()">Submit<i
+                    class="fas fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <table class="minimalistBlack" *ngIf="professors.length > 0">
+            <thead>
+            <tr>
+              <th>Prenom</th>
+              <th>Nom</th>
+              <th>Email</th>
+              <th>Rang</th>
+              <th>Department</th>
+              <th>CIN</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let professor of professors;let i = index;">
+              <td><span>{{professor.name}}</span></td>
+              <td><span>{{professor.lastName}}</span></td>
+              <td><span>{{professor.email}}</span></td>
+              <td><span>{{professor.rank}}</span></td>
+              <td><span>{{professor.department}}</span></td>
+              <td><span>{{professor.cin}}</span></td>
+            </tr>
+            </tbody>
+          </table>
+
+        </mat-tab>
+
+        <mat-tab label="Ajouter avec formulaire">
+          <div [formGroup]="formProfessor" class="col-12 mt-3 ">
+            <div class="row ">
+
+              <div class="col-12 ">
+                <mat-form-field appearance="outline">
+                  <mat-label>Prenom du professeur</mat-label>
+                  <input matInput placeholder="Prenom" formControlName="name" required>
+                  <mat-error
+                    *ngIf="formProfessor.controls.name.errors">{{getErrorMessage(formProfessor.controls.email)}}</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-12 ">
+                <mat-form-field appearance="outline">
+                  <mat-label>Nom de professeur</mat-label>
+                  <input matInput placeholder="Nom" formControlName="lastName" required>
+                  <mat-error
+                    *ngIf="formProfessor.controls.lastName.errors">{{getErrorMessage(formProfessor.controls.email)}}</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-12 ">
+                <mat-form-field appearance="outline">
+                  <mat-label>Email du professeur</mat-label>
+                  <input matInput placeholder="pat@insat.u-cathage.tn" formControlName="email" required>
+                  <mat-error
+                    *ngIf="formProfessor.controls.email.errors">{{getErrorMessage(formProfessor.controls.email)}}</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-12 ">
+                <mat-form-field appearance="outline">
+                  <mat-label>Numero Carte Identite</mat-label>
+                  <input matInput placeholder="CIN" formControlName="cin" required>
+                  <mat-error
+                    *ngIf="formProfessor.controls.cin.errors">{{getErrorMessage(formProfessor.controls.cin)}}</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Rang</mat-label>
+                  <mat-select formControlName="rank">
+                    <mat-option *ngFor="let rank of ranks" [value]="rank">{{rank}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Department</mat-label>
+                  <mat-select formControlName="department">
+                    <mat-option *ngFor="let department of departments" [value]="department">{{department}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-12 ">
+                <button mat-button [disabled]="formProfessor.invalid" (click)="addProfessor()" class=" w-25 mx-1">
+                  Ajouter Le Professeur
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </mat-tab>
+      </div>
+
+    </mat-tab-group>
+
+  </div>
+</section>
+

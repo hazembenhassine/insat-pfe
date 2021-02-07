@@ -9,12 +9,16 @@ import { adapterFactory } from 'angular-calendar/date-adapters/moment';
 import * as moment from 'moment';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AuthInterceptorService} from "./core/interceptors/auth-interceptor";
+import { ToastrModule } from 'ngx-toastr';
 
 registerLocaleData(localeFr);
 
 export function momentAdapterFactory() {
   return adapterFactory(moment);
 }
+
 
 @NgModule({
   declarations: [
@@ -36,12 +40,12 @@ export function momentAdapterFactory() {
           useClass: CalendarMomentDateFormatter,
         },
       }),
+    ToastrModule.forRoot(),
+    HttpClientModule
   ],
   providers: [
-    {
-      provide: MOMENT,
-      useValue: moment,
-    },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+    { provide: MOMENT, useValue: moment },
   ],
   bootstrap: [AppComponent]
 })

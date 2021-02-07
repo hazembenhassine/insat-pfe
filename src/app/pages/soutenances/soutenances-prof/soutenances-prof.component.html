@@ -7,6 +7,8 @@
         </div>
     </div>
 </section>
+          
+
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -28,24 +30,18 @@
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>S128</td>
-                                    <td>Tarek Jarrar</td>
-                                    <td>11-7-2021</td>
-                                    <td><span class="tag tag-success">Encadrant</span></td>
+                            <tbody *ngFor="let soutenanceRole of soutenancesRoles">
+                                <tr >
+                                    <td>{{soutenanceRole.conference.id}}</td>
+                                    <td>{{soutenanceRole.conference.project.student.name}} {{soutenanceRole.conference.project.student.lastName}}</td>
+                                    <td>{{soutenanceRole.conference.date}}</td>
+                                    <td><b>{{soutenanceRole.role}}</b></td>
                                     <td><div>
-                                        Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</div></td>
-                                    <td><button class="btn btn-outline-success" (click)="detailsSoutenance()"><i class="fa fa-info-circle"></i>Consulter details</button></td>
+                                        {{soutenanceRole.conference.project.description}}
+                                    </div></td>
+                                    <td><i style="color:#28a745" class="fa fa-info-circle " (click)="detailsSoutenance(soutenanceRole.conference.id)"></i>
+                                        <br></td>
                                     </tr>
-                                <tr>
-                                    <td>219</td>
-                                    <td>Sinda Jeddey</td>
-                                    <td>11-7-2021</td>
-                                    <td><span class="tag tag-warning">Jury</span></td>
-                                    <td><div>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner Bacon ipsum dolor sit amet salami venison chicken flank fatback doner Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</div></td>
-                                    <td><button class="btn btn-outline-success" (click)="detailsSoutenance()"><i class="fa fa-info-circle"></i>Consulter details</button></td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -54,3 +50,6 @@
                 <!-- /.card -->
             </div>
         </div>
+    </div>
+</section>
+        

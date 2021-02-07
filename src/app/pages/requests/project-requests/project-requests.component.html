@@ -1,0 +1,57 @@
+<section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-auto">
+          <h1><b>Les demandes de propositions de sujets :</b></h1>
+        </div>
+       <!--  <div class="col-sm d-flex align-items-center">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+            <li class="breadcrumb-item active">propositions de projets</li>
+          </ol>
+        </div> -->
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Liste des sessions deja programmées</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>nom de l'etudiant </th>
+                  <th>niveau</th>
+                  <th>sujet proposé</th>
+                  <th>entreprise</th>
+                  <th>encadrant </th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let project of projects" (click)="showDetails(project.id)">
+                  <td>{{project.student.name}} {{project.student.lastName}}</td>
+                  <td>{{project.student.level}} {{project.student.field}}</td>
+                  <td>{{project.title}}</td>
+                  <td>{{project.enterprise.name}}</td>
+                  <td>{{project.supervisor.name}} {{project.supervisor.lastName}}</td>
+                  <td>
+                    <i class="icon fas fa-check-circle fa-3x"  (click)="acceptProject(project.id)"></i>
+                  </td>
+
+                </tr>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+        </div>
+    </div>
+    </div>
+    </section>

@@ -16,33 +16,28 @@
               <div class="row">
                 <div class="col-12">  
                   <h4>
-                    <i class="fas fa-graduation-cap"></i> Soutenance de flen fouleni
-                    <small class="float-right"><b>Date:</b> nhar fouleni</small>
+                    <i class="fas fa-graduation-cap"></i> Soutenance de {{conference.project.student.name}} {{conference.project.student.lastName}}
+                    <small class="float-right"><b>Date:</b> {{conference.date}}</small>
                   </h4>
                 </div>
               </div>
               <div class="row invoice-info">
                 <div class="col-sm-4 invoice-col" >
                   <br>
-                  <strong>Sujet :</strong>
-                  <br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac diam turpis.
-                   Ut vel nulla tempus, sagittis nibh vitae, malesuada orci. Sed blandit, arcu id tempor
-                    rutrum, justo sem luctus eros, ac vestibulum tellus metus sit amet ligula. Praesent 
-                    placerat a neque vel tristique. In ac dictum eros.
+                  <strong>Sujet : {{conference.project.title}}</strong>
+                  <br>{{conference.project.description}}
                 </div>
                 <div class="col-sm-4 invoice-col text-right">
                   <br>
-                  <b>Filliére :</b> Genie Logiciel<br>
-                  <b>Specialité  :</b> devOps<br>
-                  <b>Entreprise :</b> akwaStartup <br>
-                  <b>Date de Début :</b>06/02/2020 <br>
+                  <b>Filliére :</b> {{conference.project.field}}<br>
+                  <b>Entreprise :</b> {{conference.project.enterprise.name}} <br>
                 </div>
               </div>
               <br>
 
               <!-- Table row -->
               <div class="row">
-                <h4>Jury de la Soutenance :</h4>
+                <h2>Jury de la Soutenance :</h2>
                 <div class="col-12 table-responsive">
                   <table class="table table-striped">
                     <thead>
@@ -54,17 +49,23 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                      <td>Aymen Seallouti</td>
-                      <td>Maître Assistant en Informatique</td>
+                    <tr >
+                      <td>{{conference.president.name}} {{conference.president.lastName}}</td>
+                      <td>{{conference.president.rank}}</td>
                       <td>president du jury</td>
-                      <td>aymen@insat.u-carthage.tn</td>
+                      <td>{{conference.president.email}}</td>
                     </tr>
                     <tr>
-                      <td>lilia sfaxi</td>
-                      <td>Maître Assistant en Informatique</td>
-                      <td>membre du jury</td>
-                      <td>lilia@insat.u-carthage.tn</td>
+                      <td>{{conference.inspector.name}} {{conference.inspector.lastName}}</td>
+                      <td>{{conference.inspector.rank}}</td>
+                      <td>examinateur</td>
+                      <td>{{conference.inspector.email}}</td>
+                    </tr>
+                    <tr>
+                      <td>{{conference.project.supervisor.name}} {{conference.project.supervisor.lastName}}</td>
+                      <td>{{conference.project.supervisor.rank}}</td>
+                      <td>encandrant</td>
+                      <td>{{conference.project.supervisor.email}}</td>
                     </tr>
                     </tbody>
                   </table>

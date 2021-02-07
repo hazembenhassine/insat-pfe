@@ -6,29 +6,41 @@
                 <h3 class="card-title">Nouvelle session</h3>
               </div>
               <div class="card-body">
-                  <div class="form-group">
+                <form [formGroup]="sessionForm" (ngSubmit)="onSubmit()">
+                  <div class="form-group" >
                     <label for="dates">La date de début et la date de fin de la session:</label>
-                    <input
+                    <input 
                            id="dates" 
                            type="text"
                            placeholder="date debut - date fin "
                            class="form-control"
-                           bsDaterangepicker>
+                           bsDaterangepicker
+                           formControlName="dates"
+                           >
                   </div>
                   <div class="form-group">
                     <label>Capacité</label>
                     <mat-form-field class="example-full-width">
-                      <input matInput type="number" placeholder="nombre de soutenances">
+                      <input 
+                          matInput 
+                          type="number"
+                          placeholder="nombre de soutenances"
+                          formControlName="capacity" 
+                           >
                     </mat-form-field> 
                   </div>
                   <div class="form-group">
                     <label>President de la session</label>
-                    <mat-select  name="president" >
+                    <mat-select  
+                      name="president"
+                      formControlName="president"
+                      >
                       <mat-option *ngFor="let prof of profs" [value]="prof.id">
-                        {{prof.name}} {{prof.lastname}}
+                        {{prof.name}} {{prof.lastName}}
                       </mat-option>
                     </mat-select>
-                  </div>             
+                  </div> 
+                </form>            
               </div>
               
             </div>

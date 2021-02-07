@@ -6,9 +6,10 @@
                   <h3 class="card-title">Mettre à jour session n° {{id}}</h3>
                 </div>
                 <div class="card-body">
+                  <form [formGroup]="sessionForm" (ngSubmit)="onSubmit()">
                     <div class="form-group">
                       <label for="dates">La date de début et la date de fin de la session:</label>
-                      <input
+                      <input formControlName="dates"
                              id="dates" 
                              type="text"
                              placeholder="date debut - date fin "
@@ -18,17 +19,26 @@
                     <div class="form-group">
                       <label>Capacité</label>
                       <mat-form-field class="example-full-width">
-                        <input matInput type="number" placeholder="nombre de soutenances">
+                        <input 
+                            matInput
+                            type="number" 
+                            placeholder="nombre de soutenances"
+                            formControlName="capacity"
+                            >
                       </mat-form-field> 
                     </div>
                     <div class="form-group">
                       <label>President de la session</label>
-                      <mat-select  name="president" >
+                      <mat-select  
+                          name="president"
+                          formControlName="president"
+                       >
                         <mat-option *ngFor="let prof of profs" [value]="prof.id" selected>
-                          {{prof.name}} {{prof.lastname}}
+                          {{prof.name}} {{prof.lastName}}
                         </mat-option>
                       </mat-select>
-                    </div>             
+                    </div>  
+                  </form>
                 </div>
               </div>
           <div class="container">

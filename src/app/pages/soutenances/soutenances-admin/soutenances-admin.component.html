@@ -3,29 +3,29 @@
         <div class="row mb-2">
             <div class="col-sm-6">
                 <h1><b>Soutenances </b></h1>
+            </div>   
+        </div>
+        <i class="fas fa-arrow-circle-left fa-3x" *ngIf="clicked" (click)="previous()"></i>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid" *ngIf="!clicked">
+        <div class="row" *ngFor="let session of sessions;let i=index">
+            <div class="col-md-3 col-sm-6 col-12">
+                <div class="info-box" (click)="onSessionClicked(session.id)" >
+                    <span class="info-box-icon bg-success" ><i class="far fa-flag"></i></span>
+                    <div class="info-box-content">
+                      <span class="info-box-text"> <b>Session n° {{i+1}}</b></span>
+                      <span class="info-box-text">{{session.startDate}} <b>--> </b> {{session.endDate}}</span>
+                    </div>
+                  </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-2" id="add">
-            <div class="small-box bg-success">
-                <div class="inner">
-                  <p><b>programmer une soutenance</b></p>
-                </div>
-                <div class="icon">
-                  <i class="fas fa-graduation-cap"></i>
-                </div>
-                <a  class="small-box-footer">ajouter <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-        </div>
-       </div>
-    </div>
-</section>
-<section class="content">
+<section class="content" *ngIf="clicked" >
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -41,42 +41,53 @@
                                     <th>ID</th>
                                     <th>Etudiant</th>
                                     <th style="width: 100px">Date</th>
-                                    <th>Role</th>
+                                    <th>Encadrant</th>
                                     <th>Description du sujet</th>
                                     <th>Actions</th>
-                                    <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody *ngFor="let conference of conferences">
                                 <tr>
-                                    <td>S128</td>
-                                    <td>Tarek Jarrar</td>
-                                    <td>11-7-2021</td>
-                                    <td><span class="tag tag-success">Encadrant</span></td>
+                                    <td>{{conference.id}}</td>
+                                    <td>{{conference.project.student.name}} {{conference.project.student.lastName}}</td>
+                                    <td>{{conference.date}}</td>
+                                    <td>{{conference.project.supervisor.name}} {{conference.project.supervisor.lastName}}</td>
                                     <td><div>
-                                        Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</div></td>
-                                    <td>
-                                        <i style="color:#28a745" class="fa fa-info-circle " (click)="detailsSoutenance()"></i>
+                                        {{conference.project.description}}</div></td>
+                                    <td> 
+                                        <i style="color:#28a745" class="fa fa-info-circle " (click)="detailsSoutenance(conference.id)"></i>
                                         <br>
-                                        <i  class="fa fas fa-edit" (click)="edit()"></i>
-                                    </td>
-                                    </tr>
-                                <tr>
-                                    <td>219</td>
-                                    <td>Sinda Jeddey</td>
-                                    <td>11-7-2021</td>
-                                    <td><span class="tag tag-warning">Jury</span></td>
-                                    <td><div>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner Bacon ipsum dolor sit amet salami venison chicken flank fatback doner Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</div></td>
-                                    <td>
-                                        <i style="color:#28a745" class="fa fa-info-circle " (click)="detailsSoutenance()"></i>
-                                        <br>
-                                        <i  class="fa fas fa-edit" (click)="edit()"></i>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <!-- /.card-body -->
+                    <div class="row" class="paginationPart">
+                        
+                        <div class="col-sm-12 col-md-6">
+                          <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                            <ul class="pagination">
+                              <li class="paginate_button page-item previous disabled" id="example1_previous"><a href="#"
+                                  aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                              <li class="paginate_button page-item active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0"
+                                  class="page-link">1</a></li>
+                              <li class="paginate_button page-item disabled"><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0"
+                                  class="page-link">2</a></li>
+                              <li class="paginate_button page-item disabled"><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0"
+                                  class="page-link">3</a></li>
+                              <li class="paginate_button page-item disabled"><a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0"
+                                  class="page-link">4</a></li>
+                              <li class="paginate_button page-item disabled"><a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0"
+                                  class="page-link">5</a></li>
+                              <li class="paginate_button page-item disabled"><a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0"
+                                  class="page-link">6</a></li>
+                              <li class="paginate_button page-item next" id="example1_next"><a href="#" aria-controls="example1"
+                                  data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
                 </div>
                 <!-- /.card -->
             </div>

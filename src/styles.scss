@@ -12,6 +12,12 @@ body { margin: 0;}
   position: relative;
   width: 100%;
   height: 240px;
+
+  span.stat-number {
+    font-size: 32px;
+    font-weight: normal;
+  }
+
 }
 
 .dashboard-box .title-row {
@@ -45,6 +51,9 @@ body { margin: 0;}
   margin-bottom: 1rem;
   position: relative;
   width: 100%;
+}
+
+.calendar-card {
   height: calc(100% - 1rem);
 }
 
@@ -67,4 +76,14 @@ body { margin: 0;}
 
 .dashboard-card .card-content {
   padding: 10px 15px;
+
+  h3 {
+    font-size: 24px;
+
+    i {
+      font-size: 18px;
+    }
+
+  }
+
 }

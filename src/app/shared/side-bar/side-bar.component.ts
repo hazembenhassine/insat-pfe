@@ -37,6 +37,11 @@ export class SideBarComponent implements OnInit {
       label: 'Sessions',
       link: 'sessions',
       icon: 'fa-history'
+    },
+    {
+      label: 'Mon Projet',
+      link: 'project',
+      icon: 'fa-project-diagram'
     }
   ];
 

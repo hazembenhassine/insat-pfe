@@ -6,13 +6,34 @@ import {EditSessionComponent} from './edit-session/edit-session.component';
 
 import {SessionsComponent} from './sessions.component';
 import {PlanSessionComponent} from "./plan-session/plan-session.component";
+import { AdminGuard } from '../../core/guards/admin.guard';
 
 const routes: Routes = [
-  {path: '', component: SessionsComponent, pathMatch: 'full'},
-  {path: ':id/details', component: DetailsSessionComponent},
-  {path: ':id/edit', component: EditSessionComponent},
-  {path: 'new', component: CreateSessionComponent},
-  {path: ':id/plan', component: PlanSessionComponent}
+  {
+    path: '',
+    component: SessionsComponent,
+    pathMatch: 'full',
+    canActivate: [AdminGuard]
+  },
+  {
+    path: ':id/details',
+    component: DetailsSessionComponent
+  },
+  {
+    path: ':id/edit',
+    component: EditSessionComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'new',
+    component: CreateSessionComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: ':id/plan',
+    component: PlanSessionComponent,
+    canActivate: [AdminGuard]
+  }
 ];
 
 @NgModule({

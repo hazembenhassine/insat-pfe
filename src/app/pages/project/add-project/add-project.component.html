@@ -51,6 +51,24 @@
                   <label for="inputProjectLeader">Co-encadrant</label>
                   <input type="text" id="inputProjectLeader" class="form-control">
                 </div>
+                <div class="form-group">
+                  <label for="tagsInput">Tags</label>
+                  <div class="form-control">
+                    <mat-chip-list #chipList aria-label="Fruit selection">
+                      <mat-chip *ngFor="let tag of tags" [selectable]="false"
+                                [removable]="true" (removed)="remove(tag)">
+                        {{tag}}
+                        <mat-icon matChipRemove>cancel</mat-icon>
+                      </mat-chip>
+                      <input id="tagsInput"
+                             class="flat-input"
+                             [matChipInputFor]="chipList"
+                             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                             [matChipInputAddOnBlur]="false"
+                             (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
+                  </div>
+                </div>
               </div>
               <div class="col-6">
                 <div class="form-group">

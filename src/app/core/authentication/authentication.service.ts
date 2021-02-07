@@ -1,5 +1,9 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Role } from '../enums/role.enum';
 
 export const credentialsKey = 'jwt';
 
@@ -8,7 +12,10 @@ export const credentialsKey = 'jwt';
 })
 export class AuthenticationService {
 
-  constructor(@Inject(PLATFORM_ID) private platformId: any) {
+  helper = new JwtHelperService();
+
+  constructor(@Inject(PLATFORM_ID) private platformId: any,
+              private http: HttpClient) {
     if (isPlatformBrowser(this.platformId)) {
       const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
       if (savedCredentials) {
@@ -24,7 +31,7 @@ export class AuthenticationService {
   private _credentials: string | null;
 
   isAuthenticated(): boolean {
-    return !!this.credentials;
+    return !!this.credentials && !this.helper.isTokenExpired(this.credentials);
   }
 
   public setCredentials(credentials?: string, remember?: boolean) {
@@ -33,12 +40,28 @@ export class AuthenticationService {
 
       if (credentials) {
         const storage = remember ? localStorage : sessionStorage;
-        storage.setItem(credentialsKey, JSON.stringify(credentials));
+        storage.setItem(credentialsKey, credentials);
       } else {
         sessionStorage.removeItem(credentialsKey);
         localStorage.removeItem(credentialsKey);
       }
     }
+  }
+
+  get userName(): string {
+    return this.helper.decodeToken(this.credentials);
+  }
+
+  login(email: string, password: string): Promise<any> {
+    const body = {
+      email,
+      password
+    }
+    return this.http.post(`${environment.baseURL}/authentication/login`, body).toPromise();
+  }
+
+  get role(): Role {
+    return this.helper.decodeToken(this.credentials).role;
   }
 
 }

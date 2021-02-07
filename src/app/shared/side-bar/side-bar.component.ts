@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../../core/authentication/authentication.service';
+import { Role } from '../../core/enums/role.enum';
 
 @Component({
   selector: 'app-side-bar',
@@ -10,69 +12,93 @@ export class SideBarComponent implements OnInit {
   routes = [
     {
       label: 'Dashboard',
-      link: 'dashboard',
-      icon: 'fa-home'
+      link: '/dashboard/student',
+      icon: 'fa-home',
+      roles: [Role.STUDENT]
+    },
+    {
+      label: 'Dashboard',
+      link: '/dashboard/professor',
+      icon: 'fa-home',
+      roles: [Role.PROFESSOR]
+    },
+    {
+      label: 'Dashboard',
+      link: '/dashboard/admin',
+      icon: 'fa-home',
+      roles: [Role.ADMIN]
+    },
+    {
+      label: 'Ma Soutenance',
+      link: '/soutenances/etudiant',
+      icon: 'fa-user-graduate',
+      roles: [Role.STUDENT]
     },
     {
       label: 'Soutenances',
-      link: 'soutenances',
-      icon: 'fa-user-graduate'
+      link: '/soutenances/prof',
+      icon: 'fa-user-graduate',
+      roles: [Role.PROFESSOR]
     },
     {
-      label: 'Soutenances etudiant',
-      link: 'soutenances/etudiant',
-      icon: ''
-    },
-    {
-      label: 'Soutenances prof',
-      link: 'soutenances/prof',
-      icon: ''
-    },
-    {
-      label: 'Soutenances admin',
-      link: 'soutenances/admin',
-      icon: ''
+      label: 'Soutenances',
+      link: '/soutenances/admin',
+      icon: 'fa-user-graduate',
+      roles: [Role.ADMIN]
     },
     {
       label: 'Sessions',
-      link: 'sessions',
-      icon: 'fa-history'
+      link: '/sessions',
+      icon: 'fa-history',
+      roles: [Role.ADMIN]
     },
     {
       label :'Propositions de sujets',
-      link: 'requests/project-requests',
-      icon :"fa-folder-plus"
+      link: '/requests/project-requests',
+      icon :"fa-folder-plus",
+      roles: [Role.ADMIN]
     },
     {
       label :"Demandes d'encadrement",
-      link: 'requests/supervision-requests',
-      icon :"fa-book"
+      link: '/requests/supervision-requests',
+      icon: "fa-book",
+      roles: [Role.PROFESSOR]
     },
     {
-      label :'affectations aux sessions',
-      link: 'requests/session-requests',
-      icon :"fa-calendar-plus"
+      label :'Affectations aux sessions',
+      link: '/requests/session-requests',
+      icon: "fa-calendar-plus",
+      roles: [Role.ADMIN]
     },
     {
       label: 'Ajouter Etudiant',
-      link: 'users/students/add',
-      icon: 'fa-user'
+      link: '/users/students/add',
+      icon: 'fa-user',
+      roles: [Role.ADMIN]
     },
     {
       label: 'Ajouter Professeur',
-      link: 'users/professors/add',
-      icon: 'fa-user'
+      link: '/users/professors/add',
+      icon: 'fa-user',
+      roles: [Role.ADMIN]
     },
     {
       label: 'Mon Projet',
-      link: 'project',
-      icon: 'fa-project-diagram'
+      link: '/project',
+      icon: 'fa-project-diagram',
+      roles: [Role.STUDENT]
     }
   ];
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
+    // tslint:disable-next-line:no-console
+    console.log(this.authenticationService.role);
+  }
+
+  get role(): Role {
+    return this.authenticationService.role;
   }
 
 }

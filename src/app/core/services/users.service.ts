@@ -16,6 +16,6 @@ export class UsersService {
   }
 
   addProfessors(professors: Professor[]) {
-    return this.http.post("https://gestion-pfe.herokuapp.com/students", professors)
+    return this.http.post("https://gestion-pfe.herokuapp.com/professors", professors)
   }
 }

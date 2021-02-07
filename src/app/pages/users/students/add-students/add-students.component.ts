@@ -24,6 +24,7 @@ export class AddStudentsComponent implements OnInit {
   formUser: FormGroup = this.formBuilder.group({
     nce: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
+    cin: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     field: new FormControl('', [Validators.required]),

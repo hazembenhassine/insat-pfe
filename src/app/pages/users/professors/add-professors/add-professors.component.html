@@ -104,6 +104,14 @@
                     *ngIf="formProfessor.controls.email.errors">{{getErrorMessage(formProfessor.controls.email)}}</mat-error>
                 </mat-form-field>
               </div>
+              <div class="col-12 ">
+                <mat-form-field appearance="outline">
+                  <mat-label>Numero Carte Identite</mat-label>
+                  <input matInput placeholder="CIN" formControlName="cin" required>
+                  <mat-error
+                    *ngIf="formProfessor.controls.cin.errors">{{getErrorMessage(formProfessor.controls.cin)}}</mat-error>
+                </mat-form-field>
+              </div>
               <div class="col-12">
                 <mat-form-field appearance="outline">
                   <mat-label>Rang</mat-label>

@@ -3,6 +3,7 @@ import {Field, Level, Student} from "../../../../core/models/student.model";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Department, Professor, Rank} from "../../../../core/models/professor.model";
 import {UsersService} from "../../../../core/services/users.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-add-professors',
@@ -25,10 +26,11 @@ export class AddProfessorsComponent implements OnInit {
     lastName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     department: new FormControl('', [Validators.required]),
+    cin: new FormControl('', [Validators.required]),
     rank: new FormControl('', [Validators.required]),
   })
 
-  constructor(private formBuilder: FormBuilder, private usersService: UsersService) {
+  constructor(private formBuilder: FormBuilder, private userService: UsersService, private toastr: ToastrService) {
 
   }
 
@@ -109,10 +111,22 @@ export class AddProfessorsComponent implements OnInit {
   }
 
   addProfessors() {
+    this.loading = true
+    console.log(this.professors)
+    this.userService.addProfessors(this.professors).subscribe(
+      res => this.toastr.success("Successfully added all the professors"),
+      error => this.toastr.error(error.message),
+      () => this.loading = false
+    )
   }
 
   addProfessor() {
     const professor = [this.formProfessor.value]
     this.loading = true
+    this.userService.addProfessors(professor).subscribe(
+      res => this.toastr.success("Successfully added the professors"),
+      error => this.toastr.error(error.message),
+      () => this.loading = false
+    )
   }
 }

@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { SessionsService } from 'src/app/core/services/sessions.service';
-import { Conference } from '../../../core/models/conference.model';
-import { Session } from '../../../core/models/sessions.model';
-import { SoutenancesService } from '../../../core/services/soutenances.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {SessionsService} from 'src/app/core/services/sessions.service';
+import {Conference} from '../../../core/models/conference.model';
+import {Session} from '../../../core/models/sessions.model';
+import {SoutenancesService} from '../../../core/services/soutenances.service';
 
 @Component({
   selector: 'app-details-session',
@@ -11,36 +11,51 @@ import { SoutenancesService } from '../../../core/services/soutenances.service';
   styleUrls: ['./details-session.component.scss']
 })
 export class DetailsSessionComponent implements OnInit {
-  sessionId:string;
+  sessionId: string;
   session: Session;
-  conferences:Conference[];
-  constructor(private router:Router,private activatedRouter:ActivatedRoute,private soutenancesSession:SoutenancesService,private sessionsService:SessionsService) { }
+  conferences: Conference[];
+  loading = false
+
+  constructor(private router: Router,
+              private activatedRouter: ActivatedRoute,
+              private soutenancesSession: SoutenancesService,
+              private sessionsService: SessionsService) {
+  }
 
   ngOnInit(): void {
-    this.sessionId=this.activatedRouter.snapshot.params['id'];
-    this.conferences=this.getSessionConferences(this.sessionId)
+    this.loading = true
+    this.sessionId = this.activatedRouter.snapshot.params['id'];
+    this.getSessionById(this.sessionId)
+
+    this.soutenancesSession.getConferencesBySession(this.sessionId).then(
+      conferences => {
+        this.conferences = conferences
+        console.log(conferences)
+      }
+    )
+    this.conferences = []
   }
 
-  getSessionConferences(sessionId:string){
-    return this.soutenancesSession.getConferencesBySession(sessionId);
+
+  showDetailsConference(conferenceId: String) {
+    this.router.navigate(['/soutenances', conferenceId, 'details']);
   }
 
-  showDetailsConference(conferenceId:String){
-    this.router.navigate(['/soutenances',conferenceId,'details']);
-  }
-
-  getSessionById(sessionId:string){
+  getSessionById(sessionId: string) {
+    this.loading = true
     this.sessionsService.getSessionById(sessionId).subscribe(
-      (value:any)=>{
-        this.session=value;
-      },err=>{
+      (value: any) => {
+        this.session = value;
+        this.session.startDate = this.session.startDate.split("T")[0]
+        this.session.endDate = this.session.endDate.split("T")[0]
+        this.loading = false
+      }, err => {
         console.log(err)
       }
     )
   };
 
   programmerSoutenance() {
-    this.router.navigate(['/sessions',this.sessionId,'plan']);
-
+    this.router.navigate(['/sessions', this.sessionId, 'plan']);
   }
 }

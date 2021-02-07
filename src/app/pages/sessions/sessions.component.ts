@@ -24,6 +24,10 @@ export class SessionsComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe((data: { sessions: Session[] }) => {
       this.sessions = data.sessions
+      this.sessions.map(session => {
+        session.startDate = session.startDate.split("T")[0]
+        session.endDate = session.endDate.split("T")[0]
+      })
     })
   }
 

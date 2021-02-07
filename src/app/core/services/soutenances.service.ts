@@ -1,14 +1,15 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { ConferenceRole } from '../models/conference-role.model';
-import { Conference } from '../models/conference.model';
-import { Enterprise } from '../models/entreprise.model';
-import { Professor } from '../models/professor.model';
-import { Project } from '../models/project.model';
-import { Session } from '../models/sessions.model';
-import { Student } from '../models/student.model';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {ConferenceRole} from '../models/conference-role.model';
+import {Conference} from '../models/conference.model';
+import {Enterprise} from '../models/entreprise.model';
+import {Professor} from '../models/professor.model';
+import {Project} from '../models/project.model';
+import {Session} from '../models/sessions.model';
+import {Student} from '../models/student.model';
 import {API_URL} from "../../../app/app.constatnt";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class SoutenancesService {
 
 
 
-   session1:Session={
+  session1: Session = {
     'id': "1",
     'startDate': "27/06/2021",
     'endDate': "27/09/2021",
@@ -25,7 +26,7 @@ export class SoutenancesService {
     'president': "dr.Ali Abdenadher"
   };
 
- student1: Student = <Student>{
+  student1: Student = <Student>{
     id: "1",
     name: "Khaled",
     lastName: "Ghamgui",
@@ -113,36 +114,29 @@ export class SoutenancesService {
   conferences: Conference[] = [this.conference1];
   conferencesRoles: ConferenceRole[] = [this.conferenceRole1];
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  /* getConferences(): Conference[] {
-    return this.conferences;
-  } */
 
-/*   getConferences():Observable<Conference>{
-    return this.http.get('')
-  } */
-
-  getConferencesRolesByProfId(id:String):ConferenceRole[]{
+  getConferencesRolesByProfId(id: String): ConferenceRole[] {
     return this.conferencesRoles;
   }
 
-  getAllConferences():Conference[]{
+  getAllConferences(): Conference[] {
     return this.conferences;
   }
 
   getConferenceById(id: String) {
-     return this.conference1;
-  }
-
-  getConferencesBySession(sessionId:String){
-   if(sessionId=="1") return [this.conference1];
-   if(sessionId=="2") return [this.conference2];
-  }
-
-  getConferenceByStudent(studentId:String) {
     return this.conference1;
   }
+
+  getConferencesBySession(sessionId: String): Promise<any> {
+    return this.http.get(`${environment.BASE_URL}/conferences/session/${sessionId}`).toPromise()
+  }
+
+  // getConferenceByStudent(studentId:String) {
+  //   return this.http.get(`${this.sessionURL}/conferences/session/${sessionId}`).toPromise()
+  // }
 
 
 }

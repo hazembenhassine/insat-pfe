@@ -10,9 +10,9 @@ export class AuthInterceptorService implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     let token: string;
     if ((localStorage.getItem(credentialsKey))) {
-      token = JSON.parse(localStorage.getItem(credentialsKey));
+      token = localStorage.getItem(credentialsKey);
     } else if ((sessionStorage.getItem(credentialsKey))) {
-      token = JSON.parse(sessionStorage.getItem(credentialsKey));
+      token = sessionStorage.getItem(credentialsKey);
     }
     if (token) {
       request = request.clone({headers: request.headers.set('Authorization', 'Bearer ' + token)});

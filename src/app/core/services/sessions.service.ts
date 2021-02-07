@@ -17,26 +17,27 @@ export class SessionsService {
   student2 = new Student("2", "Tarek", "Jarrar", "gham.khaled@gmail.com", "GL", '4');
   prof = new Professor("1", "Saloua", "Ben Yahia", "sby@gmail.com", "Info", "chamta");
   enterprise = new Enterprise("bchal", "Vynd", "Sokra", "Nouisser");
-  project1 = new Project("1", "Serverless computing","akwa projeeet", this.prof, this.student1, this.enterprise, "GL", "cycle")
-  project2 = new Project("2", "IA","theni akwa projeeet", this.prof, this.student2, this.enterprise, "GL", "cycle")
-  session1={
+  project1 = new Project("1", "Serverless computing", "akwa projeeet", this.prof, this.student1, this.enterprise, "GL", "cycle")
+  project2 = new Project("2", "IA", "theni akwa projeeet", this.prof, this.student2, this.enterprise, "GL", "cycle")
+  session1 = {
     'id': "1",
     'startDate': "27/06/2021",
     'endDate': "27/09/2021",
     'capacity': 250,
     'president': "dr.Ali Abdenadher"
   };
-  session2={
-    'id':"2",
+  session2 = {
+    'id': "2",
     'startDate': "15/09/2021",
     'endDate': "15/10/2021",
     'capacity': 300,
     'president': "dr.Riadh Robbana"
   }
 
-  sessions: Session[] = [this.session1,this.session2  ];
+  sessions: Session[] = [this.session1, this.session2];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   /* getAllSessions(): Observable<Session[]> {
     return this.http.get<Session[]>(this.sessionsURL + '/getAllSessions')
@@ -46,21 +47,22 @@ export class SessionsService {
     return [this.project1, this.project2];
   }
   
-  getSessions(){
+  getSessions() {
     return this.sessions;
   }
 
-  getSessionProjects(sessionId:string): Project[] {
-    if (sessionId="1") return [this.project1];
-    if (sessionId="2") return [this.project2];
+
+  getSessionProjects(sessionId: string): Project[] {
+    if (sessionId === "1") return [this.project1];
+    if (sessionId === "2") return [this.project2];
   }
 
-  addSession(startDate:Date,endDate:Date,capacity:number,presidentId:String){
+  addSession(startDate: Date, endDate: Date, capacity: number, presidentId: String) {
     console.log("session added!")
   }
 
-  getSessionById(sessionId:String){
-    if (sessionId=="1") return this.session1;
+  getSessionById(sessionId: String) {
+    if (sessionId === "1") return this.session1;
     else return this.session2;
   }
 

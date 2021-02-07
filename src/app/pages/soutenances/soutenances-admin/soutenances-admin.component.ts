@@ -11,20 +11,20 @@ import { SoutenancesService } from '../../../core/services/soutenances.service';
   styleUrls: ['./soutenances-admin.component.scss']
 })
 export class SoutenancesAdminComponent implements OnInit {
-  
+
   conferences:Conference[];
   clicked:boolean;
   sessions:Session[]=[];
 
 
   constructor(private router:Router,private soutenancesService:SoutenancesService,private sessionsService:SessionsService) { }
-  
+
   ngOnInit(): void {
     this.clicked=false;
     this.sessions=this.getAllSessions();
   }
 
-  
+
 
   getAllConferences(){
     return this.soutenancesService.getAllConferences();
@@ -33,7 +33,7 @@ export class SoutenancesAdminComponent implements OnInit {
   getConferencesBySession(sessionId:String){
     return this.soutenancesService.getConferencesBySession(sessionId);
   }
-  
+
   onSessionClicked(id:String){
     this.clicked=true;
     this.conferences=this.getConferencesBySession(id);

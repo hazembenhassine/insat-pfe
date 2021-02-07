@@ -14,15 +14,15 @@ import { SoutenancesService } from '../../../core/services/soutenances.service';
 export class SoutenancesProfComponent implements OnInit {
   soutenancesRoles:ConferenceRole[];
   id;
-  
+
 
   constructor(private router: Router ,private soutenanceSession:SoutenancesService,private sessionsService:SessionsService ) { }
-   
+
 
   ngOnInit() {
     this.soutenancesRoles=this.getAllConferencesRoles();
     console.log(this.soutenancesRoles);
-   
+
   }
 
   detailsSoutenance(id :String){

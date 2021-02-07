@@ -20,7 +20,7 @@ export class DetailsSessionComponent implements OnInit {
     this.sessionId=this.activatedRouter.snapshot.params['id'];
     this.session=this.getSessionById(this.sessionId);
     console.log(this.session);
-    this.conferences=this.getSessionConferences(this.sessionId) 
+    this.conferences=this.getSessionConferences(this.sessionId)
   }
 
   getSessionConferences(sessionId:string){

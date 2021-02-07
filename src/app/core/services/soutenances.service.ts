@@ -59,6 +59,6 @@ export class SoutenancesService {
   getConferenceByStudent(studentId:String) {
     return this.conference1;
   }
-  
+
 
 }

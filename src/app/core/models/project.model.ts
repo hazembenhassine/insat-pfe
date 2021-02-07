@@ -12,6 +12,7 @@ export interface Project {
   student: Student,
   enterprise: Enterprise,
   session: Session,
+  enterpriseSupervisor: string,
   state: string,
   field: string,
   level: string

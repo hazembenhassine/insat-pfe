@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: ':id/details', component: DetailsSessionComponent},
   {path: ':id/edit', component: EditSessionComponent},
   {path: 'new', component: CreateSessionComponent, resolve: {professors: ProfessorResolver}},
-  {path: ':id/plan', component: PlanSessionComponent}
+  {path: ':id/plan', component: PlanSessionComponent, resolve: {professors: ProfessorResolver}}
 ];
 
 @NgModule({

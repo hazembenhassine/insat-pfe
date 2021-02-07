@@ -1,10 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Project} from "../../../core/models/project.model";
-import {Student} from "../../../core/models/student.model";
+import {Field, Student} from "../../../core/models/student.model";
 import {SessionsService} from "../../../core/services/sessions.service";
 import {Session} from "../../../core/models/sessions.model";
 import {Professor} from "../../../core/models/professor.model";
+import {ActivatedRoute} from "@angular/router";
+import {Room} from "../../../core/models/conference.model";
+import {SoutenancesService} from "../../../core/services/soutenances.service";
+import {ProjectsService} from "../../../core/services/projects.service";
 
 @Component({
   selector: 'app-plan-session',
@@ -14,15 +18,13 @@ import {Professor} from "../../../core/models/professor.model";
 export class PlanSessionComponent implements OnInit {
   projects: Project[];
   selectedProject: Project;
-
+  loading = true
   roomFormGroup: FormGroup;
-  allRooms = [1, 2, 3, 4, 5];
-
+  allRooms = Object.keys(Room).filter(k => typeof Room[k as any] === "number");
+  session: Session
   selectedTimeslot: any;
   timeslotFromGroup: FormGroup;
-  session: Session = {"startDate": "2021/02/08", "endDate": "2021/02/14"}
   reservedDates = [new Date("2021/02/08 10:00:00").toISOString()]
-
   juryFormGroup = new FormGroup(
     {
       "jurys": new FormArray([])
@@ -38,38 +40,31 @@ export class PlanSessionComponent implements OnInit {
     department: "GMI",
     rank: "Maitre Assistant"
   }
-  prof1: Professor = <Professor>{
-    id: "1",
-    name: "Saloua",
-    lastName: "Ben Yahia",
-    email: "sby@gmail.com",
-    department: "GMI",
-    rank: "Maitre Assistant"
-  }
-  prof2: Professor = <Professor>{
-    id: "2",
-    name: "Aymen",
-    lastName: "sellaouti",
-    email: "aymen@gmail.com",
-    department: "GMI",
-    rank: "Maitre Assistant"
-  }
-  prof3: Professor = <Professor>{
-    id: "3",
-    name: "Riadh",
-    lastName: "robbana",
-    email: "rrobbana@gmail.com",
-    department: "GMI",
-    rank: "PROFESSOR"
-  }
-  allProfessors = [this.prof1, this.prof2, this.prof3]
+
+  allProfessors: Professor[]
 
 
-  constructor(private formBuilder: FormBuilder, private sessionsService: SessionsService) {
+  constructor(private formBuilder: FormBuilder,
+              private sessionsService: SessionsService,
+              private activatedRouter: ActivatedRoute,
+              private soutenancesSession: SoutenancesService,
+              private projectsService: ProjectsService,
+              private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.projects = this.sessionsService.getProjects();
+    this.activatedRoute.data.subscribe((data: { professors: Professor[] }) => {
+      this.allProfessors = data.professors
+      console.log(data.professors)
+    })
+    const sessionId = this.activatedRouter.snapshot.params['id'];
+    this.getSessionById(sessionId)
+    this.projectsService.getProjectBySessionId(sessionId).then(
+      (projects: Project[]) => {
+        console.log(projects)
+        this.projects = projects.filter(project => project.state ==="CONFIRMED")
+      }
+    )
     this.roomFormGroup = this.formBuilder.group({
       room: ['', [Validators.required]]
     });
@@ -110,4 +105,18 @@ export class PlanSessionComponent implements OnInit {
     this.selectedTimeslot = timeslot
     console.log(`The selected time is ${this.selectedTimeslot}`)
   }
+
+  getSessionById(sessionId: string) {
+    this.loading = true
+    this.sessionsService.getSessionById(sessionId).subscribe(
+      (value: any) => {
+        this.session = value;
+        this.session.startDate = this.session.startDate.split("T")[0]
+        this.session.endDate = this.session.endDate.split("T")[0]
+        this.loading = false
+      }, err => {
+        console.log(err)
+      }
+    )
+  };
 }

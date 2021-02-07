@@ -11,11 +11,14 @@ export class UsersService {
   constructor(private http: HttpClient) {
   }
 
-  addStudents(students: Student[]) {
-    return this.http.post("https://gestion-pfe.herokuapp.com/students", students)
+  addStudents(students: Student[]) : Promise<any>{
+    return this.http.post("https://gestion-pfe.herokuapp.com/students", students).toPromise()
   }
 
   addProfessors(professors: Professor[]) {
     return this.http.post("https://gestion-pfe.herokuapp.com/professors", professors)
+  }
+  getProfessors() {
+
   }
 }

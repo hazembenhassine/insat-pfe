@@ -60,9 +60,30 @@ export class SoutenancesService {
     department: "GMI",
     rank: "PROFESSOR"
   }
+
   enterprise = new Enterprise("bchal", "Vynd", "Sokra", "Nouisser");
-  project1 = new Project("1", "Serverless computing", "akwa projeeet", this.prof1, this.student1, this.enterprise, "GL", "cycle")
-  project2 = new Project("2", "IA", "theni akwa projet fel aalem", this.prof1, this.student2, this.enterprise, "GL", "cycle")
+  project1: Project = <Project>{
+    id: "1",
+    title: "Serverless computing",
+    description: "akwa projeeet",
+    supervisor: this.prof1,
+    student: this.student1,
+    enterprise: this.enterprise,
+    field: "GL",
+    level: "CYCLE"
+
+  }
+  project2: Project = <Project>{
+    id: "2",
+    title: "IA",
+    description: "theni akwa projeeet",
+    supervisor: this.prof2,
+    student: this.student2,
+    enterprise: this.enterprise,
+    field: "GL",
+    level: "CYCLE"
+
+  }
   conference1: Conference = {
     id: "1",
     date: "24-09-2021",

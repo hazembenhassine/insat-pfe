@@ -123,21 +123,33 @@ export class AddStudentsComponent implements OnInit {
   addStudents() {
     console.log(this.students)
     this.loading = true
-    this.userService.addStudents(this.students).subscribe(
-      res => this.toastr.success("Successfully added all the students"),
-      error => this.toastr.error(error.message),
-      () => this.loading = false
-    )
+    this.userService.addStudents(this.students).then(
+      res => {
+        this.toastr.success("Successfully added all the students")
+      }).catch(
+      error => {
+        this.toastr.error(error.message)
+      }
+    ).finally(() => {
+      this.loading = false
+    })
+
+
   }
 
   addStudent() {
     this.loading = true
     const student = [this.formUser.value]
     console.log(student)
-    this.userService.addStudents(student).subscribe(
-      res => this.toastr.success("Successfully added the student"),
-      error => this.toastr.error(error.message),
-      () => this.loading = false
-    )
+    this.userService.addStudents(student)
+      .then(() => {
+        this.toastr.success("Successfully added the student");
+      })
+      .catch(error => {
+        this.toastr.error(error.message);
+      })
+      .finally(() => {
+      this.loading = false;
+    })
   }
 }

@@ -27,6 +27,7 @@ export class SessionsComponent implements OnInit {
       this.sessions.map(session => {
         session.startDate = session.startDate.split("T")[0]
         session.endDate = session.endDate.split("T")[0]
+        session.id = session._id
       })
     })
   }

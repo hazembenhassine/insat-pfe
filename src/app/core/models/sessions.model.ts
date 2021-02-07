@@ -1,8 +1,9 @@
 
 export interface Session {
-    id?:string;
-    startDate?:string;
-    endDate?:string;
+    _id: String;
+    id?:String;
+    startDate?:String;
+    endDate?:String;
     capacity?:number;
     president?:string;
   }

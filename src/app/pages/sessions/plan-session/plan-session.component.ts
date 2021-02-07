@@ -53,16 +53,14 @@ export class PlanSessionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.data.subscribe((data: { professors: Professor[] }) => {
-      this.allProfessors = data.professors
-      console.log(data.professors)
-    })
+    this.allProfessors = this.activatedRoute.snapshot.data.professors
+    console.log(this.allProfessors)
     const sessionId = this.activatedRouter.snapshot.params['id'];
     this.getSessionById(sessionId)
     this.projectsService.getProjectBySessionId(sessionId).then(
       (projects: Project[]) => {
         console.log(projects)
-        this.projects = projects.filter(project => project.state ==="CONFIRMED")
+        this.projects = projects.filter(project => project.state === "NONE")
       }
     )
     this.roomFormGroup = this.formBuilder.group({
@@ -82,7 +80,10 @@ export class PlanSessionComponent implements OnInit {
   }
 
   availableProfessors(i) {
-    const availableProfessor = this.allProfessors.filter(availableP => this.jurys.value.every(selectedP => selectedP.id !== availableP.id))
+    let availableProfessor = this.allProfessors.filter(availableP => this.jurys.value.every(selectedP => selectedP && selectedP?.id !== availableP.id))
+    for (let selectedProfessor of this.jurys.value) {
+      availableProfessor = availableProfessor.filter(availableP => availableP && availableP.id !== selectedProfessor.id)
+    }
     if (this.jurys.value[i]) {
       availableProfessor.push(this.jurys.value[i])
     }

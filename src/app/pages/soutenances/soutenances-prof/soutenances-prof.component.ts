@@ -24,7 +24,7 @@ export class SoutenancesProfComponent implements OnInit {
 
   }
 
-  detailsSoutenance(id :String){
+  detailsSoutenance(id :string){
     this.router.navigate(['soutenances',id,'details']);
   }
 

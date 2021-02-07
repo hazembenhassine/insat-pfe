@@ -1,101 +1,101 @@
 <section class="content-header">
-    <div class="container-fluid">
-      <div class="row ">
-        <div class="col-sm-6">
-          <h1>Details de la session: </h1>
-        </div>
+  <div class="container-fluid">
+    <div class="row ">
+      <div class="col-sm-6">
+        <h1>Details de la session: </h1>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="content">
-    <div class="container-fluid">
-      <div class="loading-overlay" *ngIf="loading">
-        <mat-progress-spinner mode="indeterminate" style="position: relative"> </mat-progress-spinner>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <div class="invoice p-3 mb-3">
-            <div class="row">
-              <div class="col-12">
-                <h4>
-                  <i class="fas fa-history"></i><b>Session n° {{sessionId}}</b>
-                </h4>
-              </div>
+<section class="content">
+  <div class="container-fluid">
+    <div class="loading-overlay" *ngIf="loading">
+      <mat-progress-spinner mode="indeterminate" style="position: relative"></mat-progress-spinner>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="invoice p-3 mb-3">
+          <div class="row">
+            <div class="col-12">
+              <h4>
+                <i class="fas fa-history"></i><b>Session n° {{sessionId}}</b>
+              </h4>
             </div>
-            <div class="row invoice-info">
-              <div class="col-sm-3 invoice-col" >
-                <br>
-                <strong> Date de Debut :</strong>
-                <br>
-                <h3>{{session.startDate}}</h3>
-              </div>
-              <div class="col-sm-3 invoice-col" >
-                <br>
-                <strong> Date de fin :</strong>
-                <br>
-                <h3>{{session.endDate}}</h3>
-              </div>
-              <div class="col-sm-3 invoice-col  ">
-                <br>
-                <b>Capacité  :</b> {{session.capacity}} soutenances<br>
-                <b>President  :</b>{{session.president}}  <br>
-              </div>
-              <div class="col-sm-3 invoice-col  ">
-                <div class="small-box  bg-info">
-                  <div class="inner">
-                    <p><b>Programmer les Soutenances</b></p>
-                    <br>
-                  </div>
-                  <div class="icon">
-                    <i class="fas fa-user-plus"></i>
-                  </div>
-                  <a class="small-box-footer"  (click)="programmerSoutenance()">
-                    Programmer
-                    <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+          <div class="row invoice-info">
+            <div class="col-sm-3 invoice-col">
+              <br>
+              <strong> Date de Debut :</strong>
+              <br>
+              <h3>{{session.startDate}}</h3>
+            </div>
+            <div class="col-sm-3 invoice-col">
+              <br>
+              <strong> Date de fin :</strong>
+              <br>
+              <h3>{{session.endDate}}</h3>
+            </div>
+            <div class="col-sm-3 invoice-col  ">
+              <br>
+              <b>Capacité :</b> {{session.capacity}} soutenances<br>
+              <b>President :</b>{{session.president.lastName}}  {{session.president.name}} <br>
+            </div>
+            <div class="col-sm-3 invoice-col  ">
+              <div class="small-box  bg-info">
+                <div class="inner">
+                  <p><b>Programmer les Soutenances</b></p>
+                  <br>
                 </div>
-              </div>
-            </div>
-            <br>
-
-            <!-- Table row -->
-            <div class="row">
-              <h4>Liste des soutenances affectés à la session :</h4>
-              <div class="col-12 table-responsive">
-                <table class="table table-striped" >
-                  <thead>
-                  <tr>
-                    <th>Etudiant</th>
-                    <th>Filliére</th>
-                    <th style="width: 400px;">sujet du soutenance </th>
-                    <th>Encadrant </th>
-                    <th>Date</th>
-                    <th>Salle</th>
-                    <th style="width: 20px;">Actions</th>
-                  </tr>
-                  </thead>
-                  <tbody *ngFor="let conference of conferences">
-                  <tr>
-                    <td>{{conference.project.student.name}} {{conference.project.student.lastName}}</td>
-                    <td> {{conference.project.student.level}} {{conference.project.student.field}} </td>
-                    <td>{{conference.project.title}}</td>
-                    <td>{{conference.project.title}}</td>
-                    <td>{{conference.date}}</td>
-                    <td>{{conference.room}}</td>
-                    <td>
-                        <i class="fas fa fa-info-circle" (click)="showDetailsConference(conference.id)"></i>
-                        <br>
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
+                <div class="icon">
+                  <i class="fas fa-user-plus"></i>
+                </div>
+                <a class="small-box-footer" (click)="programmerSoutenance()">
+                  Programmer
+                  <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
           </div>
-          <!-- /.invoice -->
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
-  </section>
-  <!-- /.content -->
+          <br>
+
+          <!-- Table row -->
+          <div class="row">
+            <h4>Liste des soutenances affectés à la session :</h4>
+            <div class="col-12 table-responsive">
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th>Etudiant</th>
+                  <th>Filliére</th>
+                  <th style="width: 400px;">sujet du soutenance</th>
+                  <th>Encadrant</th>
+                  <th>Date</th>
+                  <th>Salle</th>
+                  <th style="width: 20px;">Actions</th>
+                </tr>
+                </thead>
+                <tbody *ngFor="let conference of conferences">
+                <tr>
+                  <td>{{conference.project.student.name}} {{conference.project.student.lastName}}</td>
+                  <td> {{conference.project.student.level}} {{conference.project.student.field}} </td>
+                  <td>{{conference.project.title}}</td>
+                  <td>{{conference.project.title}}</td>
+                  <td>{{conference.date}}</td>
+                  <td>{{conference.room}}</td>
+                  <td>
+                    <i class="fas fa fa-info-circle" (click)="showDetailsConference(conference.id)"></i>
+                    <br>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- /.invoice -->
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
 

@@ -30,7 +30,7 @@ export class SoutenancesAdminComponent implements OnInit {
     return this.soutenancesService.getAllConferences();
   } */
 
-  getConferencesBySession(sessionId:String){
+  getConferencesBySession(sessionId: string){
     return this.soutenancesService.getConferencesBySession(sessionId).then(
       res => {
        this.conferences=res;
@@ -42,7 +42,7 @@ export class SoutenancesAdminComponent implements OnInit {
     });
   }
 
-  onSessionClicked(id:String){
+  onSessionClicked(id: string){
     this.clicked=true;
     this.getConferencesBySession(id);
    }
@@ -64,11 +64,11 @@ export class SoutenancesAdminComponent implements OnInit {
   }
 
 
- detailsSoutenance(id:String){
+ detailsSoutenance(id: string){
   this.router.navigate(['soutenances',id,'details']);
   }
 
-  
+
 /*  getAllSessions(){
   return this.sessionsService.getSessions();
   } */

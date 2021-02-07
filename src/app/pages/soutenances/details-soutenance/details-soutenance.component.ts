@@ -9,13 +9,13 @@ import {Conference} from "../../../core/models/conference.model";
   styleUrls: ['./details-soutenance.component.scss']
 })
 export class DetailsSoutenanceComponent implements OnInit {
-  id:String;
+  id: string;
   conference:Conference;
 
   constructor(private activatedRoute:ActivatedRoute,private soutenanceService:SoutenancesService) { }
 
   ngOnInit(): void {
-    this.id=this.activatedRoute.snapshot.params['id'];
+    this.id=this.activatedRoute.snapshot.params.id;
     this.conference=this.soutenanceService.getConferenceById(this.id);
   }
 

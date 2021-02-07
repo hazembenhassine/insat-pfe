@@ -1,13 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Professor} from "../../../core/models/professor.model";
-import {Enterprise} from "../../../core/models/entreprise.model";
-import {ToastrService} from "ngx-toastr";
-import {ActivatedRoute} from "@angular/router";
-import {COMMA, ENTER} from "@angular/cdk/keycodes";
-import {MatChipInputEvent} from "@angular/material/chips";
-import {Project} from "../../../core/models/project.model";
-import {ProjectsService} from "../../../core/services/projects.service";
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { Professor } from "../../../core/models/professor.model";
+import { ToastrService } from "ngx-toastr";
+import { ActivatedRoute } from "@angular/router";
+import { COMMA, ENTER } from "@angular/cdk/keycodes";
+import { MatChipInputEvent } from "@angular/material/chips";
+import { Project } from "../../../core/models/project.model";
+import { ProjectsService } from "../../../core/services/projects.service";
 
 @Component({
   selector: 'app-add-project',
@@ -15,6 +14,7 @@ import {ProjectsService} from "../../../core/services/projects.service";
   styleUrls: ['./add-project.component.scss']
 })
 export class AddProjectComponent implements OnInit {
+
   professors: Professor[]
   loading = false
 

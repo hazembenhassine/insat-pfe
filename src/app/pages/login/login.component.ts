@@ -32,6 +32,24 @@ export class LoginComponent implements OnInit {
     this.isLoading = false;
   }
 
-
+  login() {
+    this.isLoading = true;
+    this.loginForm.disable();
+    this.authenticationService.login(this.loginForm.get('email').value, this.loginForm.get('password').value)
+      .then(({accessToken}) => {
+        this.authenticationService.setCredentials(accessToken, this.loginForm.get('remember').value);
+        this.router.navigate(['/']).then(() => {
+          // tslint:disable-next-line:no-console
+          console.log('Login successful: Redirecting...');
+          // tslint:disable-next-line:no-console
+          console.clear();
+        });
+      }).catch(() => {
+        this.error = 'Votre email ou votre mot de passe sont invalides.';
+        this.loginForm.enable();
+        this.loginForm.get('password').reset();
+        this.isLoading = false;
+    });
+  }
 
 }

@@ -1,21 +1,38 @@
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Observable} from "rxjs";
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
+import { credentialsKey } from '../authentication/authentication.service';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor {
-  AUTH_HEADER = "Authorization"
-  adminToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNpbmRhQGdtYWlsLmNvbSIsInJvbGUiOiJBRE1JTiIsImFjYWRlbWljWWVhciI6eyJzdGFydERhdGUiOjIwMjAsImVuZERhdGUiOjIwMjF9LCJpYXQiOjE2MTI2ODQzNTl9.0qwAu41I5ukoQbva6frPtCgCw0eLXcpE1P9yERuvB0c"
-  studentToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtoYWxlZEBnbWFpbC5jb20iLCJyb2xlIjoiU1RVREVOVCIsImFjYWRlbWljWWVhciI6eyJfaWQiOiI2MDFmY2FkOTIzMTk3NzAwMTU0ZTZiMDEiLCJzdGFydERhdGUiOjIwMjAsImVuZERhdGUiOjIwMjF9LCJpYXQiOjE2MTI3MjQ3MDN9.YqSC4E5aG_a779ucjOZYxf7D0Pay-YTHjKg61tI3VAE"
-  student2Token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhemVtQGdtYWlsLmNvbSIsInJvbGUiOiJTVFVERU5UIiwiYWNhZGVtaWNZZWFyIjp7Il9pZCI6IjYwMWZjYWQ5MjMxOTc3MDAxNTRlNmIwMSIsInN0YXJ0RGF0ZSI6MjAyMCwiZW5kRGF0ZSI6MjAyMX0sIm5hbWUiOiJoYXplbSIsImxhc3ROYW1lIjoiYmgiLCJpYXQiOjE2MTI3MzI3NjZ9.Skff5vAJvJFhGOdRQrWiYejPbMA_USeJM3t1SgyBrvY"
 
-  token = this.adminToken
-
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (req) {
-      const duplicate = req.clone({headers: req.headers.set(this.AUTH_HEADER, "Bearer " + this.token)});
-      return next.handle(duplicate);
+  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    let token: string;
+    if ((localStorage.getItem(credentialsKey))) {
+      token = localStorage.getItem(credentialsKey);
+    } else if ((sessionStorage.getItem(credentialsKey))) {
+      token = sessionStorage.getItem(credentialsKey);
     }
-    return next.handle(req);
+    if (token) {
+      request = request.clone({headers: request.headers.set('Authorization', 'Bearer ' + token)});
+    }
+
+    if (!request.headers.has('Content-Type') && !request.headers.has('File-Upload')) {
+      request = request.clone({headers: request.headers.set('Content-Type', 'application/json')});
+    }
+
+    request = request.clone({headers: request.headers.set('Accept', 'application/json')});
+
+    return next.handle(request).pipe(
+      map((event: HttpEvent<any>) => {
+        return event;
+      }),
+      catchError((error: HttpErrorResponse) => {
+        // tslint:disable-next-line:no-console
+        console.error(`Error ${error.status}: ${error.statusText}`);
+        return throwError(error);
+      })
+    );
   }
 }

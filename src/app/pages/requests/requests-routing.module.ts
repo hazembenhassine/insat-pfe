@@ -5,12 +5,30 @@ import { ProjectRequestsComponent } from './project-requests/project-requests.co
 import { RequestsComponent } from './requests.component';
 import { SessionRequestsComponent } from './session-requests/session-requests.component';
 import { SupervisionRequestsComponent } from './supervision-requests/supervision-requests.component';
+import { ProfessorGuard } from '../../core/guards/professor.guard';
+import { AdminGuard } from '../../core/guards/admin.guard';
 
 const routes: Routes = [
-  { path: '', component: RequestsComponent,pathMatch: 'full'},
-  {path:'session-requests',component:SessionRequestsComponent},
-  {path:'supervision-requests',component:SupervisionRequestsComponent},
-  {path:'project-requests',component:ProjectRequestsComponent}
+  {
+    path: '',
+    component: RequestsComponent,
+    pathMatch: 'full'
+  },
+  {
+    path:'session-requests',
+    component:SessionRequestsComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path:'supervision-requests',
+    component:SupervisionRequestsComponent,
+    canActivate: [ProfessorGuard]
+  },
+  {
+    path:'project-requests',
+    component:ProjectRequestsComponent,
+    canActivate: [AdminGuard]
+  }
 ];
 
 @NgModule({

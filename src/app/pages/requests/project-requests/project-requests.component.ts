@@ -29,16 +29,15 @@ export class ProjectRequestsComponent implements OnInit {
     });
   }
 
-  acceptProject(projectId:String){
+  acceptProject(projectId: string){
     this.projectsService.acceptProjectRequest(projectId).then(
       res => {
-        console.log(res) 
+        console.log(res);
          }).catch(
       error => {
-        console.log(error)
+        console.log(error);
             }
-    ).finally(() => {
-    });
+    ).finally(() => {});
     this.hide=true
   }
 

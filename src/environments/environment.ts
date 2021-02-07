@@ -5,7 +5,6 @@
 export const environment = {
   production: false,
   BASE_URL: "https://gestion-pfe.herokuapp.com"
-
 };
 
 /*
@@ -16,4 +15,3 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
-

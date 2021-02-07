@@ -118,7 +118,7 @@ export class SoutenancesService {
   }
 
 
-  getConferencesRolesByProfId(id: String): ConferenceRole[] {
+  getConferencesRolesByProfId(id: string): ConferenceRole[] {
     return this.conferencesRoles;
   }
 
@@ -126,11 +126,11 @@ export class SoutenancesService {
     return this.conferences;
   }
 
-  getConferenceById(id: String) {
+  getConferenceById(id: string) {
     return this.conference1;
   }
 
-  getConferencesBySession(sessionId: String): Promise<any> {
+  getConferencesBySession(sessionId: string): Promise<any> {
     return this.http.get(`${environment.BASE_URL}/conferences/session/${sessionId}`).toPromise()
   }
 
@@ -139,6 +139,7 @@ export class SoutenancesService {
   }
 
   // getConferenceByStudent(studentId:String) {
+  // getConferenceByStudent(studentId:string) {
   //   return this.http.get(`${this.sessionURL}/conferences/session/${sessionId}`).toPromise()
   // }
 

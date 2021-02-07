@@ -13,6 +13,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptorService } from "./core/interceptors/auth-interceptor";
 import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './pages/login/login.component';
+import { MainComponent } from './pages/main.component';
 
 registerLocaleData(localeFr);
 
@@ -25,6 +26,7 @@ export function momentAdapterFactory() {
   declarations: [
     AppComponent,
     LoginComponent,
+    MainComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,7 @@ export function momentAdapterFactory() {
         },
       }),
     ToastrModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },

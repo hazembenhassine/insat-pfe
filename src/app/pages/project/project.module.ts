@@ -20,8 +20,7 @@ import {MatIconModule} from "@angular/material/icon";
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     MatChipsModule,
-    MatIconModule,
-
+    MatIconModule
   ]
 })
 export class ProjectModule {

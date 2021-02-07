@@ -22,9 +22,9 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <ng-container *ngFor="let route of routes">
-          <li class="nav-item">
+          <li *ngIf="route?.roles.includes(role)" class="nav-item">
             <a [routerLink]="route?.link" routerLinkActive="active" class="nav-link">
-              <i  [ngClass]="['nav-icon','fas',route?.icon]"></i>
+              <i [ngClass]="['nav-icon', 'fas', route?.icon]"></i>
               <p>
                 {{ route?.label }}
               </p>

@@ -15,6 +15,7 @@ export class SoutenancesEtudiantComponent implements OnInit {
   sessions:Session[];
   myId: String;
   myConference:Conference={};
+
   clicked=false;
 
   constructor(private router: Router,private sessionsService:SessionsService,private soutenancesSession:SoutenancesService) {}
@@ -22,19 +23,19 @@ export class SoutenancesEtudiantComponent implements OnInit {
   ngOnInit(): void {
     this.getSessions();
 /*     this.myConference=this.getConferenceByStudent(this.myId)
- */  
+ */
 }
 
-  showDetailsSoutenance(id:String){
+  showDetailsSoutenance(id: string){
     this.router.navigate(['soutenances',id,'details']);
   }
 
-/*   getConferenceByStudent(studentId:String){
+/*   getConferenceByStudent(studentId:string){
     return this.soutenancesSession.getConferenceByStudent(studentId);
   } */
 
 
-  demanderSession(sessionId:String){
+  demanderSession(sessionId: string){
     this.clicked=true;
   }
 
@@ -43,7 +44,8 @@ export class SoutenancesEtudiantComponent implements OnInit {
       (values:any)=>{
         this.sessions=values;
       },err=>{
-        console.log(err)
+        // tslint:disable-next-line:no-console
+        console.log(err);
       }
     )
   }

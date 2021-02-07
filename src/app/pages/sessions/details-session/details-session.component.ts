@@ -30,13 +30,13 @@ export class DetailsSessionComponent implements OnInit {
   }
 
   getSessionById(sessionId:string){
-     this.sessionsService.getSessionById(sessionId).subscribe(
+    this.sessionsService.getSessionById(sessionId).subscribe(
       (value:any)=>{
         this.session=value;
       },err=>{
         console.log(err)
       }
-     )
+    )
   };
 
   programmerSoutenance() {

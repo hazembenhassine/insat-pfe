@@ -39,5 +39,8 @@ export class DetailsSessionComponent implements OnInit {
      )
   };
 
+  programmerSoutenance() {
+    this.router.navigate(['/sessions',this.sessionId,'plan']);
+
   }
 }

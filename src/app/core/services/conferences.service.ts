@@ -21,6 +21,6 @@ export class ConferencesService {
   }
 
   addConference(conference:Object):Promise<any>{
-    return this.http.get('${environment.BASE_URL}/conferences/professor').toPromise();
+    return this.http.get(`${environment.BASE_URL}/conferences/professor`).toPromise();
   }
 }

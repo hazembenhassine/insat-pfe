@@ -4,14 +4,14 @@ import {Session} from "./sessions.model";
 
 
 export interface Conference {
-  id?: String;
-  date?: String;
+  id?: string;
+  date?: string;
   session?: Session;
   president?: Professor;
   inspector?: Professor;
   project?: Project;
   enterpriseSupervisor?: string;
-  room?: String;
+  room?: string;
 }
 
 export enum Room {

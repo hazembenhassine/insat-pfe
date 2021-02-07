@@ -29,7 +29,7 @@ export class SoutenancesEtudiantComponent implements OnInit {
     this.router.navigate(['soutenances',id,'details']);
   }
 
-/*   getConferenceByStudent(studentId:String){
+/*   getConferenceByStudent(studentId:string){
     return this.soutenancesSession.getConferenceByStudent(studentId);
   } */
 

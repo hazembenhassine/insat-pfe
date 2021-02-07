@@ -134,7 +134,7 @@ export class SoutenancesService {
     return this.http.get(`${environment.BASE_URL}/conferences/session/${sessionId}`).toPromise()
   }
 
-  // getConferenceByStudent(studentId:String) {
+  // getConferenceByStudent(studentId:string) {
   //   return this.http.get(`${this.sessionURL}/conferences/session/${sessionId}`).toPromise()
   // }
 

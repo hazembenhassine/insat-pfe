@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Conference } from 'src/app/core/models/conference.model';
 import { Session } from 'src/app/core/models/sessions.model';
 import { SessionsService } from 'src/app/core/services/sessions.service';
-import { SoutenancesService } from '../soutenances.service';
+import { SoutenancesService } from '../../../core/services/soutenances.service';
 
 @Component({
   selector: 'app-soutenances-admin',
@@ -11,20 +11,20 @@ import { SoutenancesService } from '../soutenances.service';
   styleUrls: ['./soutenances-admin.component.scss']
 })
 export class SoutenancesAdminComponent implements OnInit {
-  
+
   conferences:Conference[];
   clicked:boolean;
   sessions:Session[]=[];
 
 
   constructor(private router:Router,private soutenancesService:SoutenancesService,private sessionsService:SessionsService) { }
-  
+
   ngOnInit(): void {
     this.clicked=false;
     this.sessions=this.getAllSessions();
   }
 
-  
+
 
   getAllConferences(){
     return this.soutenancesService.getAllConferences();
@@ -33,7 +33,7 @@ export class SoutenancesAdminComponent implements OnInit {
   getConferencesBySession(sessionId:String){
     return this.soutenancesService.getConferencesBySession(sessionId);
   }
-  
+
   onSessionClicked(id:String){
     this.clicked=true;
     this.conferences=this.getConferencesBySession(id);

@@ -1,0 +1,138 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1><b>Ajouter Etudiants</b></h1>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="content">
+  <div class="container-fluid">
+    <mat-tab-group>
+      <div class="row">
+        <mat-tab label="Ajouter avec fichier">
+          <div class="col-12">
+            <div class=" d-flex justify-content-center">
+              <div class="col-3  p-2  " id="add">
+                <div class="small-box bg-success">
+                  <div class="inner">
+                    <p><b>Charger un fichier CSV</b></p>
+                    <br>
+
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-folder-plus"></i>
+                  </div>
+                  <a class="small-box-footer" (click)="csvReader.click()">Upload<i
+                    class="fas fa-arrow-circle-right"></i></a>
+                  <input hidden type="file" #csvReader name="Upload CSV" id="txtFileUpload"
+                         (change)="uploadListener($event)"
+                         accept=".csv"/>
+                </div>
+              </div>
+              <div *ngIf="students.length > 0" class="col-3 p-2 " id="upload">
+                <div class="small-box  bg-gradient-success">
+                  <div class="inner">
+                    <p><b>Ajouter Les etudiants</b></p>
+                    <br>
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-user-plus"></i>
+                  </div>
+                  <a class="small-box-footer" (click)="addStudents()">Submit<i
+                    class="fas fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <table class="minimalistBlack" *ngIf="students.length > 0">
+            <thead>
+            <tr>
+              <th>Numero CI</th>
+              <th>Prenom</th>
+              <th>Nom</th>
+              <th>Email</th>
+              <th>Specialite</th>
+              <th>Niveau</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let student of students;let i = index;">
+              <td><span>{{student.id}}</span></td>
+              <td><span>{{student.name}}</span></td>
+              <td><span>{{student.lastName}}</span></td>
+              <td><span>{{student.email}}</span></td>
+              <td><span>{{student.field}}</span></td>
+              <td><span>{{student.level}}</span></td>
+            </tr>
+            </tbody>
+          </table>
+
+        </mat-tab>
+
+      <mat-tab label="Ajouter avec formulaire">
+        <div [formGroup]="formUser" class="col-12 mt-3">
+          <div class="row">
+            <div class="col-12 ">
+              <mat-form-field appearance="outline">
+                <mat-label>Numero Carte Etudiant</mat-label>
+                <input matInput placeholder="Numero Carte Etudiant" formControlName="nce" required>
+                <mat-error *ngIf="formUser.controls.nce.errors">{{getErrorMessage(formUser.controls.email)}}</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-12 ">
+              <mat-form-field appearance="outline">
+                <mat-label>Prenom de l'etudiant</mat-label>
+                <input matInput placeholder="Prenom" formControlName="name" required>
+                <mat-error *ngIf="formUser.controls.name.errors">{{getErrorMessage(formUser.controls.email)}}</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-12 ">
+              <mat-form-field appearance="outline">
+                <mat-label>Nom de l'etudiant</mat-label>
+                <input matInput placeholder="Nom" formControlName="lastName" required>
+                <mat-error *ngIf="formUser.controls.lastName.errors">{{getErrorMessage(formUser.controls.email)}}</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-12 ">
+              <mat-form-field appearance="outline">
+                <mat-label>Email de l'etudiant</mat-label>
+                <input matInput placeholder="pat@insat.u-cathage.tn" formControlName="email" required>
+                <mat-error *ngIf="formUser.controls.email.errors">{{getErrorMessage(formUser.controls.email)}}</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <mat-form-field appearance="outline">
+                <mat-label>Specialite</mat-label>
+                <mat-select formControlName="field">
+                  <mat-option *ngFor="let field of fields" [value]="field">{{field}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-12">
+              <mat-form-field appearance="outline">
+                <mat-label>Niveau</mat-label>
+                <mat-select formControlName="level">
+                  <mat-option *ngFor="let level of levels" [value]="level">{{level}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-12 ">
+              <button mat-button [disabled]="formUser.invalid" (click)="addStudent()" class=" w-25 mx-1">
+                Confirm Code
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </mat-tab>
+      </div>
+
+    </mat-tab-group>
+
+  </div>
+</section>
+

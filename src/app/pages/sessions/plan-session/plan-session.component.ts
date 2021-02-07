@@ -59,7 +59,7 @@ export class PlanSessionComponent implements OnInit {
   }
 
   availableProfessors(i) {
-    let availableProfessor = this.allProfessors.filter(availableP => this.jurys.value.every(selectedP => selectedP.id !== availableP.id))
+    const availableProfessor = this.allProfessors.filter(availableP => this.jurys.value.every(selectedP => selectedP.id !== availableP.id))
     if (this.jurys.value[i]) {
       availableProfessor.push(this.jurys.value[i])
     }

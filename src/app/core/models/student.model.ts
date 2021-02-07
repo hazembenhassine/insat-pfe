@@ -9,4 +9,20 @@ export class Student {
 
   }
 
+
+}
+
+export  enum Field {
+  "GL",
+  "RT",
+  "IMI",
+  "IIA",
+  "CH",
+  "BIO",
+}
+
+export enum Level {
+  "CYCLE",
+  "LICENCE",
+  "MASTER"
 }

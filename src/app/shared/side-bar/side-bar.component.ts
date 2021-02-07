@@ -52,7 +52,7 @@ export class SideBarComponent implements OnInit {
       label :'affectations aux sessions',
       link: 'requests/session-requests',
       icon :"fa-calendar-plus"
-    }
+    },
 
     {
       label: 'Ajouter Etudiant',

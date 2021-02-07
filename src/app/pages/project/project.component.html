@@ -27,24 +27,24 @@
           <div class="card-content">
             <div class="row">
               <div class="col-9">
-                <h3>DevOps aala aajla</h3>
-                <p class="text-muted">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
+                <h3>{{project.title}}</h3>
+                <p class="text-muted">{{project.description}}</p>
                 <br>
                 <div class="text-muted">
                   <p class="text-sm">Encadrant
-                    <b class="d-block">Aymen Sellaouti</b>
+                    <b class="d-block">{{project.supervisor.lastName}} {{project.supervisor.name}}</b>
                   </p>
                   <p class="text-sm">Co-encadrant
-                    <b class="d-block">Tony Chicken</b>
+                    <b class="d-block">{{project.enterpriseSupervisor}}</b>
                   </p>
                   <p class="text-sm">Entreprise
-                    <b class="d-block">Vynd</b>
+                    <b class="d-block">{{project.enterprise.name}}</b>
                   </p>
                   <p class="text-sm">Addresse
-                    <b class="d-block">03 Rue des métaux - La Soukra</b>
+                    <b class="d-block">{{project.enterprise.location}}</b>
                   </p>
                   <p class="text-sm">Contact
-                    <b class="d-block">+216 50 858 726</b>
+                    <b class="d-block">{{project.enterprise.contact}}</b>
                   </p>
                 </div>
               </div>
@@ -52,19 +52,22 @@
                 <h5 class="text-muted">Project files</h5>
                 <ul class="list-unstyled">
                   <li>
-                    <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-word"></i> Functional-requirements.docx</a>
+                    <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-word"></i>
+                      Functional-requirements.docx</a>
                   </li>
                   <li>
                     <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-pdf"></i> UAT.pdf</a>
                   </li>
                   <li>
-                    <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-envelope"></i> Email-from-flatbal.mln</a>
+                    <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-envelope"></i>
+                      Email-from-flatbal.mln</a>
                   </li>
                   <li>
                     <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-image "></i> Logo.png</a>
                   </li>
                   <li>
-                    <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-word"></i> Contract-10_12_2014.docx</a>
+                    <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-word"></i>
+                      Contract-10_12_2014.docx</a>
                   </li>
                 </ul>
                 <div class="mt-5 mb-3">

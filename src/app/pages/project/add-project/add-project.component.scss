@@ -1,0 +1,26 @@
+.flat-input {
+  border: none;
+  background: none;
+}
+
+.flat-input:focus {
+  outline: none;
+}
+
+.mat-standard-chip {
+  border-radius: 0;
+  font-family: "Google Sans", sans-serif;
+  font-weight: normal;
+  font-size: 12px;
+}
+
+.mat-standard-chip.mat-chip-with-trailing-icon {
+  padding: 3px 6px 3px 10px;
+  min-height: 22px;
+}
+
+.mat-standard-chip .mat-chip-remove.mat-icon {
+  font-size: 14px;
+  height: 14px;
+  width: 14px;
+}

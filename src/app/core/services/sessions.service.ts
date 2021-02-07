@@ -16,79 +16,12 @@ import {environment} from "../../../environments/environment";
 export class SessionsService {
   sessionURL: string = environment.BASE_URL + '/sessions';
 
-  student1: Student = <Student>{
-    id: "1",
-    name: "Khaled",
-    lastName: "Ghamgui",
-    email: "gham.khaled@gmail.com",
-    cin: "01",
-    field: "GL",
-    level: "4"
-  }
-  student2: Student = <Student>{
-    id: "2",
-    name: "Tarek",
-    lastName: "Jarrar",
-    email: "tarek.jarrar@gmail.com",
-    cin: "02",
-    field: "GL",
-    level: "4"
-  }
-  prof: Professor = <Professor>{
-    id: "1",
-    name: "Saloua",
-    lastName: "Ben Yahia",
-    email: "sby@gmail.com",
-    department: "GMI",
-    rank: "Maitre Assistant"
-  }
 
-  enterprise = new Enterprise("bchal", "Vynd", "Sokra", "Nouisser");
-  project1: Project = <Project>{
-    id: "1",
-    title: "Serverless computing",
-    description: "akwa projeeet",
-    supervisor: this.prof,
-    student: this.student1,
-    enterprise: this.enterprise,
-    field: "GL",
-    level: "CYCLE"
-
-  }
-  project2: Project = <Project>{
-    id: "2",
-    title: "IA",
-    description: "theni akwa projeeet",
-    supervisor: this.prof,
-    student: this.student2,
-    enterprise: this.enterprise,
-    field: "GL",
-    level: "CYCLE"
-
-  }
-  session1 = {
-    'id': "1",
-    'startDate': "27/06/2021",
-    'endDate': "27/09/2021",
-    'capacity': 250,
-    'president': "dr.Ali Abdenadher"
-  };
-  session2 = {
-    'id': "2",
-    'startDate': "15/09/2021",
-    'endDate': "15/10/2021",
-    'capacity': 300,
-    'president': "dr.Riadh Robbana"
-  }
-
-  sessions: Session[] = [this.session1, this.session2];
 
   constructor(private http: HttpClient) {
   }
 
-  getProjects(): Project[] {
-    return [this.project1, this.project2];
-  }
+
 
   getSessions(): Observable<Session[]> {
     return this.http.get<Session[]>(this.sessionURL);

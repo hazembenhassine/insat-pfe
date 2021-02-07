@@ -1,6 +1,6 @@
 
 export interface Session {
-    _id: String;
+    _id?: String;
     id?:String;
     startDate?:String;
     endDate?:String;

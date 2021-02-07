@@ -20,7 +20,7 @@ export class SoutenancesEtudiantComponent implements OnInit {
   constructor(private router: Router,private sessionsService:SessionsService,private soutenancesSession:SoutenancesService) {}
 
   ngOnInit(): void {
-    this.sessions=this.getSessions();
+    this.getSessions();
     this.myConference=this.getConferenceByStudent(this.myId)
   }
 
@@ -32,11 +32,23 @@ export class SoutenancesEtudiantComponent implements OnInit {
     return this.soutenancesSession.getConferenceByStudent(studentId);
   }
 
-  getSessions(){
-    return this.sessionsService.getSessions();
-  }
 
   demanderSession(sessionId:String){
     this.clicked=true;
   }
+
+  getSessions(){
+    this.sessionsService.getSessions().subscribe(
+      (values:any)=>{
+        this.sessions=values;
+      },err=>{
+        console.log(err)
+      }
+    )
+  }
+
+  /* getSessions(){
+    return this.sessionsService.getSessions();
+  } */
+
 }

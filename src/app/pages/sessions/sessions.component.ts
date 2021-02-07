@@ -18,7 +18,7 @@ export class SessionsComponent implements OnInit {
   constructor(private router:Router, public dialog: MatDialog,private sessionsService:SessionsService) { }
 
   ngOnInit(): void {
-    this.sessions=this.getAllSessions();
+    this.getSessions();
   }
   
 
@@ -48,6 +48,13 @@ edit(id:string){
   });
 }
 
-getAllSessions(): Session[] {
-  return this.sessionsService.getSessions();}
+getSessions(){
+  this.sessionsService.getSessions().subscribe(
+    (values:any)=>{
+      this.sessions=values;
+    },err=>{
+      console.log(err)
+    }
+  )
+}
 }

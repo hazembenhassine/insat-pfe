@@ -59,6 +59,8 @@ export class ProjectsService {
     return [this.project1, this.project2];
   }
 
+ 
+
   sendSessionRequest(projectId:String,sessionId:String){
     console.log("sessionRequestSent");
   }

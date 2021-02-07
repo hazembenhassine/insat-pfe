@@ -6,12 +6,18 @@ import {Student} from "../models/student.model";
 import {Enterprise} from "../models/entreprise.model";
 import {Project} from "../models/project.model";
 import {Professor} from "../models/professor.model";
+import { API_URL } from 'src/app/app.constatnt';
+
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class SessionsService {
+  private sessionURL:string=API_URL+'session';
+
+
+
   public sessionsURL;
   student1: Student = <Student>{
     id: "1",
@@ -55,31 +61,27 @@ export class SessionsService {
   constructor(private http: HttpClient) {
   }
 
-  /* getAllSessions(): Observable<Session[]> {
-    return this.http.get<Session[]>(this.sessionsURL + '/getAllSessions')
-  } */
-
   getProjects(): Project[] {
     return [this.project1, this.project2];
   }
 
-  getSessions() {
+  getSessions():Observable<Session[]> {
+    return this.http.get<Session[]>(this.sessionsURL);  
+  }
+
+  addSession(session:Session):any{
+    return this.http.post(this.sessionsURL,session);
+  }
+
+  getSessionById(sessionId: String):Observable<Session> {
+    return this.http.get(this.sessionURL+'/'+sessionId);
+  } 
+
+  /*   getSessions() {
     return this.sessions;
-  }
-
-
-  getSessionProjects(sessionId: string): Project[] {
-    if (sessionId === "1") return [this.project1];
-    if (sessionId === "2") return [this.project2];
-  }
-
-  addSession(startDate: Date, endDate: Date, capacity: number, presidentId: String) {
-    console.log("session added!")
-  }
-
-  getSessionById(sessionId: String) {
+  } */
+  /* getSessionById(sessionId: String) {
     if (sessionId === "1") return this.session1;
     else return this.session2;
-  }
-
+  } */
 }

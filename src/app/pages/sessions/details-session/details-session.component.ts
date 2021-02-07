@@ -18,8 +18,6 @@ export class DetailsSessionComponent implements OnInit {
 
   ngOnInit(): void {
     this.sessionId=this.activatedRouter.snapshot.params['id'];
-    this.session=this.getSessionById(this.sessionId);
-    console.log(this.session);
     this.conferences=this.getSessionConferences(this.sessionId)
   }
 
@@ -32,7 +30,13 @@ export class DetailsSessionComponent implements OnInit {
   }
 
   getSessionById(sessionId:string){
-    return this.sessionsService.getSessionById(sessionId);
-  }
+     this.sessionsService.getSessionById(sessionId).subscribe(
+      (value:any)=>{
+        this.session=value;
+      },err=>{
+        console.log(err)
+      }
+     )
+  };
 
 }

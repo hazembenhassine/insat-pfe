@@ -31,7 +31,20 @@ export class CreateSessionComponent implements OnInit {
   onSubmit(){
     this.dialogRef.close();
     console.log(this.sessionForm.value)
-    this.sessionsService.addSession(this.sessionForm.value.dates[0],this.sessionForm.value.dates[1],this.sessionForm.value.capacity,this.sessionForm.value.presidentId)
+    const session={
+      "startDate":this.sessionForm.value.dates[0],
+      "endDate":this.sessionForm.value.dates[1],
+      "capacity":this.sessionForm.value.capacity,
+      "president":this.sessionForm.value.presidentId
+    }
+    this.sessionsService.addSession(session).subscribe(
+      (response)=>{
+        alert("session created successfully!")
+      },err=>{
+        console.log(err);
+        alert("session creation failed!")
+      }
+    );
   }
 
   onNoClick(): void {

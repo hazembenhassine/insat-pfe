@@ -6,6 +6,9 @@
                 <h3 class="card-title">Nouvelle session</h3>
               </div>
               <div class="card-body">
+                <div class="loading-overlay" *ngIf="loading">
+                  <mat-progress-spinner mode="indeterminate" style="position: relative"> </mat-progress-spinner>
+                </div>
                 <form [formGroup]="sessionForm" (ngSubmit)="onSubmit()">
                   <div class="form-group" >
                     <label for="dates">La date de début et la date de fin de la session:</label>
@@ -35,7 +38,7 @@
                       name="president"
                       formControlName="president"
                       >
-                      <mat-option *ngFor="let prof of profs" [value]="prof.id">
+                      <mat-option *ngFor="let prof of profs" [value]="prof">
                         {{prof.name}} {{prof.lastName}}
                       </mat-option>
                     </mat-select>

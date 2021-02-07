@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SessionsService } from 'src/app/core/services/sessions.service';
+import { UsersService } from 'src/app/core/services/users.service';
 import { Session } from '../../../core/models/sessions.model';
 
 @Component({
@@ -12,7 +13,7 @@ import { Session } from '../../../core/models/sessions.model';
 })
 export class EditSessionComponent implements OnInit {
   id:string;
-  
+  loading= false;
   profs=[{
     'id':1,'name':'tarek','lastName':'jarrar'
   }];
@@ -24,10 +25,11 @@ export class EditSessionComponent implements OnInit {
   });
   currentData:Session;
 
-  constructor(private router:Router,private sessionsService:SessionsService,public dialogRef: MatDialogRef<EditSessionComponent>,
+  constructor(private userService:UsersService,private router:Router,private sessionsService:SessionsService,public dialogRef: MatDialogRef<EditSessionComponent>,
     @Inject(MAT_DIALOG_DATA) data ) {this.id = data.id;}
 
   ngOnInit(): void {
+    this.getProfessors(); 
     this.getSessionById(this.id);
   }
   
@@ -56,6 +58,20 @@ export class EditSessionComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
+
+  getProfessors(){
+    this.loading = true
+    this.userService.getProfessors().then(
+      res => {
+        this.profs=res;
+      }).catch(
+      error => {
+        console.log(error)
+      }
+    ).finally(() => {
+      this.loading = false
+    })}
+  
 
   
 

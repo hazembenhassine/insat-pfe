@@ -21,6 +21,8 @@ import {SchedulerModule} from "angular-calendar-scheduler";
 import {registerLocaleData} from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import * as moment from 'moment';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+
 
 registerLocaleData(localeFr);
 
@@ -44,7 +46,8 @@ export function momentAdapterFactory() {
     MatSelectModule,
     MatDialogModule,
     MatStepperModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule
   ]
 })
 export class SessionsModule {

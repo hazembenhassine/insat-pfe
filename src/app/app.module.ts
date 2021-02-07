@@ -9,9 +9,10 @@ import { adapterFactory } from 'angular-calendar/date-adapters/moment';
 import * as moment from 'moment';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {AuthInterceptorService} from "./core/interceptors/auth-interceptor";
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptorService } from "./core/interceptors/auth-interceptor";
 import { ToastrModule } from 'ngx-toastr';
+import { LoginComponent } from './pages/login/login.component';
 
 registerLocaleData(localeFr);
 
@@ -23,6 +24,7 @@ export function momentAdapterFactory() {
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

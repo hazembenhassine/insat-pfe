@@ -38,7 +38,7 @@
                       name="president"
                       formControlName="president"
                       >
-                      <mat-option *ngFor="let prof of profs" [value]="prof.id">
+                      <mat-option *ngFor="let prof of profs" [value]="prof">
                         {{prof.name}} {{prof.lastName}}
                       </mat-option>
                     </mat-select>

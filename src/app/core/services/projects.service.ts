@@ -63,7 +63,7 @@ export class ProjectsService {
     level: "CYCLE"
 
   }
-  session1 = {
+  /* session1 = {
     'id': "1",
     'startDate': "27/06/2021",
     'endDate': "27/09/2021",
@@ -78,7 +78,7 @@ export class ProjectsService {
     'president': "dr.Riadh Robbana"
   }
 
-  sessions: Session[] = [this.session1, this.session2];
+  sessions: Session[] = [this.session1, this.session2]; */
 
   constructor(private http: HttpClient) {
   }

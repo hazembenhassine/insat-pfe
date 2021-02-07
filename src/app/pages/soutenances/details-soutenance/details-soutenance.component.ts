@@ -16,7 +16,19 @@ export class DetailsSoutenanceComponent implements OnInit {
 
   ngOnInit(): void {
     this.id=this.activatedRoute.snapshot.params.id;
-    this.conference=this.soutenanceService.getConferenceById(this.id);
+    this.getConferenceById();
+  }
+
+  getConferenceById(){
+    this.soutenanceService.getConferenceById(this.id).then(
+      res => {
+        this.conference=res;
+      }).catch(
+      error => {
+        console.log(error);
+      }
+    ).finally(() => {
+    })
   }
 
 }

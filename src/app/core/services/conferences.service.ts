@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+/* import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment";
 import { Conference } from '../models/conference.model';
@@ -24,3 +24,4 @@ export class ConferencesService {
     return this.http.get(`${environment.BASE_URL}/conferences/professor`).toPromise();
   }
 }
+ */

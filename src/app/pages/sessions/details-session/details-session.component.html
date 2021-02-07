@@ -14,29 +14,43 @@
         <div class="col-12">
           <div class="invoice p-3 mb-3">
             <div class="row">
-              <div class="col-12">  
+              <div class="col-12">
                 <h4>
                   <i class="fas fa-history"></i><b>Session n° {{sessionId}}</b>
                 </h4>
               </div>
             </div>
             <div class="row invoice-info">
-              <div class="col-sm-4 invoice-col" >
+              <div class="col-sm-3 invoice-col" >
                 <br>
                 <strong> Date de Debut :</strong>
                 <br>
                 <h3>{{session.startDate}}</h3>
               </div>
-              <div class="col-sm-4 invoice-col" >
+              <div class="col-sm-3 invoice-col" >
                 <br>
                 <strong> Date de fin :</strong>
                 <br>
                 <h3>{{session.endDate}}</h3>
               </div>
-              <div class="col-sm-4 invoice-col  ">
+              <div class="col-sm-3 invoice-col  ">
                 <br>
                 <b>Capacité  :</b> {{session.capacity}} soutenances<br>
                 <b>President  :</b>{{session.president}}  <br>
+              </div>
+              <div class="col-sm-3 invoice-col  ">
+                <div class="small-box  bg-info">
+                  <div class="inner">
+                    <p><b>Programmer les Soutenances</b></p>
+                    <br>
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-user-plus"></i>
+                  </div>
+                  <a class="small-box-footer"  (click)="programmerSoutenance()">
+                    Programmer
+                    <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
               </div>
             </div>
             <br>

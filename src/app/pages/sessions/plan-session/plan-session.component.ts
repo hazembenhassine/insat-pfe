@@ -30,10 +30,38 @@ export class PlanSessionComponent implements OnInit {
   )
   numberOfJury = 2
   jurys = this.juryFormGroup.get('jurys') as FormArray;
-  president = new Professor("1", "Riadh", "Robanna", "@", "info", "Docteur")
-  prof1 = new Professor("2", "Aymen", "Sellaouit", "@", "info", "Docteur")
-  prof2 = new Professor("3", "Lilia", "Sfaxi", "@", "info", "Docteur")
-  prof3 = new Professor("4", "Narjes", "Robanna", "@", "info", "Docteur")
+  president: Professor = <Professor>{
+    id: "4",
+    name: "Lilia",
+    lastName: "Sfaxi",
+    email: "sby@gmail.com",
+    department: "GMI",
+    rank: "Maitre Assistant"
+  }
+  prof1: Professor = <Professor>{
+    id: "1",
+    name: "Saloua",
+    lastName: "Ben Yahia",
+    email: "sby@gmail.com",
+    department: "GMI",
+    rank: "Maitre Assistant"
+  }
+  prof2: Professor = <Professor>{
+    id: "2",
+    name: "Aymen",
+    lastName: "sellaouti",
+    email: "aymen@gmail.com",
+    department: "GMI",
+    rank: "Maitre Assistant"
+  }
+  prof3: Professor = <Professor>{
+    id: "3",
+    name: "Riadh",
+    lastName: "robbana",
+    email: "rrobbana@gmail.com",
+    department: "GMI",
+    rank: "PROFESSOR"
+  }
   allProfessors = [this.prof1, this.prof2, this.prof3]
 
 

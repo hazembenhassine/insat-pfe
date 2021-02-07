@@ -7,7 +7,12 @@
     </div>
   </div>
 </section>
-<section class="content">
+
+
+<section class="content" style="position: relative">
+  <div class="loading-overlay" *ngIf="loading">
+    <mat-progress-spinner mode="indeterminate" style="position: relative"> </mat-progress-spinner>
+  </div>
   <div class="container-fluid">
     <mat-tab-group>
       <div class="row">
@@ -51,12 +56,13 @@
           <table class="minimalistBlack" *ngIf="students.length > 0">
             <thead>
             <tr>
-              <th>Numero CI</th>
+              <th>Numero CE</th>
               <th>Prenom</th>
               <th>Nom</th>
               <th>Email</th>
               <th>Specialite</th>
               <th>Niveau</th>
+              <th>CIN</th>
             </tr>
             </thead>
             <tbody>
@@ -107,6 +113,14 @@
                   <input matInput placeholder="pat@insat.u-cathage.tn" formControlName="email" required>
                   <mat-error
                     *ngIf="formUser.controls.email.errors">{{getErrorMessage(formUser.controls.email)}}</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-12 ">
+                <mat-form-field appearance="outline">
+                  <mat-label>Numero Carte Identite</mat-label>
+                  <input matInput placeholder="CIN" formControlName="cin" required>
+                  <mat-error
+                    *ngIf="formUser.controls.cin.errors">{{getErrorMessage(formUser.controls.cin)}}</mat-error>
                 </mat-form-field>
               </div>
               <div class="col-12">

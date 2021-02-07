@@ -1,11 +1,26 @@
 import {Student} from "../models/student.model";
 import {HttpClient} from "@angular/common/http";
+import {Injectable} from "@angular/core";
+import {Professor} from "../models/professor.model";
 
 
-export class usersService {
+@Injectable({
+  providedIn: 'root'
+})
+export class UsersService {
   constructor(private http: HttpClient) {
   }
 
-  addStudent(student: Student) {
+  addStudents(students: Student[]): Promise<any> {
+    return this.http.post("https://gestion-pfe.herokuapp.com/students", students).toPromise()
+  }
+  
+
+  addProfessors(professors: Professor[]) {
+    return this.http.post("https://gestion-pfe.herokuapp.com/professors", professors)
+  }
+
+  getProfessors(): Promise<any> {
+    return this.http.get("https://gestion-pfe.herokuapp.com/professors").toPromise()
   }
 }

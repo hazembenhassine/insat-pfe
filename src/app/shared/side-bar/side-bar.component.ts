@@ -53,17 +53,22 @@ export class SideBarComponent implements OnInit {
       link: 'requests/session-requests',
       icon :"fa-calendar-plus"
     },
-
     {
       label: 'Ajouter Etudiant',
       link: 'users/students/add',
       icon: 'fa-user'
-    },    {
+    },
+    {
       label: 'Ajouter Professeur',
       link: 'users/professors/add',
       icon: 'fa-user'
     },
-    ];
+    {
+      label: 'Mon Projet',
+      link: 'project',
+      icon: 'fa-project-diagram'
+    }
+  ];
 
   constructor() { }
 

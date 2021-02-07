@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Session} from '../models/sessions.model';
 import {HttpClient} from '@angular/common/http';
-import { Student} from "../models/student.model";
+import {Student} from "../models/student.model";
 import {Enterprise} from "../models/entreprise.model";
 import {Project} from "../models/project.model";
 import {Professor} from "../models/professor.model";
@@ -31,28 +31,56 @@ export class ProjectsService {
     field: "GL",
     level: "4"
   }
-  prof = new Professor("1", "Saloua", "Ben Yahia", "sby@gmail.com", "Info", "chamta");
+  prof: Professor = <Professor>{
+    id: "1",
+    name: "Saloua",
+    lastName: "Ben Yahia",
+    email: "sby@gmail.com",
+    department: "GMI",
+    rank: "Maitre Assistant"
+  }
   enterprise = new Enterprise("bchal", "Vynd", "Sokra", "Nouisser");
-  project1 = new Project("1", "Serverless computing","akwa projeeet", this.prof, this.student1, this.enterprise, "GL", "cycle")
-  project2 = new Project("2", "IA","theni akwa projeeet", this.prof, this.student2, this.enterprise, "GL", "cycle")
-  session1={
+  project1: Project = <Project>{
+    id: "1",
+    title: "Serverless computing",
+    description: "akwa projeeet",
+    supervisor: this.prof,
+    student: this.student1,
+    enterprise: this.enterprise,
+    field: "GL",
+    level: "CYCLE"
+
+  }
+  project2: Project = <Project>{
+    id: "2",
+    title: "IA",
+    description: "theni akwa projeeet",
+    supervisor: this.prof,
+    student: this.student2,
+    enterprise: this.enterprise,
+    field: "GL",
+    level: "CYCLE"
+
+  }
+  session1 = {
     'id': "1",
     'startDate': "27/06/2021",
     'endDate': "27/09/2021",
     'capacity': 250,
     'president': "dr.Ali Abdenadher"
   };
-  session2={
-    'id':"2",
+  session2 = {
+    'id': "2",
     'startDate': "15/09/2021",
     'endDate': "15/10/2021",
     'capacity': 300,
     'president': "dr.Riadh Robbana"
   }
 
-  sessions: Session[] = [this.session1,this.session2  ];
+  sessions: Session[] = [this.session1, this.session2];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
 
   getProjects(): Project[] {
@@ -61,39 +89,39 @@ export class ProjectsService {
 
  
 
-  sendSessionRequest(projectId:String,sessionId:String){
+
+  sendSessionRequest(projectId: String, sessionId: String) {
     console.log("sessionRequestSent");
   }
 
-  sendSupervisionRequest(projectId:String,profEmail:String){
+  sendSupervisionRequest(projectId: String, profEmail: String) {
     console.log("supervision Request sent");
 
   }
 
-  acceptSupervisionRequest(projectId:String){
+  acceptSupervisionRequest(projectId: String) {
     console.log("project Request sent");
   }
 
-  acceptProjectRequest(projectId:String){
+  acceptProjectRequest(projectId: String) {
     console.log("project Request sent");
   }
 
-  acceptSessionRequest(projectId){
-      console.log("session request accepted");
+  acceptSessionRequest(projectId) {
+    console.log("session request accepted");
   }
 
-  getSupervisionRequests(profId:String){
+  getSupervisionRequests(profId: String) {
     return [this.project1];
   }
 
-  getProjectRequests(){
+  getProjectRequests() {
     return [this.project2];
   }
 
-  getSessionRequests(){
-    return [this.project2,this.project1]
+  getSessionRequests() {
+    return [this.project2, this.project1]
   }
-
 
 
 }

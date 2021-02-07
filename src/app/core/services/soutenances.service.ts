@@ -43,17 +43,75 @@ export class SoutenancesService {
     field: "GL",
     level: "4"
   }
-  prof1 = new Professor("1", "Saloua", "Ben Yahia", "sby@gmail.com", "Info", "PROFESSOR");
-  prof2 = new Professor("2", "Aymen", "sellaouti", "aymen@gmail.com", "Info", "ASSISTANT");
-  prof3 = new Professor("3  ", "Riadh", "robbana", "rrobbana@gmail.com", "Info", "PROFESSOR");
+  prof1: Professor = <Professor>{
+    id: "1",
+    name: "Saloua",
+    lastName: "Ben Yahia",
+    email: "sby@gmail.com",
+    department: "GMI",
+    rank: "Maitre Assistant"
+  }
+  prof2: Professor = <Professor>{
+    id: "2",
+    name: "Aymen",
+    lastName: "sellaouti",
+    email: "aymen@gmail.com",
+    department: "GMI",
+    rank: "Maitre Assistant"
+  }
+  prof3: Professor = <Professor>{
+    id: "3",
+    name: "Riadh",
+    lastName: "robbana",
+    email: "rrobbana@gmail.com",
+    department: "GMI",
+    rank: "PROFESSOR"
+  }
+
   enterprise = new Enterprise("bchal", "Vynd", "Sokra", "Nouisser");
-  project1 = new Project("1", "Serverless computing","akwa projeeet", this.prof1, this.student1, this.enterprise, "GL", "cycle")
-  project2 = new Project("2", "IA","theni akwa projet fel aalem", this.prof1, this.student2, this.enterprise, "GL", "cycle")
-  conference1:Conference ={id:"1",date:"24-09-2021",session:this.session1,president:this.prof3,inspector:this.prof2,project:this.project1,room:"2B6-1"}
-  conference2:Conference ={id:"2",date:"24-09-2021",session:this.session1,president:this.prof3,inspector:this.prof2,project:this.project1,room:"2B6-1"}
-  conferenceRole1:ConferenceRole={conference:this.conference1,role:"inspecteur"};
-  conferences:Conference[]=[this.conference1];
-  conferencesRoles:ConferenceRole[]=[this.conferenceRole1];
+  project1: Project = <Project>{
+    id: "1",
+    title: "Serverless computing",
+    description: "akwa projeeet",
+    supervisor: this.prof1,
+    student: this.student1,
+    enterprise: this.enterprise,
+    field: "GL",
+    level: "CYCLE"
+
+  }
+  project2: Project = <Project>{
+    id: "2",
+    title: "IA",
+    description: "theni akwa projeeet",
+    supervisor: this.prof2,
+    student: this.student2,
+    enterprise: this.enterprise,
+    field: "GL",
+    level: "CYCLE"
+
+  }
+  conference1: Conference = {
+    id: "1",
+    date: "24-09-2021",
+    session: this.session1,
+    president: this.prof3,
+    inspector: this.prof2,
+    project: this.project1,
+    room: "2B6-1"
+  }
+  conference2: Conference = {
+    id: "2",
+    date: "24-09-2021",
+    session: this.session1,
+    president: this.prof3,
+    inspector: this.prof2,
+    project: this.project1,
+    room: "2B6-1"
+  }
+  conferenceRole1: ConferenceRole = {conference: this.conference1, role: "inspecteur"};
+  conferences: Conference[] = [this.conference1];
+  conferencesRoles: ConferenceRole[] = [this.conferenceRole1];
 
   constructor(private http:HttpClient) { }
 

@@ -1,12 +1,12 @@
-export class Professor {
 
-  constructor(public id: string,
-              public name: string,
-              public lastName: string,
-              public email: string,
-              public department: string,
-              public rank: string) {}
-
+export interface Professor {
+  id: string
+  name: string
+  lastName: string
+  cin: string
+  email: string
+  department: string
+  rank: string
 }
 
 export enum Department {

@@ -1,6 +1,6 @@
-import { Professor } from "./professor.model";
-import { Project } from "./project.model";
-import { Session } from "./sessions.model";
+import {Professor} from "./professor.model";
+import {Project} from "./project.model";
+import {Session} from "./sessions.model";
 
 
 export interface Conference {
@@ -10,6 +10,7 @@ export interface Conference {
   president?: Professor;
   inspector?: Professor;
   project?: Project;
+  enterpriseSupervisor?: string;
   room?: String;
 }
 

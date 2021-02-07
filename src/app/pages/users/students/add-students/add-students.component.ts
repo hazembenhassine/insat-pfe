@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Field, Level, Student} from "../../../../core/models/student.model";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {UsersService} from "../../../../core/services/users.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-add-students',
@@ -8,24 +10,28 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./add-students.component.scss']
 })
 
-export class AddStudentsComponent {
+export class AddStudentsComponent implements OnInit {
 
-  title = 'Angular7AppReadCSV';
   fields = Object.keys(Field).filter(k => typeof Field[k as any] === "number");
   levels = Object.keys(Level).filter(k => typeof Level[k as any] === "number");
+  loading = false
+
+  ngOnInit() {
+  }
 
   public students: Student[] = [];
   @ViewChild('csvReader') csvReader: any;
   formUser: FormGroup = this.formBuilder.group({
     nce: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
+    cin: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     field: new FormControl('', [Validators.required]),
     level: new FormControl('', [Validators.required]),
   })
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private userService: UsersService, private toastr: ToastrService) {
 
   }
 
@@ -63,7 +69,7 @@ export class AddStudentsComponent {
       };
 
     } else {
-      alert("Please import valid .csv file.");
+      this.toastr.error("Please import valid .csv file.");
       this.fileReset();
     }
   }
@@ -115,10 +121,35 @@ export class AddStudentsComponent {
   }
 
   addStudents() {
+    console.log(this.students)
+    this.loading = true
+    this.userService.addStudents(this.students).then(
+      res => {
+        this.toastr.success("Successfully added all the students")
+      }).catch(
+      error => {
+        this.toastr.error(error.message)
+      }
+    ).finally(() => {
+      this.loading = false
+    })
+
 
   }
 
   addStudent() {
-
+    this.loading = true
+    const student = [this.formUser.value]
+    console.log(student)
+    this.userService.addStudents(student)
+      .then(() => {
+        this.toastr.success("Successfully added the student");
+      })
+      .catch(error => {
+        this.toastr.error(error.message);
+      })
+      .finally(() => {
+      this.loading = false;
+    })
   }
 }

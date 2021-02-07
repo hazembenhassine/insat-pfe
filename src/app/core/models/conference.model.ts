@@ -1,6 +1,6 @@
 import { Professor } from "./professor.model";
 import { Project } from "./project.model";
-import { Session } from "./session.model";
+import { Session } from "./sessions.model";
 
 export interface Conference {
     id?:String;

@@ -13,7 +13,7 @@ import { SessionsService } from 'src/app/core/services/sessions.service';
 export class CreateSessionComponent implements OnInit {
 
   profs=[{
-    'id':1,'name':'tarek','lastname':'jarrar'
+    'id':1,'name':'tarek','lastName':'jarrar'
   }];
 
   sessionForm=new FormGroup({

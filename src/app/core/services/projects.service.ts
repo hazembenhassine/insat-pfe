@@ -11,8 +11,8 @@ import {Professor} from "../models/professor.model";
   providedIn: 'root'
 })
 
-export class SessionsService {
-  public sessionsURL;
+export class ProjectsService {
+  public projectUR;
   student1 = new Student("1", "Khaled", "Ghamgui", "gham.khaled@gmail.com", "GL", '4');
   student2 = new Student("2", "Tarek", "Jarrar", "gham.khaled@gmail.com", "GL", '4');
   prof = new Professor("1", "Saloua", "Ben Yahia", "sby@gmail.com", "Info", "chamta");
@@ -38,30 +38,44 @@ export class SessionsService {
 
   constructor(private http: HttpClient) {}
 
-  /* getAllSessions(): Observable<Session[]> {
-    return this.http.get<Session[]>(this.sessionsURL + '/getAllSessions')
-  } */
-
+ 
   getProjects(): Project[] {
     return [this.project1, this.project2];
   }
   
-  getSessions(){
-    return this.sessions;
+  sendSessionRequest(projectId:String,sessionId:String){
+    console.log("sessionRequestSent");
   }
 
-  getSessionProjects(sessionId:string): Project[] {
-    if (sessionId="1") return [this.project1];
-    if (sessionId="2") return [this.project2];
+  sendSupervisionRequest(projectId:String,profEmail:String){
+    console.log("supervision Request sent");
+
   }
 
-  addSession(startDate:Date,endDate:Date,capacity:number,presidentId:String){
-    console.log("session added!")
+  acceptSupervisionRequest(projectId:String){
+    console.log("project Request sent");
   }
 
-  getSessionById(sessionId:String){
-    if (sessionId=="1") return this.session1;
-    else return this.session2;
+  acceptProjectRequest(projectId:String){
+    console.log("project Request sent");
   }
+
+  acceptSessionRequest(projectId){
+      console.log("session request accepted");
+  }
+  
+  getSupervisionRequests(profId:String){
+    return [this.project1];
+  }
+
+  getProjectRequests(){
+    return [this.project2];
+  }
+
+  getSessionRequests(){
+    return [this.project2,this.project1]
+  }
+
+
 
 }

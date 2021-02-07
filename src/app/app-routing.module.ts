@@ -17,6 +17,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/soutenances/soutenances.module').then(m => m.SoutenancesModule)
   },
   { path: 'sessions', loadChildren: () => import('./pages/sessions/sessions.module').then(m => m.SessionsModule) },
+  { path: 'requests', loadChildren: () => import('./pages/requests/requests.module').then(m => m.RequestsModule) },
   ];
 
 @NgModule({

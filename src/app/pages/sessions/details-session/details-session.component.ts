@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SessionsService } from 'src/app/core/services/sessions.service';
 import { Conference } from '../../../core/models/conference.model';
 import { Session } from '../../../core/models/sessions.model';
-import { SoutenancesService } from '../../soutenances/soutenances.service';
+import { SoutenancesService } from '../../../core/services/soutenances.service';
 
 @Component({
   selector: 'app-details-session',

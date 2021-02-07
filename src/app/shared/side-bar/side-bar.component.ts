@@ -37,6 +37,21 @@ export class SideBarComponent implements OnInit {
       label: 'Sessions',
       link: 'sessions',
       icon: 'fa-history'
+    },
+    {
+      label :'Propositions de sujets',
+      link: 'requests/project-requests',
+      icon :"fa-folder-plus"
+    },
+    {
+      label :"Demandes d'encadrement",
+      link: 'requests/supervision-requests',
+      icon :"fa-book"
+    },
+    {
+      label :'affectations aux sessions',
+      link: 'requests/session-requests',
+      icon :"fa-calendar-plus"
     }
     ];
 

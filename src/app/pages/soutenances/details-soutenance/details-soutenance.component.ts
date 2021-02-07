@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Conference } from 'src/app/shared/models/conference.model';
-import { SoutenancesService } from '../soutenances.service';
+import { Conference } from '../../../core//models/conference.model';
+import { SoutenancesService } from '../../../core/services/soutenances.service';
 
 @Component({
   selector: 'app-details-soutenance',

@@ -14,7 +14,7 @@ export class EditSessionComponent implements OnInit {
   id:string;
   
   profs=[{
-    'id':1,'name':'tarek','lastname':'jarrar'
+    'id':1,'name':'tarek','lastName':'jarrar'
   }];
 
   sessionForm=new FormGroup({

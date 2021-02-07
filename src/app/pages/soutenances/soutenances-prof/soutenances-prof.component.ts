@@ -4,7 +4,7 @@ import { SessionsService } from 'src/app/core/services/sessions.service';
 import { ConferenceRole } from 'src/app/core/models/conference-role.model';
 import { Conference } from 'src/app/core/models/conference.model';
 import { Session } from 'src/app/core/models/sessions.model';
-import { SoutenancesService } from '../soutenances.service';
+import { SoutenancesService } from '../../../core/services/soutenances.service';
 
 @Component({
   selector: 'app-soutenances-prof',

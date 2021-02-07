@@ -9,3 +9,14 @@ export class Professor {
 
 }
 
+export enum Department {
+  "GPI",
+  "GBG",
+  "GMI"
+}
+export enum Rank {
+  "PROFESSOR",
+  "MAITRE DE CONFERENCES",
+  "MAITRE ASSISTANT",
+  "ASSISTANT"
+}

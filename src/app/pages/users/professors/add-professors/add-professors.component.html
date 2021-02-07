@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1><b>Ajouter Etudiants</b></h1>
+        <h1><b>Ajouter Professeurs</b></h1>
       </div>
     </div>
   </div>
@@ -31,16 +31,16 @@
                          accept=".csv"/>
                 </div>
               </div>
-              <div *ngIf="students.length > 0" class="col-3 p-2 " id="upload">
+              <div *ngIf="professors.length > 0" class="col-3 p-2 " id="upload">
                 <div class="small-box  bg-gradient-success">
                   <div class="inner">
-                    <p><b>Ajouter Les etudiants</b></p>
+                    <p><b>Ajouter Les Professeurs</b></p>
                     <br>
                   </div>
                   <div class="icon">
                     <i class="fas fa-user-plus"></i>
                   </div>
-                  <a class="small-box-footer" (click)="addStudents()">Submit<i
+                  <a class="small-box-footer" (click)="addProfessors()">Submit<i
                     class="fas fa-arrow-circle-right"></i></a>
                 </div>
               </div>
@@ -48,25 +48,23 @@
           </div>
 
 
-          <table class="minimalistBlack" *ngIf="students.length > 0">
+          <table class="minimalistBlack" *ngIf="professors.length > 0">
             <thead>
             <tr>
-              <th>Numero CI</th>
               <th>Prenom</th>
               <th>Nom</th>
               <th>Email</th>
-              <th>Specialite</th>
-              <th>Niveau</th>
+              <th>Rang</th>
+              <th>Department</th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let student of students;let i = index;">
-              <td><span>{{student.id}}</span></td>
-              <td><span>{{student.name}}</span></td>
-              <td><span>{{student.lastName}}</span></td>
-              <td><span>{{student.email}}</span></td>
-              <td><span>{{student.field}}</span></td>
-              <td><span>{{student.level}}</span></td>
+            <tr *ngFor="let professor of professors;let i = index;">
+              <td><span>{{professor.name}}</span></td>
+              <td><span>{{professor.lastName}}</span></td>
+              <td><span>{{professor.email}}</span></td>
+              <td><span>{{professor.rank}}</span></td>
+              <td><span>{{professor.department}}</span></td>
             </tr>
             </tbody>
           </table>
@@ -74,59 +72,52 @@
         </mat-tab>
 
         <mat-tab label="Ajouter avec formulaire">
-          <div [formGroup]="formUser" class="col-12 mt-3 ">
+          <div [formGroup]="formProfessor" class="col-12 mt-3 ">
             <div class="row ">
+
               <div class="col-12 ">
                 <mat-form-field appearance="outline">
-                  <mat-label>Numero Carte Etudiant</mat-label>
-                  <input matInput placeholder="Numero Carte Etudiant" formControlName="nce" required>
-                  <mat-error
-                    *ngIf="formUser.controls.nce.errors">{{getErrorMessage(formUser.controls.email)}}</mat-error>
-                </mat-form-field>
-              </div>
-              <div class="col-12 ">
-                <mat-form-field appearance="outline">
-                  <mat-label>Prenom de l'etudiant</mat-label>
+                  <mat-label>Prenom du professeur</mat-label>
                   <input matInput placeholder="Prenom" formControlName="name" required>
                   <mat-error
-                    *ngIf="formUser.controls.name.errors">{{getErrorMessage(formUser.controls.email)}}</mat-error>
+                    *ngIf="formProfessor.controls.name.errors">{{getErrorMessage(formProfessor.controls.email)}}</mat-error>
                 </mat-form-field>
               </div>
               <div class="col-12 ">
                 <mat-form-field appearance="outline">
-                  <mat-label>Nom de l'etudiant</mat-label>
+                  <mat-label>Nom de professeur</mat-label>
                   <input matInput placeholder="Nom" formControlName="lastName" required>
                   <mat-error
-                    *ngIf="formUser.controls.lastName.errors">{{getErrorMessage(formUser.controls.email)}}</mat-error>
+                    *ngIf="formProfessor.controls.lastName.errors">{{getErrorMessage(formProfessor.controls.email)}}</mat-error>
                 </mat-form-field>
               </div>
               <div class="col-12 ">
                 <mat-form-field appearance="outline">
-                  <mat-label>Email de l'etudiant</mat-label>
+                  <mat-label>Email du professeur</mat-label>
                   <input matInput placeholder="pat@insat.u-cathage.tn" formControlName="email" required>
                   <mat-error
-                    *ngIf="formUser.controls.email.errors">{{getErrorMessage(formUser.controls.email)}}</mat-error>
+                    *ngIf="formProfessor.controls.email.errors">{{getErrorMessage(formProfessor.controls.email)}}</mat-error>
                 </mat-form-field>
               </div>
               <div class="col-12">
                 <mat-form-field appearance="outline">
-                  <mat-label>Specialite</mat-label>
-                  <mat-select formControlName="field">
-                    <mat-option *ngFor="let field of fields" [value]="field">{{field}}</mat-option>
+                  <mat-label>Rang</mat-label>
+                  <mat-select formControlName="rank">
+                    <mat-option *ngFor="let rank of ranks" [value]="rank">{{rank}}</mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
               <div class="col-12">
                 <mat-form-field appearance="outline">
-                  <mat-label>Niveau</mat-label>
-                  <mat-select formControlName="level">
-                    <mat-option *ngFor="let level of levels" [value]="level">{{level}}</mat-option>
+                  <mat-label>Department</mat-label>
+                  <mat-select formControlName="department">
+                    <mat-option *ngFor="let department of departments" [value]="department">{{department}}</mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
               <div class="col-12 ">
-                <button mat-button [disabled]="formUser.invalid" (click)="addStudent()" class=" w-25 mx-1">
-                  Ajouter L'etudiant
+                <button mat-button [disabled]="formProfessor.invalid" (click)="addProfessor()" class=" w-25 mx-1">
+                  Ajouter Le Professeur
                 </button>
               </div>
             </div>

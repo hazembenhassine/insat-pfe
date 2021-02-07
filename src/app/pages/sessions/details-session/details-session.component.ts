@@ -30,21 +30,16 @@ export class DetailsSessionComponent implements OnInit {
   }
 
   getSessionById(sessionId:string){
-<<<<<<< Updated upstream
-     this.sessionsService.getSessionById(sessionId).subscribe(
+    this.sessionsService.getSessionById(sessionId).subscribe(
       (value:any)=>{
         this.session=value;
       },err=>{
         console.log(err)
       }
-     )
+    )
   };
 
-=======
-    return this.sessionsService.getSessionById(sessionId);
-  }
   programmerSoutenance() {
     this.router.navigate(['/sessions',this.sessionId,'plan']);
->>>>>>> Stashed changes
   }
 }

@@ -37,6 +37,16 @@ export class SessionsComponent implements OnInit {
     const dialogRef = this.dialog.open(CreateSessionComponent, {});
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.sessionsService.getSessions().subscribe(
+        (sessions) => {
+          this.sessions = sessions
+          this.sessions.map(session => {
+            session.startDate = session.startDate.split("T")[0]
+            session.endDate = session.endDate.split("T")[0]
+            session.id = session._id
+          })
+        }
+      )
     });
   }
 

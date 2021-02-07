@@ -20,7 +20,7 @@ export class SoutenancesProfComponent implements OnInit {
 
 
   ngOnInit() {
-    this.soutenancesRoles=this.getAllConferencesRoles();
+    this.soutenancesRoles=[];
     console.log(this.soutenancesRoles);
 
   }
@@ -31,7 +31,7 @@ export class SoutenancesProfComponent implements OnInit {
 
 
 
-  getAllConferencesRoles(){
-    return this.soutenanceSession.getConferencesRolesByProfId(this.id);
-  }
+  // getAllConferencesRoles(){
+  //   return this.soutenanceSession.getConferencesRolesByProfId(this.id);
+  // }
 }

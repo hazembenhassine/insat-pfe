@@ -16,12 +16,8 @@ import {environment} from "../../../environments/environment";
 export class SessionsService {
   sessionURL: string = environment.BASE_URL + '/sessions';
 
-
-
   constructor(private http: HttpClient) {
   }
-
-
 
   getSessions(): Observable<Session[]> {
     return this.http.get<Session[]>(this.sessionURL);

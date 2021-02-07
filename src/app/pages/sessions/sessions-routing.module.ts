@@ -12,11 +12,12 @@ const routes: Routes = [
   {path: ':id/details', component: DetailsSessionComponent},
   {path: ':id/edit', component: EditSessionComponent},
   {path: 'new', component: CreateSessionComponent},
-  {path: 'plan', component: PlanSessionComponent}
+  {path: ':id/plan', component: PlanSessionComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class SessionsRoutingModule { }
+export class SessionsRoutingModule {
+}

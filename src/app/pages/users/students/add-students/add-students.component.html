@@ -7,7 +7,12 @@
     </div>
   </div>
 </section>
-<section class="content">
+
+
+<section class="content" style="position: relative">
+  <div class="loading-overlay" *ngIf="loading">
+    <mat-progress-spinner mode="indeterminate" style="position: relative"> </mat-progress-spinner>
+  </div>
   <div class="container-fluid">
     <mat-tab-group>
       <div class="row">
@@ -51,12 +56,13 @@
           <table class="minimalistBlack" *ngIf="students.length > 0">
             <thead>
             <tr>
-              <th>Numero CI</th>
+              <th>Numero CE</th>
               <th>Prenom</th>
               <th>Nom</th>
               <th>Email</th>
               <th>Specialite</th>
               <th>Niveau</th>
+              <th>CIN</th>
             </tr>
             </thead>
             <tbody>

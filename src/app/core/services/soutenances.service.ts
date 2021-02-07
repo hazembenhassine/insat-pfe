@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 import {ConferenceRole} from '../models/conference-role.model';
 import {Conference} from '../models/conference.model';
 import {Enterprise} from '../models/entreprise.model';
-import {Professor} from '../models/professor.model';
 import {Project} from '../models/project.model';
 import {Session} from '../models/sessions.model';
 import {Student} from '../models/student.model';
+import {Professor} from "../models/professor.model";
 
 @Injectable({
   providedIn: 'root'
@@ -36,9 +36,30 @@ export class SoutenancesService {
     field: "GL",
     level: "4"
   }
-  prof1 = new Professor("1", "Saloua", "Ben Yahia", "sby@gmail.com", "Info", "PROFESSOR");
-  prof2 = new Professor("2", "Aymen", "sellaouti", "aymen@gmail.com", "Info", "ASSISTANT");
-  prof3 = new Professor("3", "Riadh", "robbana", "rrobbana@gmail.com", "Info", "PROFESSOR");
+  prof1: Professor = <Professor>{
+    id: "1",
+    name: "Saloua",
+    lastName: "Ben Yahia",
+    email: "sby@gmail.com",
+    department: "GMI",
+    rank: "Maitre Assistant"
+  }
+  prof2: Professor = <Professor>{
+    id: "2",
+    name: "Aymen",
+    lastName: "sellaouti",
+    email: "aymen@gmail.com",
+    department: "GMI",
+    rank: "Maitre Assistant"
+  }
+  prof3: Professor = <Professor>{
+    id: "3",
+    name: "Riadh",
+    lastName: "robbana",
+    email: "rrobbana@gmail.com",
+    department: "GMI",
+    rank: "PROFESSOR"
+  }
   enterprise = new Enterprise("bchal", "Vynd", "Sokra", "Nouisser");
   project1 = new Project("1", "Serverless computing", "akwa projeeet", this.prof1, this.student1, this.enterprise, "GL", "cycle")
   project2 = new Project("2", "IA", "theni akwa projet fel aalem", this.prof1, this.student2, this.enterprise, "GL", "cycle")

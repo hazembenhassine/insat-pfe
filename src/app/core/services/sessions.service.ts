@@ -31,7 +31,15 @@ export class SessionsService {
     field: "GL",
     level: "4"
   }
-  prof = new Professor("1", "Saloua", "Ben Yahia", "sby@gmail.com", "Info", "chamta");
+  prof: Professor = <Professor>{
+    id: "1",
+    name: "Saloua",
+    lastName: "Ben Yahia",
+    email: "sby@gmail.com",
+    department: "GMI",
+    rank: "Maitre Assistant"
+  }
+
   enterprise = new Enterprise("bchal", "Vynd", "Sokra", "Nouisser");
   project1 = new Project("1", "Serverless computing", "akwa projeeet", this.prof, this.student1, this.enterprise, "GL", "cycle")
   project2 = new Project("2", "IA", "theni akwa projeeet", this.prof, this.student2, this.enterprise, "GL", "cycle")

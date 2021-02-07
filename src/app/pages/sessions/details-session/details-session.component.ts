@@ -34,5 +34,8 @@ export class DetailsSessionComponent implements OnInit {
   getSessionById(sessionId:string){
     return this.sessionsService.getSessionById(sessionId);
   }
+  programmerSoutenance() {
+    this.router.navigate(['/sessions',this.sessionId,'plan']);
 
+  }
 }

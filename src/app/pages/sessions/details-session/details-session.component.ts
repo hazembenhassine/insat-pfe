@@ -37,7 +37,7 @@ export class DetailsSessionComponent implements OnInit {
   }
 
 
-  showDetailsConference(conferenceId: String) {
+  showDetailsConference(conferenceId: string) {
     this.router.navigate(['/soutenances', conferenceId, 'details']);
   }
 

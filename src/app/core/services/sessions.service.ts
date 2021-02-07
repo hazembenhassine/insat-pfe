@@ -98,7 +98,7 @@ export class SessionsService {
     return this.http.post(this.sessionURL, session);
   }
 
-  getSessionById(sessionId: String): Observable<Session> {
+  getSessionById(sessionId: string): Observable<Session> {
     return this.http.get(this.sessionURL + '/' + sessionId);
   }
 

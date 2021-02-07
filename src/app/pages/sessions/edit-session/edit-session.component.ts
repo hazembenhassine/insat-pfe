@@ -29,11 +29,11 @@ export class EditSessionComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data ) {this.id = data.id;}
 
   ngOnInit(): void {
-    this.getProfessors(); 
+    this.getProfessors();
     this.getSessionById(this.id);
   }
-  
-  
+
+
   onSubmit(){
     this.dialogRef.close();
     const session={
@@ -45,12 +45,13 @@ export class EditSessionComponent implements OnInit {
     this.sessionsService.addSession(session);
   }
 
-  getSessionById(sessionId:String){
+  getSessionById(sessionId: string){
     this.sessionsService.getSessionById(sessionId).subscribe(
       (value:any)=>{
         this.currentData=value;
         this.sessionForm.patchValue(value);
       },err=>{
+        // tslint:disable-next-line:no-console
         console.log(err)
       }
      )  }
@@ -66,13 +67,14 @@ export class EditSessionComponent implements OnInit {
         this.profs=res;
       }).catch(
       error => {
+        // tslint:disable-next-line:no-console
         console.log(error)
       }
     ).finally(() => {
       this.loading = false
     })}
-  
 
-  
+
+
 
 }

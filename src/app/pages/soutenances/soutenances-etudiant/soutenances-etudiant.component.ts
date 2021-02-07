@@ -13,7 +13,7 @@ import { SoutenancesService } from '../../../core/services/soutenances.service';
 })
 export class SoutenancesEtudiantComponent implements OnInit {
   sessions:Session[];
-  myId: String;
+  myId: string;
   myConference:Conference;
   clicked=false;
 
@@ -22,10 +22,10 @@ export class SoutenancesEtudiantComponent implements OnInit {
   ngOnInit(): void {
     this.getSessions();
 /*     this.myConference=this.getConferenceByStudent(this.myId)
- */  
+ */
 }
 
-  showDetailsSoutenance(id:String){
+  showDetailsSoutenance(id: string){
     this.router.navigate(['soutenances',id,'details']);
   }
 
@@ -34,7 +34,7 @@ export class SoutenancesEtudiantComponent implements OnInit {
   } */
 
 
-  demanderSession(sessionId:String){
+  demanderSession(sessionId: string){
     this.clicked=true;
   }
 
@@ -43,7 +43,8 @@ export class SoutenancesEtudiantComponent implements OnInit {
       (values:any)=>{
         this.sessions=values;
       },err=>{
-        console.log(err)
+        // tslint:disable-next-line:no-console
+        console.log(err);
       }
     )
   }

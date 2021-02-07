@@ -83,15 +83,15 @@ export class ProjectsService {
   constructor(private http: HttpClient) {
   }
 
-  sendSessionRequest(sessionId: String): Promise<any> {
+  sendSessionRequest(sessionId: string): Promise<any> {
     return this.http.put(`${environment.BASE_URL}/sessions/reserve`, {"sessionId": sessionId}).toPromise();
   }
 
-  acceptSupervisionRequest(projectId: String) {
+  acceptSupervisionRequest(projectId: string) {
     return this.http.put(`${environment.BASE_URL}/projects/accept/$projectId`, {}).toPromise();
   }
 
-  acceptProjectRequest(projectId: String) {
+  acceptProjectRequest(projectId: string) {
     return this.http.put(`${environment.BASE_URL}/projects/validate/$projectId`, {}).toPromise();
   }
 

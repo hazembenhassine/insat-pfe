@@ -40,8 +40,28 @@ export class ProjectsService {
     rank: "Maitre Assistant"
   }
   enterprise = new Enterprise("bchal", "Vynd", "Sokra", "Nouisser");
-  project1 = new Project("1", "Serverless computing", "akwa projeeet", this.prof, this.student1, this.enterprise, "GL", "cycle")
-  project2 = new Project("2", "IA", "theni akwa projeeet", this.prof, this.student2, this.enterprise, "GL", "cycle")
+  project1: Project = <Project>{
+    id: "1",
+    title: "Serverless computing",
+    description: "akwa projeeet",
+    supervisor: this.prof,
+    student: this.student1,
+    enterprise: this.enterprise,
+    field: "GL",
+    level: "CYCLE"
+
+  }
+  project2: Project = <Project>{
+    id: "2",
+    title: "IA",
+    description: "theni akwa projeeet",
+    supervisor: this.prof,
+    student: this.student2,
+    enterprise: this.enterprise,
+    field: "GL",
+    level: "CYCLE"
+
+  }
   session1 = {
     'id': "1",
     'startDate': "27/06/2021",

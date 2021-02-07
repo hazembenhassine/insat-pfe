@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl,FormGroup } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { Professor } from 'src/app/core/models/professor.model';
-import { SessionsService } from 'src/app/core/services/sessions.service';
-import { UsersService } from 'src/app/core/services/users.service';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {MatDialogRef} from '@angular/material/dialog';
+import {Router} from '@angular/router';
+import {Professor} from 'src/app/core/models/professor.model';
+import {SessionsService} from 'src/app/core/services/sessions.service';
+import {UsersService} from 'src/app/core/services/users.service';
+import {ToastrService} from "ngx-toastr";
 
 
 @Component({
@@ -14,38 +15,43 @@ import { UsersService } from 'src/app/core/services/users.service';
 })
 export class CreateSessionComponent implements OnInit {
 
-  profs:Professor[]=[];
+  profs: Professor[] = [];
 
-  sessionForm=new FormGroup({
-    dates:new FormControl(''),
-    capacity:new FormControl(''),
+  sessionForm = new FormGroup({
+    dates: new FormControl(''),
+    capacity: new FormControl(''),
     president: new FormControl(''),
   });
-  loading= false;
+  loading = false;
 
 
-  constructor(private userService:UsersService,private router:Router,public dialogRef: MatDialogRef<CreateSessionComponent>,private sessionsService:SessionsService) { }
-
-  ngOnInit(): void {   
-    this.getProfessors(); 
+  constructor(private userService: UsersService,
+              private router: Router,
+              private toastr: ToastrService,
+              public dialogRef: MatDialogRef<CreateSessionComponent>,
+              private sessionsService: SessionsService) {
   }
 
-  onSubmit(){
+  ngOnInit(): void {
+    this.getProfessors();
+  }
+
+  onSubmit() {
     this.dialogRef.close();
-    const session={
-      "startDate":this.sessionForm.value.dates[0],
-      "endDate":this.sessionForm.value.dates[1],
-      "capacity":this.sessionForm.value.capacity,
-      "president":this.sessionForm.value.president._id
+    const session = {
+      "startDate": new Date(this.sessionForm.value.dates[0]).toISOString(),
+      "endDate": new Date(this.sessionForm.value.dates[1]).toISOString(),
+      "capacity": this.sessionForm.value.capacity,
+      "president": this.sessionForm.value.president._id
     }
-    console.log(session);
+    console.log(session)
     this.sessionsService.addSession(session).subscribe(
-      (response)=>{
+      (response) => {
         console.log(response);
-        alert("session created successfully!")
-      },err=>{
+        this.toastr.success("La session a été ajouté avec succes")
+      }, err => {
         console.log(err);
-        alert("session creation failed!")
+        this.toastr.error(err.message)
       }
     );
   }
@@ -54,18 +60,19 @@ export class CreateSessionComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  getProfessors(){
-  this.loading = true
-  this.userService.getProfessors().then(
-    res => {
-      this.profs=res;
-    }).catch(
-    error => {
-      console.log(error)
-    }
-  ).finally(() => {
-    this.loading = false
-  })}
+  getProfessors() {
+    this.loading = true
+    this.userService.getProfessors().then(
+      res => {
+        this.profs = res;
+      }).catch(
+      error => {
+        console.log(error)
+      }
+    ).finally(() => {
+      this.loading = false
+    })
+  }
 
 
 }

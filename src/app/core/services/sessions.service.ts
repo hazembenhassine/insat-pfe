@@ -6,7 +6,7 @@ import {Student} from "../models/student.model";
 import {Enterprise} from "../models/entreprise.model";
 import {Project} from "../models/project.model";
 import {Professor} from "../models/professor.model";
-import { API_URL } from 'src/app/app.constatnt';
+import {environment} from "../../../environments/environment";
 
 
 @Injectable({
@@ -14,11 +14,8 @@ import { API_URL } from 'src/app/app.constatnt';
 })
 
 export class SessionsService {
-  private sessionURL:string=API_URL+'session';
+  sessionURL: string = environment.BASE_URL + '/sessions';
 
-
-
-  public sessionsURL;
   student1: Student = <Student>{
     id: "1",
     name: "Khaled",
@@ -93,23 +90,16 @@ export class SessionsService {
     return [this.project1, this.project2];
   }
 
-  getSessions():Observable<Session[]> {
-    return this.http.get<Session[]>(this.sessionsURL);  
+  getSessions(): Observable<Session[]> {
+    return this.http.get<Session[]>(this.sessionURL);
   }
 
-  addSession(session:Session):any{
-    return this.http.post(this.sessionsURL,session);
+  addSession(session: Session): any {
+    return this.http.post(this.sessionURL, session);
   }
 
-  getSessionById(sessionId: String):Observable<Session> {
-    return this.http.get(this.sessionURL+'/'+sessionId);
-  } 
+  getSessionById(sessionId: String): Observable<Session> {
+    return this.http.get(this.sessionURL + '/' + sessionId);
+  }
 
-  /*   getSessions() {
-    return this.sessions;
-  } */
-  /* getSessionById(sessionId: String) {
-    if (sessionId === "1") return this.session1;
-    else return this.session2;
-  } */
 }

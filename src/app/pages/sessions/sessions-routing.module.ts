@@ -6,12 +6,14 @@ import {EditSessionComponent} from './edit-session/edit-session.component';
 
 import {SessionsComponent} from './sessions.component';
 import {PlanSessionComponent} from "./plan-session/plan-session.component";
+import {ProfessorResolver} from "../../core/resolvers/professor.resolver";
+import {SessionResolver} from "../../core/resolvers/session.resolver";
 
 const routes: Routes = [
-  {path: '', component: SessionsComponent, pathMatch: 'full'},
+  {path: '', component: SessionsComponent, resolve: {sessions: SessionResolver}, pathMatch: 'full'},
   {path: ':id/details', component: DetailsSessionComponent},
   {path: ':id/edit', component: EditSessionComponent},
-  {path: 'new', component: CreateSessionComponent},
+  {path: 'new', component: CreateSessionComponent, resolve: {professors: ProfessorResolver}},
   {path: ':id/plan', component: PlanSessionComponent}
 ];
 

@@ -1,10 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, Inject, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { CreateSessionComponent } from './create-session/create-session.component';
-import { EditSessionComponent } from './edit-session/edit-session.component';
-import { Session } from '../../core/models/sessions.model';
-import { SessionsService } from 'src/app/core/services/sessions.service';
+import {CreateSessionComponent} from './create-session/create-session.component';
+import {EditSessionComponent} from './edit-session/edit-session.component';
+import {Session} from '../../core/models/sessions.model';
+import {SessionsService} from 'src/app/core/services/sessions.service';
+import {Professor} from "../../core/models/professor.model";
 
 
 @Component({
@@ -14,16 +15,39 @@ import { SessionsService } from 'src/app/core/services/sessions.service';
 })
 export class SessionsComponent implements OnInit {
 
-  sessions:Session[];
-  constructor(private router:Router, public dialog: MatDialog,private sessionsService:SessionsService) { }
+  sessions: Session[];
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute,
+              public dialog: MatDialog, private sessionsService: SessionsService) {
+  }
 
   ngOnInit(): void {
-    this.getSessions();
+    this.activatedRoute.data.subscribe((data: { sessions: Session[] }) => {
+      this.sessions = data.sessions
+    })
   }
-  
+
 
   createSession() {
-      const dialogRef = this.dialog.open(CreateSessionComponent, {
+    const dialogRef = this.dialog.open(CreateSessionComponent, {});
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+
+  showDetails(id: string) {
+    this.router.navigate(['sessions', id, 'details']);
+    console.log("details for session n°", id)
+  }
+
+  delete(id: string) {
+  }
+
+
+  edit(id: string) {
+    const dialogRef = this.dialog.open(EditSessionComponent, {
+      data: {id: id}
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
@@ -31,30 +55,4 @@ export class SessionsComponent implements OnInit {
   }
 
 
-showDetails(id:string){
-  this.router.navigate(['sessions',id,'details']);
-  console.log("details for session n°",id)
-}
-
-delete(id:string){}
-
-
-edit(id:string){
-  const dialogRef = this.dialog.open(EditSessionComponent, {
-    data:{id:id}
-  });
-  dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
-  });
-}
-
-getSessions(){
-  this.sessionsService.getSessions().subscribe(
-    (values:any)=>{
-      this.sessions=values;
-    },err=>{
-      console.log(err)
-    }
-  )
-}
 }

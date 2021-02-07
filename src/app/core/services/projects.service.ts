@@ -102,6 +102,9 @@
     getSupervisionRequests():Promise<any>{
       return this.http.get(`${environment.BASE_URL}/projects/to-accept`).toPromise();
     }
+  sendSessionRequest(projectId: String, sessionId: String) {
+    console.log("sessionRequestSent");
+  }
 
     getProjectRequests() :Promise<any>{
       return this.http.get(`${environment.BASE_URL}/projects/to-accept`).toPromise();
@@ -119,3 +122,33 @@
       return this.http.get(`${environment.BASE_URL}/projects`).toPromise()
     }
   }
+
+  acceptSessionRequest(projectId) {
+    console.log("session request accepted");
+  }
+
+  getSupervisionRequests(profId: String) {
+    return [this.project1];
+  }
+
+  getProjectRequests() {
+    return [this.project2];
+  }
+
+  getSessionRequests() {
+    return [this.project2, this.project1]
+  }
+
+  addProject(project: Project): Promise<any> {
+    return this.http.post(`${environment.BASE_URL}/projects`, project).toPromise()
+  }
+
+  getProject(): Promise<any> {
+    return this.http.get(`${environment.BASE_URL}/projects`).toPromise()
+  }
+
+  getProjectBySessionId(sessionId): Promise<any> {
+    return this.http.get(`${environment.BASE_URL}/projects/session/${sessionId}`).toPromise()
+  }
+
+}

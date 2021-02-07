@@ -48,7 +48,8 @@ export class CreateSessionComponent implements OnInit {
     this.sessionsService.addSession(session).subscribe(
       (response) => {
         console.log(response);
-        this.toastr.success("La session a été ajouté avec succes")
+        this.toastr.success("La session a été ajouté avec succes");
+        location.reload;
       }, err => {
         console.log(err);
         this.toastr.error(err.message)

@@ -25,21 +25,25 @@
                                     <th>ID</th>
                                     <th>Etudiant</th>
                                     <th style="width: 100px">Date</th>
-                                    <th>Role</th>
                                     <th>Description du sujet</th>
+                                    <th>Encadrant</th>
+                                    <th>examinateur</th>
+                                    <th>president du jury</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody *ngFor="let soutenanceRole of soutenancesRoles">
+                            <tbody *ngFor="let soutenance of soutenances">
                                 <tr >
-                                    <td>{{soutenanceRole.conference.id}}</td>
-                                    <td>{{soutenanceRole.conference.project.student.name}} {{soutenanceRole.conference.project.student.lastName}}</td>
-                                    <td>{{soutenanceRole.conference.date}}</td>
-                                    <td><b>{{soutenanceRole.role}}</b></td>
+                                    <td>{{soutenance.id}}</td>
+                                    <td>{{soutenance.project.student.name}} {{soutenance.project.student.lastName}}</td>
+                                    <td>{{soutenance.date}}</td>
                                     <td><div>
-                                        {{soutenanceRole.conference.project.description}}
+                                        {{soutenance.project.description}}
                                     </div></td>
-                                    <td><i style="color:#28a745" class="fa fa-info-circle " (click)="detailsSoutenance(soutenanceRole.conference.id)"></i>
+                                    <td>{{soutenance.project.supervisor.name}} {{soutenance.project.supervisor.lastName}}</td>
+                                    <td>{{soutenance.inspector.name}} {{soutenance.project.inspector.lastName}}</td>
+                                    <td>{{soutenance.president.name}} {{soutenance.president.lastName}}</td>
+                                    <td><i style="color:#28a745" class="fa fa-info-circle " (click)="detailsSoutenance(soutenance.id)"></i>
                                         <br></td>
                                     </tr>
                             </tbody>

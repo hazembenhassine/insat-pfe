@@ -1,11 +1,11 @@
-import {Professor} from "./professor.model";
+import { Professor } from "./professor.model";
 
 export interface Session {
   _id?: String;
-  id?: String;
-  startDate?: String;
-  endDate?: String;
-  capacity?: number;
-  president?: Professor;
+  id?:String;
+  startDate?:String;
+  endDate?:String;
+  capacity?:number;
+  president?:Professor;
 }
 

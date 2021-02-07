@@ -34,8 +34,8 @@
                 <tbody *ngFor="let session of sessions">
                   <tr>
                     <td>#{{session.id}}</td>
-                    <td>{{session.startDate}}</td>
-                    <td>{{session.endDate}}</td>
+                    <td>{{session.startDate|date}}</td>
+                    <td>{{session.endDate|date}}</td>
                     <td>{{session.capacity}}</td>
                     <td>
                       <button class="btn btn-outline-success btn-block btn-sm" (click)="demanderSession(session.id)"><i class="fa fa-book"></i>Demander</button>
@@ -54,18 +54,18 @@
         </div>
 
 
-        <div class="col-md-4" *ngIf="clicked">
+        <!-- <div class="col-md-4" *ngIf="clicked">
           <div class="card card-success">
             <div class="card-header">
               <h3 class="card-title">Details de votre soutenance</h3>
             </div>
             <div class="card-body">
-             <p>Votre soutenance aura lieu durant la session du <b>{{myConference.session.startDate}}</b> au <b>28 juin 2021</b> </p> 
+             <p>Votre soutenance aura lieu durant la session du <b>{{myConference.session.startDate|date}}</b> au <b>{{<myConference class="session endDate"></myConference>|date}}</b> </p> 
              <div class="info-box bg-success">
                 <span class="info-box-icon"><i class="far fa-calendar-alt"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text">Date Soutenance</span>
-                  <span class="info-box-number">{{myConference.date}}</span>
+                  <span class="info-box-number">{{myConference.date|date}}</span>
                 </div>
               </div>
               <div class="info-box" style="width: 70%">
@@ -80,7 +80,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>

@@ -42,7 +42,7 @@ export class EditSessionComponent implements OnInit {
       "capacity":this.sessionForm.value.capacity,
       "president":this.sessionForm.value.presidentId
     }
-    this.sessionsService.addSession(session);
+    this.sessionsService.editSession(this.id,session);
   }
 
   getSessionById(sessionId: string){

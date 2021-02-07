@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionsService } from 'src/app/core/services/sessions.service';
-import { ConferenceRole } from 'src/app/core/models/conference-role.model';
 import { Conference } from 'src/app/core/models/conference.model';
 import { Session } from 'src/app/core/models/sessions.model';
 import { SoutenancesService } from '../../../core/services/soutenances.service';
@@ -12,7 +11,7 @@ import { SoutenancesService } from '../../../core/services/soutenances.service';
   styleUrls: ['./soutenances-prof.component.scss']
 })
 export class SoutenancesProfComponent implements OnInit {
-  soutenancesRoles:ConferenceRole[];
+  soutenances:Conference[];
   id;
 
 
@@ -20,8 +19,8 @@ export class SoutenancesProfComponent implements OnInit {
 
 
   ngOnInit() {
-    this.soutenancesRoles=[];
-    console.log(this.soutenancesRoles);
+    this.getAllConferences();
+    console.log(this.soutenances);
 
   }
 
@@ -31,7 +30,15 @@ export class SoutenancesProfComponent implements OnInit {
 
 
 
-  // getAllConferencesRoles(){
-  //   return this.soutenanceSession.getConferencesRolesByProfId(this.id);
-  // }
+  getAllConferences(){
+    return this.soutenanceSession.getConferencesByProf().then(
+      res => {
+        this.soutenances=res;
+      }).catch(
+      error => {
+        console.log(error)
+      }
+    ).finally(() => {
+    });
+  }
 }

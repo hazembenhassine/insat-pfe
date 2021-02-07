@@ -14,15 +14,31 @@ export class ProjectRequestsComponent implements OnInit {
   constructor(private projectsService:ProjectsService) { }
 
   ngOnInit(): void {
-    this.projects=this.getRequests();
+    this.getRequests();
   }
 
   getRequests(){
-    return this.projectsService.getProjectRequests();
+     this.projectsService.getProjectRequests().then(
+      res => {
+        this.projects=res;
+      }).catch(
+      error => {
+        console.log(error);
+      }
+    ).finally(() => {
+    });
   }
 
   acceptProject(projectId:String){
-    this.projectsService.acceptProjectRequest(projectId);
+    this.projectsService.acceptProjectRequest(projectId).then(
+      res => {
+        console.log(res) 
+         }).catch(
+      error => {
+        console.log(error)
+            }
+    ).finally(() => {
+    });
     this.hide=true
   }
 

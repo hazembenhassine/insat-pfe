@@ -57,7 +57,7 @@ export class AuthenticationService {
       email,
       password
     }
-    return this.http.post(`${environment.baseURL}/authentication/login`, body).toPromise();
+    return this.http.post(`${environment.BASE_URL}/authentication/login`, body).toPromise();
   }
 
   get role(): Role {

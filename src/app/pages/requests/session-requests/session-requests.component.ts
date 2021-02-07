@@ -13,11 +13,17 @@ export class SessionRequestsComponent implements OnInit {
   constructor(private projectsService:ProjectsService) { }
 
   ngOnInit(): void {
-    this.projects=this.getSessionRequests();
+    /* this.getSessionRequests(); */
   }
 
-  getSessionRequests(){
-    return this.projectsService.getSessionRequests(); }
+ /*  getSessionRequests(){
+     this.projectsService.getSessionRequests().then(
+      res => {
+      }).catch(
+      error => {
+      }
+    ).finally(() => {
+    }); } */
 
   acceptSessionRequest(projectId){
     this.projectsService.acceptSessionRequest(projectId);

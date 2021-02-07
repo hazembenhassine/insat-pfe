@@ -20,7 +20,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Liste des sessions deja programmées</h3>
+              <h3 class="card-title">Liste des sessions en attente pour la Session</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -43,7 +43,7 @@
                   <td>{{project.title}}</td>
                   <td>{{project.enterprise.name}}</td>
                   <td>{{project.supervisor.name}} {{project.supervisor.lastName}}</td>
-                  <td>{{project.session}}</td>
+                  <td></td>
                   <td>
                     <i class="icon fas fa-user-plus fa-3x" (click)="acceptSessionRequest(project.id)"></i>
                   </td>

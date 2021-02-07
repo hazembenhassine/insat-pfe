@@ -6,6 +6,7 @@ import {Student} from "../models/student.model";
 import {Enterprise} from "../models/entreprise.model";
 import {Project} from "../models/project.model";
 import {Professor} from "../models/professor.model";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -121,6 +122,14 @@ export class ProjectsService {
 
   getSessionRequests() {
     return [this.project2, this.project1]
+  }
+
+  addProject(project: Project): Promise<any> {
+    return this.http.post(`${environment.BASE_URL}/projects`, project).toPromise()
+  }
+
+  getProject(): Promise<any> {
+    return this.http.get(`${environment.BASE_URL}/projects`).toPromise()
   }
 
 

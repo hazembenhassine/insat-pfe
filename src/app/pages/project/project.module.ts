@@ -6,6 +6,7 @@ import {ProjectComponent} from './project.component';
 import {AddProjectComponent} from './add-project/add-project.component';
 import {TextFieldModule} from '@angular/cdk/text-field';
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     ProjectRoutingModule,
     TextFieldModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule,
 
   ]
 })

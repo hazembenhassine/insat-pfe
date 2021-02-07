@@ -64,4 +64,8 @@ export class AuthenticationService {
     return this.helper.decodeToken(this.credentials).role;
   }
 
+  logout() {
+    this.setCredentials();
+  }
+
 }

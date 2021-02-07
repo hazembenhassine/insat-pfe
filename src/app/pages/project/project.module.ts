@@ -6,8 +6,9 @@ import {ProjectComponent} from './project.component';
 import {AddProjectComponent} from './add-project/add-project.component';
 import {TextFieldModule} from '@angular/cdk/text-field';
 import {ReactiveFormsModule} from "@angular/forms";
-import { MatChipsModule } from '@angular/material/chips';
-import { MatIconModule } from '@angular/material/icon';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatChipsModule} from "@angular/material/chips";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -17,9 +18,9 @@ import { MatIconModule } from '@angular/material/icon';
     ProjectRoutingModule,
     TextFieldModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule,
     MatChipsModule,
-    MatIconModule,
-
+    MatIconModule
   ]
 })
 export class ProjectModule {

@@ -21,7 +21,8 @@ export class SoutenancesAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.clicked=false;
-    this.sessions=this.getAllSessions();
+    this.getSessions();
+
   }
 
 
@@ -44,12 +45,24 @@ export class SoutenancesAdminComponent implements OnInit {
    this.conferences=[];
  }
 
- getAllSessions(){
-  return this.sessionsService.getSessions();
+
+  getSessions(){
+    this.sessionsService.getSessions().subscribe(
+      (values:any)=>{
+        this.sessions=values;
+      },err=>{
+        console.log(err)
+      }
+    )
   }
 
 
  detailsSoutenance(id:String){
   this.router.navigate(['soutenances',id,'details']);
   }
+
+  
+/*  getAllSessions(){
+  return this.sessionsService.getSessions();
+  } */
 }

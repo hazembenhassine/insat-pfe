@@ -6,13 +6,16 @@ import {Student} from "../models/student.model";
 import {Enterprise} from "../models/entreprise.model";
 import {Project} from "../models/project.model";
 import {Professor} from "../models/professor.model";
+import {environment} from "../../../environments/environment";
+
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class SessionsService {
-  public sessionsURL;
+  sessionURL: string = environment.BASE_URL + '/sessions';
+
   student1: Student = <Student>{
     id: "1",
     name: "Khaled",
@@ -83,31 +86,20 @@ export class SessionsService {
   constructor(private http: HttpClient) {
   }
 
-  /* getAllSessions(): Observable<Session[]> {
-    return this.http.get<Session[]>(this.sessionsURL + '/getAllSessions')
-  } */
-
   getProjects(): Project[] {
     return [this.project1, this.project2];
   }
 
-  getSessions() {
-    return this.sessions;
+  getSessions(): Observable<Session[]> {
+    return this.http.get<Session[]>(this.sessionURL);
   }
 
-
-  getSessionProjects(sessionId: string): Project[] {
-    if (sessionId === "1") return [this.project1];
-    if (sessionId === "2") return [this.project2];
+  addSession(session: Session): any {
+    return this.http.post(this.sessionURL, session);
   }
 
-  addSession(startDate: Date, endDate: Date, capacity: number, presidentId: String) {
-    console.log("session added!")
-  }
-
-  getSessionById(sessionId: String) {
-    if (sessionId === "1") return this.session1;
-    else return this.session2;
+  getSessionById(sessionId: String): Observable<Session> {
+    return this.http.get(this.sessionURL + '/' + sessionId);
   }
 
 }

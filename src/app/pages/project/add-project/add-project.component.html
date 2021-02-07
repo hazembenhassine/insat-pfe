@@ -18,8 +18,11 @@
 
 <section class="content">
   <div class="container-fluid">
+    <div class="loading-overlay" *ngIf="loading">
+      <mat-progress-spinner mode="indeterminate" style="position: relative"></mat-progress-spinner>
+    </div>
     <div class="row">
-      <div class="col-12">
+      <div class="col-12" [formGroup]="formProject">
         <div class="dashboard-card">
           <div class="card-header">
             <h2>Ajouter un projet</h2>
@@ -27,29 +30,49 @@
           <div class="card-content">
             <div class="row">
               <div class="col-6">
+
                 <div class="form-group">
                   <label for="inputName">Titre</label>
-                  <input type="text" id="inputName" class="form-control">
+                  <input type="text" id="inputName" class="form-control" formControlName="title">
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Description</label>
                   <textarea id="inputDescription" class="form-control"
                             cdkTextareaAutosize
                             cdkAutosizeMinRows="6"
-                            cdkAutosizeMaxRows="10"></textarea>
+                            cdkAutosizeMaxRows="10"
+                            formControlName="description"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="tagsInput">Tags</label>
+                  <div class="form-control">
+                    <mat-chip-list #chipList aria-label="Fruit selection">
+                      <mat-chip *ngFor="let tag of getTags(), let i = index" [selectable]="false"
+                                [removable]="true" (removed)="remove(i)">
+                        {{tag.value}}
+                        <mat-icon matChipRemove>cancel</mat-icon>
+                      </mat-chip>
+                      <input id="tagsInput"
+                             class="flat-input"
+                             [matChipInputFor]="chipList"
+                             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                             [matChipInputAddOnBlur]="false"
+                             (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label for="inputStatus">Encadrant</label>
-                  <select id="inputStatus" class="form-control custom-select">
+                  <select id="inputStatus" class="form-control custom-select" formControlName="supervisor">
                     <option selected="" disabled="">Choisissez</option>
-                    <option>Aymen Sellaouti</option>
-                    <option>Riadh Robbana</option>
-                    <option>Saloua Ben Yahia</option>
+                    <option *ngFor="let professor of professors"
+                            [ngValue]="professor.email">{{professor.name}} {{professor.lastName}}</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label for="inputProjectLeader">Co-encadrant</label>
-                  <input type="text" id="inputProjectLeader" class="form-control">
+                  <input type="text" id="inputProjectLeader" class="form-control"
+                         formControlName="enterpriseSupervisor">
                 </div>
                 <div class="form-group">
                   <label for="tagsInput">Tags</label>
@@ -70,24 +93,26 @@
                   </div>
                 </div>
               </div>
-              <div class="col-6">
+              <div class="col-6" formGroupName="enterprise">
                 <div class="form-group">
                   <label for="companyName">Nom de l'entreprise</label>
-                  <input type="text" id="companyName" class="form-control">
+                  <input type="text" id="companyName" class="form-control" formControlName="name">
                 </div>
                 <div class="form-group">
                   <label for="companyAddress">Adresse de l'entreprise</label>
-                  <input type="text" id="companyAddress" class="form-control">
+                  <input type="text" id="companyAddress" class="form-control" formControlName="location">
                 </div>
                 <div class="form-group">
                   <label for="companyContact">Contact de l'entreprise</label>
-                  <input type="text" id="companyContact" class="form-control">
+                  <input type="text" id="companyContact" class="form-control" formControlName="contact">
                 </div>
               </div>
             </div>
             <div class="row justify-content-end">
               <div class="col-auto">
-                <button type="button" class="btn bg-gradient-info">Confirmer</button>
+                <button type="button" class="btn bg-gradient-info" (click)="addProject()"
+                        [disabled]="formProject.invalid">Confirmer
+                </button>
               </div>
             </div>
           </div>

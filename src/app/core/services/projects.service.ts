@@ -6,6 +6,7 @@ import {Student} from "../models/student.model";
 import {Enterprise} from "../models/entreprise.model";
 import {Project} from "../models/project.model";
 import {Professor} from "../models/professor.model";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -82,43 +83,45 @@ export class ProjectsService {
   constructor(private http: HttpClient) {
   }
 
-
-  getProjects(): Project[] {
-    return [this.project1, this.project2];
-  }
-
-  sendSessionRequest(projectId: String, sessionId: String) {
-    console.log("sessionRequestSent");
-  }
-
-  sendSupervisionRequest(projectId: String, profEmail: String) {
-    console.log("supervision Request sent");
-
+  sendSessionRequest(sessionId: String): Promise<any> {
+    return this.http.put(`${environment.BASE_URL}/sessions/reserve`, {"sessionId": sessionId}).toPromise();
   }
 
   acceptSupervisionRequest(projectId: String) {
-    console.log("project Request sent");
+    return this.http.put(`${environment.BASE_URL}/projects/accept/$projectId`, {}).toPromise();
   }
 
   acceptProjectRequest(projectId: String) {
-    console.log("project Request sent");
+    return this.http.put(`${environment.BASE_URL}/projects/validate/$projectId`, {}).toPromise();
   }
 
-  acceptSessionRequest(projectId) {
-    console.log("session request accepted");
+  acceptSessionRequest(projectId): Promise<any> {
+    return this.http.put(`${environment.BASE_URL}/sessions/confirm/$projectId`, {}).toPromise();
   }
 
-  getSupervisionRequests(profId: String) {
-    return [this.project1];
+  getSupervisionRequests(): Promise<any> {
+    return this.http.get(`${environment.BASE_URL}/projects/to-accept`).toPromise();
   }
 
-  getProjectRequests() {
-    return [this.project2];
+
+  getProjectRequests(): Promise<any> {
+    return this.http.get(`${environment.BASE_URL}/projects/to-accept`).toPromise();
   }
 
-  getSessionRequests() {
-    return [this.project2, this.project1]
+  getSessionRequests(sessionId): Promise<any> {
+    return this.http.get(`${environment.BASE_URL}/projects/session/$sessionId`).toPromise();
   }
 
+  addProject(project: Project): Promise<any> {
+    return this.http.post(`${environment.BASE_URL}/projects`, project).toPromise()
+  }
+  getProject(): Promise<any> {
+    return this.http.get(`${environment.BASE_URL}/projects`).toPromise()
+  }
+
+
+  getProjectBySessionId(sessionId): Promise<any> {
+    return this.http.get(`${environment.BASE_URL}/projects/session/${sessionId}`).toPromise()
+  }
 
 }

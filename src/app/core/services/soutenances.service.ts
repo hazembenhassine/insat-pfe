@@ -1,16 +1,23 @@
+import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
 import {ConferenceRole} from '../models/conference-role.model';
 import {Conference} from '../models/conference.model';
 import {Enterprise} from '../models/entreprise.model';
+import {Professor} from '../models/professor.model';
 import {Project} from '../models/project.model';
 import {Session} from '../models/sessions.model';
 import {Student} from '../models/student.model';
-import {Professor} from "../models/professor.model";
+import {API_URL} from "../../../app/app.constatnt";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SoutenancesService {
+
+
+
   session1: Session = {
     'id': "1",
     'startDate': "27/06/2021",
@@ -18,6 +25,7 @@ export class SoutenancesService {
     'capacity': 250,
     'president': "dr.Ali Abdenadher"
   };
+
   student1: Student = <Student>{
     id: "1",
     name: "Khaled",
@@ -106,12 +114,9 @@ export class SoutenancesService {
   conferences: Conference[] = [this.conference1];
   conferencesRoles: ConferenceRole[] = [this.conferenceRole1];
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
-  getConferences(): Conference[] {
-    return this.conferences;
-  }
 
   getConferencesRolesByProfId(id: String): ConferenceRole[] {
     return this.conferencesRoles;
@@ -125,14 +130,13 @@ export class SoutenancesService {
     return this.conference1;
   }
 
-  getConferencesBySession(sessionId: String) {
-    if (sessionId == "1") return [this.conference1];
-    if (sessionId == "2") return [this.conference2];
+  getConferencesBySession(sessionId: String): Promise<any> {
+    return this.http.get(`${environment.BASE_URL}/conferences/session/${sessionId}`).toPromise()
   }
 
-  getConferenceByStudent(studentId: String) {
-    return this.conference1;
-  }
+  // getConferenceByStudent(studentId:String) {
+  //   return this.http.get(`${this.sessionURL}/conferences/session/${sessionId}`).toPromise()
+  // }
 
 
 }

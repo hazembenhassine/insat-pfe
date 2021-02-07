@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Professor} from "../../core/models/professor.model";
+import {ActivatedRoute} from "@angular/router";
+import {Project} from "../../core/models/project.model";
 
 @Component({
   selector: 'app-project',
@@ -6,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent implements OnInit {
-
-  constructor() { }
+  project: Project
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.activatedRoute.data.subscribe((data: { project: Project }) => {
+      this.project = data.project
+      console.log(this.project)
+    })
   }
 
 }

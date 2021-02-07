@@ -10,6 +10,9 @@
 
   <section class="content">
     <div class="container-fluid">
+      <div class="loading-overlay" *ngIf="loading">
+        <mat-progress-spinner mode="indeterminate" style="position: relative"> </mat-progress-spinner>
+      </div>
       <div class="row">
         <div class="col-12">
           <div class="invoice p-3 mb-3">

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseURL: 'https://gestion-pfe.herokuapp.com'
+  BASE_URL: "https://gestion-pfe.herokuapp.com"
 };
 
 /*

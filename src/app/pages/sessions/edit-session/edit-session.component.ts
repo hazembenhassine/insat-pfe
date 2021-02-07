@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SessionsService } from 'src/app/core/services/sessions.service';
+import { UsersService } from 'src/app/core/services/users.service';
 import { Session } from '../../../core/models/sessions.model';
 
 @Component({
@@ -12,7 +13,7 @@ import { Session } from '../../../core/models/sessions.model';
 })
 export class EditSessionComponent implements OnInit {
   id:string;
-  
+  loading= false;
   profs=[{
     'id':1,'name':'tarek','lastName':'jarrar'
   }];
@@ -24,28 +25,53 @@ export class EditSessionComponent implements OnInit {
   });
   currentData:Session;
 
-  constructor(private router:Router,private sessionsService:SessionsService,public dialogRef: MatDialogRef<EditSessionComponent>,
+  constructor(private userService:UsersService,private router:Router,private sessionsService:SessionsService,public dialogRef: MatDialogRef<EditSessionComponent>,
     @Inject(MAT_DIALOG_DATA) data ) {this.id = data.id;}
 
   ngOnInit(): void {
-    this.currentData=this.getSessionById(this.id);
-    const currentDates=[this.currentData.startDate,this.currentData.endDate];
-    this.sessionForm.patchValue({dates: currentDates, capacity: this.currentData.capacity,president: this.currentData.president});
+    this.getProfessors(); 
+    this.getSessionById(this.id);
   }
   
   
   onSubmit(){
     this.dialogRef.close();
-    this.sessionsService.addSession(this.sessionForm.value.dates[0],this.sessionForm.value.dates[1],this.sessionForm.value.capacity,this.sessionForm.value.presidentId)
+    const session={
+      "startDate":this.sessionForm.value.dates[0],
+      "endDate":this.sessionForm.value.dates[1],
+      "capacity":this.sessionForm.value.capacity,
+      "president":this.sessionForm.value.presidentId
+    }
+    this.sessionsService.addSession(session);
   }
 
   getSessionById(sessionId:String){
-    return this.sessionsService.getSessionById(sessionId);
-  }
+    this.sessionsService.getSessionById(sessionId).subscribe(
+      (value:any)=>{
+        this.currentData=value;
+        this.sessionForm.patchValue(value);
+      },err=>{
+        console.log(err)
+      }
+     )  }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
+
+  getProfessors(){
+    this.loading = true
+    this.userService.getProfessors().then(
+      res => {
+        this.profs=res;
+      }).catch(
+      error => {
+        console.log(error)
+      }
+    ).finally(() => {
+      this.loading = false
+    })}
+  
 
   
 

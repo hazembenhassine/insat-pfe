@@ -3,23 +3,18 @@ import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from '@ang
 import {EMPTY, Observable} from 'rxjs';
 import {UsersService} from "../services/users.service";
 import {ProjectsService} from "../services/projects.service";
+import {SessionsService} from "../services/sessions.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectResolver implements Resolve<any> {
+export class SessionResolver implements Resolve<any> {
 
-  constructor(private projectsService: ProjectsService, private router: Router) {
+  constructor(private sessionsService: SessionsService, private router: Router) {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
-    return this.projectsService.getProject().catch(
-      error => {
-        console.log(error)
-        this.router.navigate(["project/add"]);
-        return EMPTY
-      }
-    )
+    return this.sessionsService.getSessions()
   }
 
 }

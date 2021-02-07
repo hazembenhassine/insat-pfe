@@ -1,7 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import { MatChipInputEvent } from '@angular/material/chips';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { Professor } from "../../../core/models/professor.model";
+import { ToastrService } from "ngx-toastr";
+import { ActivatedRoute } from "@angular/router";
+import { COMMA, ENTER } from "@angular/cdk/keycodes";
+import { MatChipInputEvent } from "@angular/material/chips";
+import { Project } from "../../../core/models/project.model";
+import { ProjectsService } from "../../../core/services/projects.service";
 
 @Component({
   selector: 'app-add-project',
@@ -10,27 +15,43 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 })
 export class AddProjectComponent implements OnInit {
 
+  professors: Professor[]
+  loading = false
+
   formProject: FormGroup = this.formBuilder.group({
     title: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
     supervisor: new FormControl('', [Validators.required]),
-    cin: new FormControl('', [Validators.required]),
-    rank: new FormControl('', [Validators.required]),
-  });
+    enterpriseSupervisor: new FormControl('', [Validators.required]),
+    tags: new FormArray([]),
+    enterprise: this.formBuilder.group({
+      name: new FormControl('', [Validators.required]),
+      location: new FormControl('', [Validators.required]),
+      contact: new FormControl('', [Validators.required]),
+    })
 
+
+  })
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
-  constructor(private formBuilder: FormBuilder) {
+
+  constructor(private formBuilder: FormBuilder,
+              private activatedRoute: ActivatedRoute,
+              private projectsService: ProjectsService,
+              private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
+    this.activatedRoute.data.subscribe((data: { professors: Professor[] }) => {
+      this.professors = data.professors
+    })
   }
 
-  tags: string[] = [
-    'Lemon',
-    'Lime',
-    'Apple',
-  ];
+  getTags() {
+    const tags = this.formProject.get("tags") as FormArray;
+    return tags.controls
+
+  }
 
   add(event: MatChipInputEvent): void {
     const input = event.input;
@@ -38,21 +59,34 @@ export class AddProjectComponent implements OnInit {
 
     // Add our fruit
     if ((value || '').trim()) {
-      this.tags.push(value.trim());
+      const tags = this.formProject.get("tags") as FormArray;
+      tags.push(new FormControl(value.trim()));
     }
 
-    // Reset the input value
     if (input) {
       input.value = '';
     }
   }
 
-  remove(fruit: string): void {
-    const index = this.tags.indexOf(fruit);
+  remove(index: number): void {
+    const tags = this.formProject.get("tags") as FormArray;
+    tags.removeAt(index);
+  }
 
-    if (index >= 0) {
-      this.tags.splice(index, 1);
-    }
+  addProject() {
+    this.loading = true
+    const project = <Project>this.formProject.value
+    console.log(project)
+    this.projectsService.addProject(project)
+      .then(res => {
+        this.toastr.success("Succesfully added the project")
+      })
+      .catch(error => {
+        this.toastr.error(error.message)
+      })
+      .finally(() => {
+        this.loading = false
+      })
   }
 
 }

@@ -9,6 +9,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Room} from "../../../core/models/conference.model";
 import {SoutenancesService} from "../../../core/services/soutenances.service";
 import {ProjectsService} from "../../../core/services/projects.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-plan-session',
@@ -49,6 +50,7 @@ export class PlanSessionComponent implements OnInit {
               private activatedRouter: ActivatedRoute,
               private soutenancesSession: SoutenancesService,
               private projectsService: ProjectsService,
+              private toastr: ToastrService,
               private activatedRoute: ActivatedRoute) {
   }
 
@@ -60,7 +62,7 @@ export class PlanSessionComponent implements OnInit {
     this.projectsService.getProjectBySessionId(sessionId).then(
       (projects: Project[]) => {
         console.log(projects)
-        this.projects = projects.filter(project => project.state === "NONE")
+        this.projects = projects.filter(project => project.state === "CONFIRMED")
       }
     )
     this.roomFormGroup = this.formBuilder.group({
@@ -79,17 +81,6 @@ export class PlanSessionComponent implements OnInit {
     this.selectedProject = project
   }
 
-  availableProfessors(i) {
-    let availableProfessor = this.allProfessors.filter(availableP => this.jurys.value.every(selectedP => selectedP && selectedP?.id !== availableP.id))
-    for (let selectedProfessor of this.jurys.value) {
-      availableProfessor = availableProfessor.filter(availableP => availableP && availableP.id !== selectedProfessor.id)
-    }
-    if (this.jurys.value[i]) {
-      availableProfessor.push(this.jurys.value[i])
-    }
-    return availableProfessor
-  }
-
 
   compareById(p1: Professor, p2: Professor) {
     return p1.id === p2.id;
@@ -97,9 +88,21 @@ export class PlanSessionComponent implements OnInit {
 
 
   planSession() {
-    const room = this.roomFormGroup.value
+    const room = this.roomFormGroup.value.room
     const selectedJurys = this.jurys.value
-    console.log(`Project: ${this.selectedProject.title}, Room: ${room}, Timeslot: ${this.selectedTimeslot}, Jurys: ${selectedJurys}`)
+    const payload = {
+      date: this.selectedTimeslot,
+      session: this.session._id,
+      president: selectedJurys[0]._id,
+      inspector: selectedJurys[1]._id,
+      project: this.selectedProject._id,
+      room: room
+    }
+    console.log(payload)
+    this.soutenancesSession.addConference(payload).then(res => {
+      this.toastr.success("Soutenance Programmée")
+    })
+
   }
 
   setTimeslot(timeslot: any) {

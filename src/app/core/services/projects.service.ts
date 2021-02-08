@@ -23,15 +23,15 @@ export class ProjectsService {
   }
 
   acceptSupervisionRequest(projectId: string) {
-    return this.http.put(`${environment.BASE_URL}/projects/accept/$projectId`, {}).toPromise();
+    return this.http.put(`${environment.BASE_URL}/projects/accept/${projectId}`, {}).toPromise();
   }
 
   acceptProjectRequest(projectId: string) {
-    return this.http.put(`${environment.BASE_URL}/projects/validate/$projectId`, {}).toPromise();
+    return this.http.put(`${environment.BASE_URL}/projects/validate/${projectId}`, {}).toPromise();
   }
 
   acceptSessionRequest(projectId): Promise<any> {
-    return this.http.put(`${environment.BASE_URL}/sessions/confirm/$projectId`, {}).toPromise();
+    return this.http.put(`${environment.BASE_URL}/sessions/confirm/${projectId}`, {}).toPromise();
   }
 
   getSupervisionRequests(): Promise<any> {
@@ -50,17 +50,18 @@ export class ProjectsService {
   addProject(project: Project): Promise<any> {
     return this.http.post(`${environment.BASE_URL}/projects`, project).toPromise()
   }
+
   getProject(): Promise<any> {
     return this.http.get(`${environment.BASE_URL}/projects`).toPromise()
   }
 
-  getAllProjects():Promise<any>{
+  getAllProjects(): Promise<any> {
     return this.http.get(`${environment.BASE_URL}/projects/all`).toPromise();
   }
 
 
   getProjectBySessionId(sessionId): Promise<any> {
-    return this.http.get(`${environment.BASE_URL}/projects/session/${sessionId}`).toPromise()
+    return this.http.get(`${environment.BASE_URL}/sessions/project/${sessionId}`).toPromise()
   }
 
 }

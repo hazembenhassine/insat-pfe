@@ -8,7 +8,7 @@
     </div>
     <!-- /.container-fluid -->
   </section>
-  
+
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
@@ -38,7 +38,7 @@
                     <td>{{session.endDate|date}}</td>
                     <td>{{session.capacity}}</td>
                     <td>
-                      <button class="btn btn-outline-success btn-block btn-sm" (click)="demanderSession(session.id)"><i class="fa fa-book"></i>Demander</button>
+                      <button class="btn btn-outline-success btn-block btn-sm" (click)="demanderSession(session._id)"><i class="fa fa-book"></i>Demander</button>
                     </td>
                   </tr>
                 </tbody>
@@ -48,7 +48,7 @@
           <div class="col-md-10">
             <div class="callout callout-info">
               <h5><i class="fas fa-info"></i> Note:</h5>
-              les dates affichées dans cette page peuvent etre sujets à des changements 
+              les dates affichées dans cette page peuvent etre sujets à des changements
             </div>
           </div>
         </div>
@@ -60,7 +60,7 @@
               <h3 class="card-title">Details de votre soutenance</h3>
             </div>
             <div class="card-body">
-             <p>Votre soutenance aura lieu durant la session du <b>{{myConference.session.startDate|date}}</b> au <b>{{<myConference class="session endDate"></myConference>|date}}</b> </p> 
+             <p>Votre soutenance aura lieu durant la session du <b>{{myConference.session.startDate|date}}</b> au <b>{{<myConference class="session endDate"></myConference>|date}}</b> </p>
              <div class="info-box bg-success">
                 <span class="info-box-icon"><i class="far fa-calendar-alt"></i></span>
                 <div class="info-box-content">
@@ -84,6 +84,5 @@
       </div>
     </div>
   </section>
-  
+
   <!-- /.content -->
-  

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Project } from 'src/app/core/models/project.model';
-import { ProjectsService } from 'src/app/core/services/projects.service';
+import {Component, OnInit} from '@angular/core';
+import {Project} from 'src/app/core/models/project.model';
+import {ProjectsService} from 'src/app/core/services/projects.service';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-session-requests',
@@ -8,16 +9,17 @@ import { ProjectsService } from 'src/app/core/services/projects.service';
   styleUrls: ['./session-requests.component.scss']
 })
 export class SessionRequestsComponent implements OnInit {
-  projects:Project[];
+  projects: Project[];
 
-  constructor(private projectsService:ProjectsService) { }
-
-  ngOnInit(): void {
-    this.getSessionRequests(); 
+  constructor(private projectsService: ProjectsService, private toastr: ToastrService) {
   }
 
-  getSessionRequests(){
-     this.projectsService.getAllProjects().then(
+  ngOnInit(): void {
+    this.getSessionRequests();
+  }
+
+  getSessionRequests() {
+    this.projectsService.getAllProjects().then(
       (projects: Project[]) => {
         console.log(projects)
         this.projects = projects.filter(project => project.state === "PENDING")
@@ -25,14 +27,16 @@ export class SessionRequestsComponent implements OnInit {
       error => {
       }
     ).finally(() => {
-    }); }
+    });
+  }
 
-  acceptSessionRequest(projectId){
-    this.projectsService.acceptSessionRequest(projectId);
+  acceptSessionRequest(projectId) {
+    this.projectsService.acceptSessionRequest(projectId).then(
+      res => this.toastr.success("Projet affecté avec succes")
+    );
   }
 
 
-
-  showDetails(id){
+  showDetails(id) {
   }
 }

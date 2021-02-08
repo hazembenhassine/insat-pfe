@@ -1,6 +1,7 @@
 
 export interface Professor {
-  id: string
+  _id?: string
+  id?: string
   name: string
   lastName: string
   cin: string

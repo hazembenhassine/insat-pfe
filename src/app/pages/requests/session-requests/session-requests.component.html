@@ -43,9 +43,9 @@
                   <td>{{project.title}}</td>
                   <td>{{project.enterprise.name}}</td>
                   <td>{{project.supervisor.name}} {{project.supervisor.lastName}}</td>
-                  <td></td>
+                  <td>{{project.session.startDate | date}} - {{project.session.endDate | date}}</td>
                   <td>
-                    <i class="icon fas fa-user-plus fa-3x" (click)="acceptSessionRequest(project.id)"></i>
+                    <i class="icon fas fa-user-plus fa-3x" (click)="acceptSessionRequest(project._id)"></i>
                   </td>
                 </tr>
               </table>

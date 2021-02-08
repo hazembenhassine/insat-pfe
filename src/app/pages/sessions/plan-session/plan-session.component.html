@@ -8,7 +8,7 @@
   </div>
 </section>
 <div class="loading-overlay" *ngIf="loading">
-  <mat-progress-spinner mode="indeterminate" style="position: relative"> </mat-progress-spinner>
+  <mat-progress-spinner mode="indeterminate" style="position: relative"></mat-progress-spinner>
 </div>
 <mat-horizontal-stepper *ngIf="!loading" [linear]="false" #stepper>
   <mat-step>
@@ -68,7 +68,7 @@
 
   <mat-step>
     <ng-template matStepLabel>Choisir Jury</ng-template>
-    <div>President du jury: {{president.name}} {{president.lastName}}</div>
+<!--    <div>President du jury: {{president.name}} {{president.lastName}}</div>-->
     <form [formGroup]="juryFormGroup">
 
       <div class="row pt-3">
@@ -78,8 +78,9 @@
               <mat-label>Jury {{i + 1}}</mat-label>
               <mat-select [formControlName]="i"
                           [compareWith]="compareById">
-                <mat-option *ngFor="let jury of availableProfessors(i)"
+                <mat-option *ngFor="let jury of allProfessors"
                             [value]="jury">{{jury.lastName}} {{jury.name}}</mat-option>
+
               </mat-select>
             </mat-form-field>
           </div>

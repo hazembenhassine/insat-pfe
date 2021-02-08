@@ -60,13 +60,13 @@
 
           <!-- Table row -->
           <div class="row">
-            <h4>Liste des soutenances affectés à la session :</h4>
+            <h4>Liste des soutenances programmées à la session :</h4>
             <div class="col-12 table-responsive">
               <table class="table table-striped">
                 <thead>
                 <tr>
                   <th>Etudiant</th>
-                  <th>Filliére</th>
+                  <th>Niveau</th>
                   <th style="width: 400px;">sujet du soutenance</th>
                   <th>Encadrant</th>
                   <th>Date</th>
@@ -77,9 +77,9 @@
                 <tbody *ngFor="let conference of conferences">
                 <tr>
                   <td>{{conference.project.student.name}} {{conference.project.student.lastName}}</td>
-                  <td> {{conference.project.student.level}} {{conference.project.student.field}} </td>
+                  <td> {{conference.project.level}} {{conference.project.student.field}} </td>
                   <td>{{conference.project.title}}</td>
-                  <td>{{conference.project.title}}</td>
+                  <td>{{conference.project.supervisor.lastName}} {{conference.project.supervisor.name}}</td>
                   <td>{{conference.date}}</td>
                   <td>{{conference.room}}</td>
                   <td>
